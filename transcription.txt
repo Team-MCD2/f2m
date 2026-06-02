@@ -1,0 +1,302 @@
+(0:00) On ne fait pas d'argent, on ne fait pas etc. Mais les tâches administratives ça reste les (0:04) mêmes. Ça veut dire, à ce jour on fait toutes les tâches à l'ancienne, à l'époque c'est fini.
+(0:11) Donc en plus j'ai souffert pour demander, ça te parle la CDC, la caisse de dépôt ? Non. (0:16) La caisse de dépôt, voilà avec le CPF en fait, ils demandent des tableaux à remplir avec l'XLM (0:24) etc. Ça c'est les unes.
+On fait les stades, les tableaux, etc. Donc j'ai tout fait à la main, (0:31) tout à la main à l'ancienne. Et on a sur trois ans, c'est énorme.
+À chaque fois vous le refaites ? (0:36) Voilà. C'est tous les ans ? C'est tous les ans, oui. Les stades c'est tous les six mois et les (0:42) autres maintenant c'est tous les trois ans qu'ils demandent en fait.
+Bref, pour revenir aux tâches (0:46) administratives, que ce soit que le dirigeant, que ce soit un grand centre de formation, on reçoit des (0:51) candidats. Donc à ce jour c'est fiche de renseignement, on remplit. Fiche de formation, (0:58) c'est ma femme, elle est la secrétaire aussi.
+Donc c'est elle qui... Alors on a les documents (1:03) Word à remplir, etc. Le CRM, tu connais, tu connais mieux que moi ça. Donc comme visio... (1:10) Teach, là je vois Teach, il sort souvent, tu le connais Teach ? Teach.
+Tu vois Teach, il y a visio (1:15) formation. On a eu un échange, ça fait longtemps, trois mois à peu près avec visio formation aussi. (1:20) Voilà, c'est un CRM en fait.
+Quand le candidat maintenant, on n'a que remplir son nom, prénom, (1:26) etc. Automatiquement, on a tous les documents qui se génèrent. OK.
+Du coup, vous n'avez pas de (1:31) partie vitrine, site vitrine ? Une vitrine de votre société, vous n'avez pas de site ? Si, (1:36) si, on a le site vitrine. Vous avez un site vitrine, je peux aller regarder ? Oui, bien sûr, (1:38) la deuxième consulting. Et du coup, vous, ce que vous souhaiterez en premier, c'est déjà pour la (1:58) première partie que le candidat puisse remplir un formulaire directement numérisé.
+Automatiquement, (2:02) ça vous remplit, vous avez une interface admin avec tous les candidats disponibles. Voilà, (2:06) c'est soit lui qui remplit, mais nous, on préfère, c'est nous les données et tout ça. Les premiers (2:10) documents, c'est nous qui les remplissons parce que s'il se trompe sur le nom, sur la date de (2:13) naissance, après ça se génère un vote.
+Moi, il ramène sur la piste d'identité, sur faire entrer (2:18) son nom, prénom, date et lieu de naissance, son adresse. Vous l'avez fait il y a un moment, (2:22) le site vitrine ? Oui, ça fait trois ans. Et là, il a mis un jour, ça fait... C'est un développeur, (2:29) vous êtes passé par un développeur ? C'est un développeur citoyen.
+Un professionnel ? Je ne (2:34) sais pas franchement, je ne sais pas si c'est un professionnel. C'est ma responsable qui le (2:39) connaît, elle a fait appel à lui. Je le connais, je le connais.
+Lui, il était dans la sécu. Je ne pense (2:43) pas qu'il est professionnel. Voilà, c'est pour ça, parce que là, je suis en train de regarder la (2:45) partie vitrine pour l'instant.
+Il y a beaucoup de soucis. Déjà, c'est un vieux site, c'est une (2:50) web page, il n'y a qu'une page. Il n'y a qu'une page sur le site.
+Il y a plusieurs pages, mais (2:57) elles ne sont pas... Elle, elle connaît un peu l'information. Tu entends ? Il est un petit peu (3:08) vieux. Ça, je l'ai vu.
+Développeur, ce n'est pas un professionnel. Oui, voilà, c'est ça. J'ai (3:16) vu, je lui ai donné un document déjà, la fiche, à remplir, à mettre, à l'insérer, il n'a pas pu le (3:21) faire.
+Donc, je ne pense pas qu'il... Parce que, nous, du coup, si on peut vous proposer, c'est du (3:27) coup, parce que vous, ce que vous souhaitez, en fait, c'est du coup, faciliter votre vie. L'objectif, (3:31) c'est que, par exemple, une personne qui veut être dans la formation, remplissez un petit (3:36) formulaire. Une fois qu'il y a le formulaire, vous, vous avez tous les élèves dans une interface à (3:39) vous, administrateur, et sur cette interface-là, à vous, et bien, vous pouvez modifier les (3:44) informations d'élèves, compléter les dossiers d'élèves, c'est ça ? On a accès sur ça.
+Modifier, (3:48) mais générer surtout, générer les documents. Ok, générer les documents automatiquement. (3:53) Automatiquement.
+C'est ça le rôle d'un CRM, sinon ça, ça ne sert à rien. Vous avez des modèles (3:58) de documents ? Oui, oui. Ok, parfait.
+Nous, du coup, ce qu'il nous faudra, parce que moi, (4:03) je connais mon métier informatique, mais votre métier, je ne le connais pas vraiment encore. (4:06) C'est logique, c'est logique. Moi, je viens de voir les documents, comment ils sont.
+Ok, (4:10) si vous avez des améliorations à faire sur les documents, bien sûr aussi, on les améliorera. Du (4:14) coup, générer automatiquement des documents. Il faut que les élèves aient accès à ces documents (4:17) ou pas ? Non, non.
+Les élèves, ils ont accès au départ, sur quelques documents, sur la fiche de (4:23) renseignement, c'est normal, si ils ont du son, nom, prénom, l'adresse, numéro de téléphone, (4:27) etc. Il y a un certifiant, pareil, c'est des données, c'est des données, la fiche qualité (4:33) aussi à la fin. Du coup, vous, vous préférez que l'élève n'ait pas d'interface en réalité ? Pas (4:38) surtout, pas surtout.
+Ah, pas surtout sur certains trucs. Parce que là, ce qui est possible aussi, (4:41) c'est, il y a deux trucs, il faut faire une interface élève, une interface administrateur. Oui, (4:45) mais après, on peut avoir une interface élève parce que la fiche de formation, la fiche de fin (4:50) de formation, il va signer électroniquement.
+Donc, il peut avoir accès. C'est ça. Le truc, (4:55) c'est que si c'est juste pour ça, autant faire des mails d'envoi automatiques sur chaque élève et (5:00) l'élève reçoit ses documents automatiquement avec des informations.
+Si vous voulez que l'élève, (5:04) il a une interface, nous, on peut le faire, il n'y a pas de souci. Mais le mieux, du coup, (5:06) c'est de trouver des utilités à cette interface, pas juste lever que deux documents dans l'année, (5:10) vous voyez ce que je veux dire. Après, il n'y a pas de souci.
+Si vous souhaitez ça, (5:13) on peut le faire. Il n'y a aucun problème. Juste pour vous, je pense, c'est mieux.
+Du coup, (5:16) si l'élève, il n'a pas, il ne se connecte jamais. Il va devoir vous appeler pour vous demander à (5:19) chaque fois, il est en train de faire une connexion. Vous voyez ce que je veux dire.
+Au (5:22) final, ça créera autant de problèmes qu'il y avait à la base. Déjà, l'interface administrateur (5:28) pour vous, pour générer des documents, ça, c'est sûr. Pour chaque élève, il faudra que (5:33) vous puissiez générer des documents.
+Il y a des partenaires aussi. OK, (5:37) comment ça se passe, les partenaires? Les partenaires, c'est des centres de formation (5:41) qui signent avec nous des partenariats. Donc, c'est eux qui font la formation.
+Nous, on fait la (5:45) formation dirigeante. Nous, on est certificateur. C'est notre diplôme.
+Donc, je vais prendre un (5:51) exemple, un centre de formation à Marseille. C'est leur candidat. Ils font la formation et moi, (5:56) je me déplace le jour de l'examen pour les certifier.
+Donc, comme c'est leur candidat, (6:03) donc il faut qu'il y ait un accès. C'est eux qui remplissent. Mais nous, on aura l'interface (6:07) sur notre CRM.
+Mais c'est eux qui remplissent les données. Comme c'était pour nos candidats, (6:13) on le fait pour nos candidats. Et de base, vous le faisiez sur un papier.
+Envoyez un lien par (6:19) exemple ou un QR code. Non, non, tout par papier. Ils ont la liste des documents et les partenaires (6:25) nous préparent un dossier le jour de l'examen.
+Il y a les feuilles de margement, il y a une fiche (6:30) renseignement, il y a tous les documents, pièces d'identité, carte vitale et tout. Donc, on reçoit (6:34) tout en papier. Vous voulez juste un long formulaire? Vous voulez numériser le formulaire? (6:40) Envoyez le lien du formulaire au centre de formation aux participants.
+Ils remplissent (6:44) le formulaire. Non, pas le formulaire, les mêmes documents qu'on a sur notre CRM. Ah, (6:48) c'est des documents? C'est les mêmes, c'est les mêmes.
+On va prendre un dossier type. (7:29) Il y a les feuilles de margement. Ici, il y a les grilles pour les jurys.
+Il y a plein de (7:40) documents, c'est pas très fort général. Il y a des pièces, mais il n'y a pas d'entrée, (7:51) de fin de formation. Il y a combien de documents différents à peu près? Il y a une dizaine.
+(8:02) C'est d'où vous voudrez aller générer avec les informations des élèves? Voilà, c'est comme (8:06) n'importe quel CRM, tu rentres ces données, ça se génère automatiquement. Tout est généré. (8:14) Il n'y a pas d'entrée, de sortie.
+
+(0:01) Comme ça, je l'ai rempli, c'est logique, comme ça, un exemplaire de chaque document. (0:08) Et du coup, moi, je n'ai pas trop compris ce que vous souhaitez garder dans la partie (0:11) inscription pour lire. (0:12) Vous souhaitez vous rentrer les informations des élèves ou que ce soit les élèves qui (0:16) rentrent ? (0:17) Je ne sais pas, c'est à lui qui prend la décision, donc je ne sais pas qu'est-ce qu'il veut (0:21) exactement.
+(0:22) Parce qu'après, vous ne vous inquiétez pas, quand les élèves vont remplir, ils ne vous (0:24) rendent pas le document. (0:25) Ce n'est pas eux qui rendent le document, c'est juste vous, vous aurez les informations (0:28) et ça se générera automatiquement sur votre interface. (0:32) Après, non, parce que moi, je fais les CRM en fonction de chaque client.
+(0:35) Vous voyez, c'est-à-dire que là, ce que je vais faire, ce n'est pas un logiciel qui (0:37) existe déjà et je vais vous le donner. (0:39) Ce qu'on va faire, c'est qu'on va coder directement votre logiciel adapté pour vous. (0:42) C'est pour ça que moi, je pose beaucoup de questions, comme ça, vous avez le mieux (0:45) possible.
+(0:46) Le plus simple pour vous, le plus rapide pour vous ? (0:48) Oui, c'est à lui qui prend la décision, donc je ne sais pas qu'est-ce qu'il veut (0:52) exactement laisser. (0:53) Moi, sur papier, j'en lis, mais bon, c'est à lui qui prend la décision. (1:06) Les diplômes doivent aller jusqu'ici.
+(1:10) Est-ce qu'il est apte ou pas apte ? (1:23) Ça, c'est l'enseignement qu'il doit remplir. (1:28) Après, si vous avez un modèle vide, vierge, parce que lui, du coup, je ne peux pas le (1:31) prendre, du coup, c'est pour quoi ? (1:32) C'est juste pour l'enseignement. (1:35) Et ça, c'est vous qui l'avez rempli ou c'est l'élève ? (1:37) C'est l'élève.
+(1:38) Ça, c'est manuscrit, oui. (1:42) Et du coup, vous voulez que ça génère quel document, que ça régénère ce document-là, (1:46) du coup ? (1:47) Ou il y a un autre document ? (1:48) Franchement, je ne sais pas. (1:49) Vous ne savez pas trop ? (1:49) Je ne sais pas ce qu'il va se trouver avec.
+(1:55) En fait, lui, il a fait contact avec des CRM déjà pris. (1:59) Si vous connaissez DG Format, ils ont l'habitude de travailler avec les dirigeants spécialement, (2:04) donc eux, ils ont tout un truc déjà pris. (2:10) Le problème dans les CRM qui existent déjà, c'est que c'est des CRM qui sont faits en (2:15) gros et qui sont bombardés à plein de clients.
+(2:17) Oui, mais ils sont un peu spécialisés avec les dirigeants, donc ils ont l'habitude (2:22) de travailler à notre méthode. (2:25) C'est ça. (2:25) Du coup, pour vous, la seule solution, c'est de partir de zéro, faire un logiciel de zéro.
+(2:30) Vous voyez ce que je veux dire ? (2:31) C'est un peu compliqué de le mettre en place. (2:33) En vrai, pour nous, ce ne sera pas compliqué. (2:38) Ce ne sera pas quelque chose de... (2:41) Juste pour que ce soit clair dans ma tête, histoire qu'on ne fasse pas quelque chose.
+(2:44) Au final, ça ne vous va pas. (2:45) Vous voyez ce que je veux dire ? (2:50) Après là, c'est clair dans ma tête. (2:51) Je commence à comprendre un petit peu comment ça se passe.
+(3:00) Et du coup, par exemple, l'objectif, c'est de générer ce genre de documents automatiquement. (3:06) C'est vous qui devez remplir ces informations ? (3:08) Ça, par exemple, c'est la liste de renseignement au candidat. (3:10) C'est au candidat de le remplir.
+(3:12) Donc lui, sur son interface, il aura accès sur ça. (3:15) Il le remplit. (3:17) Il y a ça, par exemple.
+(3:18) Il y a la qualité, la fiscalité à la fin de la formation. (3:21) J'ai satisfaction à ce que ça lui est appelé patati, patati, etc. (3:26) C'est obligatoire ou pas obligatoire ? (3:27) C'est obligatoire.
+(3:29) Tous ces documents sont obligatoires.
+
+(0:00) Demande-candidat, c'est quand une personne demande de devenir candidat. (0:06) C'est ça, c'est pour le début. Pour le début, ça veut dire le candidat, je l'ai reçu, (0:11) il m'a ramené son dossier, il est recevable.
+D'abord, il faut qu'il ramène son dossier. (0:16) Ah oui, bien sûr. Ça veut dire que la première étape, c'est l'approche.
+(0:21) C'est l'approche, le premier contact. Le premier contact, c'est fait de (0:24) quelle manière actuellement ? Physiquement, (0:25) physiquement, par téléphone au départ. Au départ, si je vois qu'il y a des prérequis, (0:31) la langue française, l'expérience de la sécu ou des diplômes supérieurs plus que le bac.
+(0:37) Donc, si je vois au téléphone qu'il ne parle bien du tout, il me dit que je suis (0:40) responsable de la sécurité, déjà, quasiment c'est bon. Donc, je lui demande de m'envoyer son dossier (0:47) par mail. OK, d'accord.
+La première étape, ça sera en général par téléphone, obligato. Ou (0:51) soit physique, soit par téléphone. Ça veut dire que sur le site, par exemple, il y aura juste accès (0:54) à votre numéro de téléphone, votre mail et l'adresse pour ceux qui veulent venir, c'est ça ? (0:59) Quel site ? Le CRM ? Oui, d'abord le site internet, parce qu'en fait, le CRM relie au CRM.
+(1:04) Oui, c'est ça l'objectif. Moi, pardon, regardez, moi, je vais vous proposer des choses et après, (1:10) c'est à vous de me confirmer si ça vous va ou pas. Bien sûr.
+Vous voyez ? Parce que moi, (1:13) pour chaque client, chaque client, il veut quelque chose de différent. (1:16) De différent. C'est ça.
+Ça veut dire que moi, j'ai une idée en tête, mais ce qui compte, (1:19) ce n'est pas moi ce que je veux, c'est que vous... Voilà. Moi, j'ai juste une vue d'expert parce (1:23) que j'ai l'habitude d'en faire, tout ça, ça fait des années que je suis dans le milieu, mais... (1:26) T'as l'expertise d'informatique, mais t'as pas l'expertise du domaine de l'informatique. (1:30) C'est pour ça que je n'ai pas l'expertise du domaine, mais ça, je vais l'avoir parce que je vais bien me renseigner.
+(1:33) Bien sûr, bien sûr. Et en plus de ça aussi, elle a de moins de clients parce que chaque client (1:36) veut son truc à lui. Tout à fait.
+Vous voyez ? Il y a des clients, il y a des trucs qui seraient (1:39) importants pour eux, d'autres pas importants. C'est pour ça, moi, je pose beaucoup de questions. (1:43) Oui, oui, c'est ça.
+Donc là, tu comprends un maximum. Donc là, en quelques semaines, (1:46) c'est ça. L'objectif, c'est que vous soyez satisfait.
+OK, d'accord. Du coup, la première étape, (1:51) c'est que le client vous contacte et tout. Ensuite, il va remplir cette fiche de renseignement.
+Cette (1:54) fiche, vous, vous souhaitez qu'elle soit numérisée ? Oui, oui, bien sûr. Tout est numérisé. (1:58) Tout numérisé ? Tout numérisé.
+OK, ça veut dire que la première étape... (2:00) Même si j'arrive à numériser le mec, je vais le numériser. (2:04) Du coup, OK, d'accord, j'ai compris ça. OK, c'est comme ça.
+Il faut qu'il a rempli cette fiche. (2:09) C'est quoi les étapes ? Déjà, il a envoyé le dossier, on l'a validé. (2:14) Quand il envoie cette fiche, il envoie des documents avec ou pas ? (2:17) Ça, c'est les documents avant ça.
+Avant ça. Les documents, il faut les numériser aussi alors. (2:21) Les documents ? Il envoie par mail, il aura accès sur le mail.
+Il les scanne, il envoie par mail. (2:27) Est-ce qu'il peut les envoyer sur le CRM ? C'est possible, c'est pour ça que je vous demande. (2:31) Oui, bien sûr.
+C'est possible, bien sûr. C'est pour ça que je vous demande. Avec nous, (2:35) tout est possible.
+Maintenant, en informatique, alhamdoulilah, tout est possible. Nous, (2:38) on est compétents, ne vous inquiétez pas. On a fait beaucoup de logiciels et tout.
+Franchement, (2:41) ne vous inquiétez pas pour ça. Votre demande, on va la faire. Il faut bien qu'on comprenne la (2:45) demande.
+Oui, bien sûr. Après, tu peux modifier à tout moment. Il n'y a pas de soucis.
+C'est ce (2:51) qui va se passer. On va faire une première version. Ça, on va venir, on va vous la présenter.
+(2:55) On va la voir ensemble. Vous allez me dire ça, je n'aime pas, ça, j'aime pas, ça, (2:58) mettez-le plus en avant. Deux semaines après, on revient avec une version finale et vous validez.
+(3:03) Ça marche. Et même après, si jamais il y a besoin, il n'y a pas de soucis. N'importe quand, (3:07) le groupe reste là.
+Sur Toulouse. N'importe quand, vous nous appelez, on reste à disposition. (3:13) Franchement, il n'y a pas de soucis.
+Ne vous inquiétez pas du tout. Pour ça, (3:15) ne vous inquiétez pas. OK, alors ça veut dire que ce qui serait bien, c'est que vous avez (3:21) contact avec le... Si tu veux, Sophie, je t'explique un peu la procédure.
+Moi, (3:28) j'ai le premier des choses, regarde, le téléphone, ils sont installés. Donc l'autre, (3:35) après, etc. Donc le premier contact, le premier contact, c'est par téléphone.
+Généralement, (3:41) c'est par téléphone. Donc le mec est directement par téléphone, je vois qu'il parle, etc. Bon, (3:47) bon, monsieur.
+Maintenant, si je vois qu'il est bon sur le téléphone, je lui donne un rendez-vous. (3:51) Il va venir pour le contact physique ici. À ce jour, on le fait comme ça à ce jour, d'accord? (3:57) Dans le rendez-vous, il ramène son dossier.
+Soit il ramène son dossier administratif, (4:02) il vous fait des copies parce que c'est des diplômes, plus d'identité, CV. Il y a pas (4:05) mal de choses, le CV. Soit il vous l'envoie par mail.
+À ce jour, soit il le ramène, (4:10) on a l'impression qu'on fait des copies, soit il l'envoie par mail. Mais généralement, (4:14) les Arabes, ils l'envoient par WhatsApp. Je ne sais pas pourquoi ils l'envoient par WhatsApp.
+(4:17) On dirait qu'ils font du shit, tu vois. C'est comme la mentalité. C'est pour ça.
+Je leur dis (4:24) WhatsApp, les gars, je dois télécharger photo par photo pour les imprimer et la qualité dans (4:29) les dossiers n'est pas bonne. Mais ils l'envoient par WhatsApp. Donc le dossier, soit de main à main, (4:37) soit par mail.
+Donc à partir de maintenant, il envoie tout sur le serveur. Il remplit, (4:43) il aura comme un formulaire? Non, pour le moment, il n'a pas rempli ça. Il n'a pas rempli ça? (4:47) Non.
+Là, dans le rendez-vous, c'est pour valider justement. Ça y est, on a validé. Après, (4:55) la validation, je reçois le dossier sur mail, je le télécharge, je vois que c'est bon.
+Là, (5:01) il remplit ça? Là, il remplit ça. OK, d'accord. OK, du coup, le dossier, juste avant, c'est juste (5:09) des documents ou il y a des papiers? Juste des documents.
+OK, il y a quoi comme documents? (5:13) Comme ça, je sais à peu près. Le document, là, il faut que je voie un dossier. Elle est où la liste? (5:17) Non, la liste des documents qu'il envoie? Qu'il doit envoyer, oui.
+Ah, qu'il doit envoyer? Je te (5:21) donne la liste. Après, il y a des documents qui sont obligatoires, par exemple. Ah oui, (5:26) bien sûr.
+Voilà, c'est pour ça qu'il est obligatoire parce qu'il y en a, je suppose, (5:29) qu'il doit vous envoyer que la moitié. Vous devez les recontacter. C'est ça.
+Alors moi, (5:32) ce que je vais faire, c'est simple. Il ne pourra pas valider le dossier tant qu'il n'a pas mis (5:35) tous les documents. Il ne sera pas facultatif.
+C'est obligatoire. Parce que je pense que ça (5:38) doit vous énerver un petit peu. Les gens, ils envoient un papier.
+Il ne faut pas lui, (5:41) il faut un autre. Il faut lui. Tout ce que tu as dit, c'est juste.
+C'est juste, tu enlèves, (5:45) tu changes un petit peu. Je te dis beaucoup.
+
+(0:12) Les diplômes scolaires c'est obligatoire pour celui qui n'a pas d'expérience en sécu. (0:18) Donc s'il n'a pas d'expérience, il lui faut le bac et plus. (0:22) S'il n'a pas d'expérience en sécu, s'il a l'expérience en sécu, ça remplace en fait l'un des deux.
+(0:33) Les justificatifs domiciles c'est obligatoire, au moins vous l'avez, vous n'avez pas besoin de l'obligatoire. (0:41) Oui, c'est pour l'adresser. Le B3 obligatoire.
+(0:48) S'il n'y a pas, il ne pourra pas envoyer le B3. (0:51) Tous les documents en sécu, c'est pas obligatoire. (0:54) Les fiches de paye, c'est pour le parcours VAE.
+(0:59) Pour le parcours VAE, c'est obligatoire. (1:02) Celui qui a le bac ou l'expérience dans la sécu, ça c'est lui. (1:06) L'expérience dans la sécu, ça veut dire que c'est juste un vrai contrat aussi.
+(1:08) Ça veut dire que j'ai bien compris. (1:11) S'il n'a pas de diplôme, il n'a pas d'expérience, c'est obligatoire. (1:17) Ok, j'ai totalement compris.
+(1:18) Ça veut dire que même s'il n'a pas le bac ou la licence, il a un CABIS, il a créé une société auparavant, c'est bien. (1:26) Mais ce n'est pas obligatoire. (1:27) Mais c'est bien dans le dossier.
+(1:29) C'est plus costaud. (1:31) Ce que je vais faire automatiquement, c'est qu'ici, il y aura une case diplôme scolaire. (1:36) S'il a le diplôme scolaire, du coup, ça ne devient pas obligatoire.
+(1:39) S'il n'a pas de diplôme scolaire, dans ce cas-là, ça devient obligatoire. (1:43) Mais s'il a le diplôme scolaire, il pourra dans tous les cas aussi rajouter. (1:47) Mais ce n'est pas obligatoire.
+(1:49) Parfait. (1:51) Le CABIS est obligatoire. (1:54) Et les photos, c'est en physique, il faut qu'ils les ramènent.
+(1:57) C'est pas obligé. (1:58) C'est en physique parce que le diplôme, on ne peut pas le faire. (2:01) Ce n'est pas dans ce cas-là, ils n'acceptent pas.
+(2:03) Ok, parfait. (2:05) Cette étape, c'est bon pour moi. (2:07) Peste d'identité ou carte de séjour aussi.
+(2:10) Peste d'identité, soit française, soit carte de séjour. (2:13) Tu mets toujours en cours de validité. (2:15) Vous voulez qu'on garde ce design ? (2:17) Oui, je l'aime bien.
+(2:18) T'aimes bien ? (2:18) Oui, parfait. (2:20) C'est pour vous, comme ça, vous pouvez aussi une petite… (2:22) Parce que là, c'est le point de vue technique. (2:24) Aussi, comme ça, vous faites une emblème de marque.
+(2:26) Vous en avez déjà une, mais c'est bien de la mettre en avant. (2:29) On essaie de reporter le papier. (2:32) Le papier peint, tout ça, on a gardé toujours.
+(2:34) Sur les feuilles. (2:35) Parfait. (2:36) Si on a la carte Vita, justement, la carte DC.
+(2:39) C'est ça, c'est le contouring là. (2:41) C'est important, comme ça, je le mets au stade formulaire, (2:43) comme ça, ça reste dans l'esprit des gens. (2:45) Ça fait une image professionnelle.
+(2:46) On essaie de faire tout, la carte Vita, tout ça. (2:49) Oui, bien sûr. (2:50) Moi, ce qui me pose problème, c'est le site internet.
+(2:52) Le problème, c'est que je ne peux pas changer le concepteur. (2:56) C'est quelqu'un qui a fait… (2:57) Après, mais nous, en même temps qu'on fait ça, on fait le site internet aussi. (3:00) Hein ? (3:00) Nous, en même temps que… (3:02) Mon métier, 60%, c'est du site internet quasiment.
+(3:05) Oui. (3:05) Ça veut dire que si vous le souhaitez, en même temps qu'on fait ça, on fait le site internet. (3:08) Mais le site Vita, on ne peut pas changer le même.
+(3:10) C'est un peu modifié. (3:11) Non, ce n'est pas ça le problème. (3:13) C'est que la responsable… (3:15) La responsable, elle a des liens avec ce mec-là.
+(3:18) Ah. (3:18) Bon, après, moi, je ne connais pas la responsable. (3:21) Mais bon, le professionnalisme passe au-dessus des fois de… (3:23) Oui, je sais.
+(3:24) Oui. (3:25) Comme vous voulez. (3:26) En tout cas, nous, si jamais vous souhaitez, un jour, vous avez une idée… (3:28) Un jour, on veut changer.
+(3:30) On fait quoi ? (3:30) Il faut écarter ce mec-là. (3:31) Parce qu'il faut récupérer les accès. (3:34) Il faut juste récupérer… (3:35) Pas accès, parce qu'en tout cas, nous repartir à zéro.
+(3:37) Parce que bon, ce n'est pas pour critiquer cette personne, mais… (3:39) Oui, bien sûr. (3:40) Voilà. (3:41) On ne va pas prendre cette base-là, c'est sûr.
+(3:42) Parce que ça, c'est fait avec WordPress. (3:43) Ça, nous, on les code directement en codage. (3:46) On fait vraiment un truc professionnel.
+(3:48) Là, c'est du WordPress, c'est du glissé, c'est du… (3:51) Ça se voit qu'il manque beaucoup de choses. (3:52) Ça veut dire que nous, si on le fait, on repartira à zéro. (3:56) Et juste, on prendra les informations.
+(3:58) Et si vous voulez, les images, par exemple. (4:00) La meilleure des choses, en urgence, en fait, c'est… (4:02) Oui, c'est vrai. (4:03) Et ça, ça reste… (4:03) Après, tu vois ce qu'on fait ? (4:04) On vient faire un nouveau site.
+(4:08) Juste le nom de domaine. (4:09) C'est vous qui l'avez payé ou c'est cette personne qui l'a payé ? (4:12) Je ne sais pas, je ne sais pas. (4:14) Sinon, le reste, on s'en fout.
+(4:15) En fait, nous, l'hébergement, on s'en occupe. (4:17) Nous, il n'y a pas de souci. (4:18) Mais le nom de domaine, en fait, f2mconsulting.fr. (4:22) Celui-là, il est acheté.
+(4:23) C'est Laurence qui l'a payé, c'est sûr. (4:24) Ça doit être Laurence. (4:25) Ça doit être la patronne, la responsable.
+(4:27) OK, alors du coup, si c'est elle qui a accès, (4:30) il faut qu'elle nous fasse un transfert de nom de domaine. (4:32) Il faudra qu'elle nous fasse un… (4:35) Ça, c'est rapide. (4:36) Ça ne prend même pas 30 secondes.
+(4:38) Ce n'est vraiment pas un problème, vous voyez. (4:39) C'est juste qu'elle accepte, c'est tout. (4:41) C'est ça, voilà.
+(4:42) Et transfert de nom de domaine, (4:43) dites-nous une fois qu'on aura le nom de domaine et tout. (4:45) Et bien après… (4:46) Pour la meilleure solution, au pire, on fait un nouveau site web. (4:49) Tu prends les informations.
+(4:50) Après, il n'y a pas de souci. (4:50) Mais ça, le nom de domaine, dans tous les cas, (4:52) elle sera obligée de… (4:52) Oui, c'est ça, ça sera un autre nom de domaine. (4:54) Parce qu'il est à vous, celui-là.
+(4:55) Il vous appartient. (4:55) Il n'y en a qu'un, il vous appartient. (4:57) C'est ça.
+(4:58) À moins que vous voulez changer de nom de domaine, (4:59) je ne vous conseille pas. (5:00) Je vous conseille de rester sur le même nom de domaine. (5:02) F2mcomputing.fr, c'est parfait.
+(5:04) C'est parfait, oui. (5:05) Ok, parfait. (5:06) C'est bon pour ça.
+(5:07) Du coup, ensuite, après l'étape où il donne ses documents… (5:10) Donc, il envoie les documents sur le CRM. (5:12) Et après, il y a cette fiche. (5:15) Après, il y a la fiche de renseignement.
+(5:17) Une fois que vous avez reçu les documents ? (5:18) Oui. (5:19) Une fois… (5:20) Faut-il valider les documents ? (5:23) Valider les compétences, en fait. (5:26) Ça veut dire que ce n'est pas automatiquement direct.
+(5:28) Il faut d'abord que vous vous acceptiez pour qu'il puisse remplir ça. (5:30) Voilà, c'est ça. (5:32) Ça ne sert à rien, parce que si on l'accepte, c'est bien.
+(5:34) On ne l'accepte pas, plutôt. (5:35) Si on l'accepte, oui. (5:36) Mais si on ne l'accepte pas, le mec n'a pas de niveau.
+(5:38) Ça ne sert à rien de remplir ça. (5:39) Ça ne sert à rien de remplir ça. (5:41) Parfait.
+(5:41) Parce que moi, je me dis que pour aller plus vite, (5:43) lui faire remplir, au pire des cas, c'est sans problème, (5:45) s'il n'a pas de niveau. (5:46) Oui, oui. (5:46) Vous voyez ce que je veux dire ou pas ? (5:47) Comme ça, vous, vous avez tout d'un seul coup.
+(5:49) Pas besoin de faire des relances. (5:50) Tout à fait. (5:50) Et si, au pire, il est refusé, (5:52) c'est lui qui a perdu un peu de temps pour remplir ses documents.
+(5:54) Voilà, c'est ça. (5:55) Vous, vous perdez rien. (5:55) Donc, c'est comme une candidature.
+(5:57) C'est comme une candidature. (5:58) Voilà. (5:59) Donc, il remplit la fiche renseignement.
+(6:01) C'est ça. (6:01) Oui, on fait ça. (6:02) On peut faire ça aussi.
+(6:04) Comme ça, il fait les deux d'un seul coup. (6:05) Ça ne sert à rien d'essayer de trouver la copine. (6:08) C'est ça.
+(6:08) C'est ça. (6:09) Il fait les deux d'un seul coup. (6:10) Oui.
+(6:11) Dès que d'abord, il a vu avec vous. (6:12) Dès que d'abord, il a vu avec vous, il est venu. (6:14) Une première approche, oui, bien sûr.
+(6:15) Ensuite, vous lui envoyez un lien où il va remplir ces deux choses. (6:19) Et vous, du coup, vous aurez accès à tout. (6:21) De toute façon, même sans un coup de téléphone, (6:25) si on reçoit ça sur les CRM et tout, (6:28) tu vas étudier aussi le dossier.
+(6:30) C'est ça. (6:31) Vous aurez du coup son nom, son prénom, (6:34) toutes ses informations, la date où il a fait la demande, (6:37) tout ça. (6:38) On l'appelle après par la suite.
+(6:39) Après, vous pouvez l'appeler, vous aurez son numéro de téléphone, (6:41) tout ça. (6:43) Ça veut dire après ça, je vais l'appeler pour lui dire (6:45) si c'est bon, monsieur, ou si ce n'est pas bon. (6:47) Voilà, il y a une place au marché.
+(6:51) Et si ce n'est pas bon sur son interface, (6:53) vous aurez à vous, sur votre interface à vous, (6:55) un petit bouton refusé. (6:56) Comme ça, ça le met dans les cases refusées. (6:58) Et un petit bouton accepté.
+(7:00) Et ça le met dans les cases acceptées. (7:02) Et du coup, vous avez trois pages principales. (7:04) La page demande, vous avez toutes vos demandes.
+(7:07) La page dossier refusé. (7:08) Comme ça, vous avez toujours un historique des dossiers refusés (7:10) jamais. (7:11) Et la case dossier accepté.
+(7:13) Dès que vous validez, ça l'envoie directement (7:15) dans le dossier accepté. (7:16) Et là, vous avez tous vos dossiers acceptés. (7:18) Vous pouvez les classer comme vous voulez.
+(7:19) Peut-être par ordre alphabétique, je ne sais pas. (7:20) Vous aurez une barre de recherche. (7:21) Et vous pouvez rechercher n'importe quel nom.
+(7:24) Vous les classez par type de formation ? (7:26) Il n'y a qu'une seule formation. (7:27) Il n'y a qu'une seule formation. (7:28) Il n'y a qu'une seule.
+(7:28) Dirigeant de sécurité. (7:30) Ils ne parlent pas formation continue, (7:32) ils ne parlent pas VIA. (7:35) C'est deux différentes ? (7:36) C'est le même diplôme, (7:37) c'est le parcours qui est différent.
+(7:38) Soit il fait formation présentielle ici, (7:41) soit c'est un mec qui a l'expérience, (7:42) il vient passer juste l'examen par validation des acquis. (7:45) Mais l'examen, le type, c'est le même. (7:48) Juste ça, je vais le noter.
+(7:49) Ça s'appelle comment ? (7:50) VA ? (7:51) VA, Validation des acquis par expérience. (7:54) C'est même n'importe quel... (7:55) Les autres diplômes aussi, ils sont pareils. (7:58) Même un plombier... (7:59) Et dans le cas-là, il passe juste l'examen ? (8:00) Il passe juste l'examen, oui.
+(8:02) Nous, on fait un accompagnement (8:03) en avant de quelques jours. (8:05) Mais c'est optionnel. (8:06) Et l'autre, comment ça s'appelle ? (8:08) Formation initiale.
+(8:10) Formation initiale. (8:11) Non, continue. (8:13) C'est l'initiale, mais ça s'appelle formation continue.
+(8:19) OK, parfait. (8:21) Durant combien de temps on fait la formation ? (8:23) La formation... (8:24) C'est la formation... (8:26) La mi-année de l'année, c'est moitié-moitié. (8:29) On n'a pas encore fixé.
+(8:32) Il y a un nouveau arrêté. (8:33) Il y a un nouveau arrêté qui est sorti, (8:34) et on attend le renouvellement à ces jours-ci. (8:37) Et là, on va fixer.
+(8:38) Mais la formation... (8:40) En fait, il y a 282 heures. (8:42) En tout. (8:44) Totalité.
+(8:45) Ça, c'est pour la VAE ? (8:46) Non, dans la VAE, il n'y a pas de... (8:48) Il n'y a rien, du coup. (8:48) Il n'y a rien, la VAE. (8:50) Ça, c'est pour la formation continue.
+(8:52) C'est 282 heures en tout. (8:57) Il y a une partie sur la plateforme, l'année dernière. (9:00) J'ai une autre question.
+(9:02) C'est la personne qui choisit si la VAE continue ou c'est vous ? (9:06) Oui, mais il faut que... (9:07) Bien sûr. (9:08) S'il n'a pas les compétences, par exemple. (9:10) Il ne passe pas, bien sûr.
+(9:12) Il y en a qui m'appellent parce qu'il a un cabis-taxi. (9:16) La semaine passée, il m'a appelé. (9:18) Il m'a dit, j'ai carte pro, sécurité 2017.
+(9:22) Carte pro. (9:22) Il n'a même pas travaillé dans la sécurité. (9:25) J'ai créé une société, un cabis.
+(9:28) Qu'est-ce que vous avez, monsieur ? (9:29) J'ai un cabis. (9:30) Un cabis-taxi. (9:30) Je n'ai pas son VA, je n'ai pas de compétences.
+(9:34) Dans ce cas-là, s'il veut, c'est formation initiale continue. (9:37) Dans le cas du cabis-taxi, s'il veut. (9:39) Continue, oui.
+(9:40) Obligé. (9:40) Oui, obligé. (9:42) Malgré ça, continue, mais il faut... (9:44) Du coup, ce serait bien aussi, ici, par exemple, avant, (9:47) mettre une case VAE ou une case continue.
+(9:50) Formation initiale. (9:50) Oui, bien sûr. (9:51) Il y en a dans le fichier de renseignement.
+(9:54) Nous, on va le mettre au tout début. (9:56) Comme ça, dès le début, il sait. (9:57) Vous voyez ? (9:58) Oui, c'est ça.
+(9:59) Formation continue, initiale. (10:01) Et vous faites toujours contre l'apprentissage et contre un livre ? (10:03) Oui, il y a contre l'apprentissage aussi. (10:06) C'est quoi, l'autre ? (10:07) Vous ne l'avez pas, vous ? (10:08) Non.
+(10:09) Si, pour le moment, on ne le fait pas, mais on peut le faire, oui. (10:13) Apprentissage, mets-le, mets-le. (10:14) Mets-le contre... (10:15) Et contre un livre aussi.
+(10:17) Mets-tout, mets-tout. (10:19) Quand il a un livre, c'est quoi exactement ? (10:20) Quand il a un livre, c'est... (10:21) C'est quand il a fait des formations ailleurs, (10:23) il vient passer avec... (10:24) Juste les diplômes. (10:25) Voilà, c'est ça.
+(10:25) Quand il a un livre, par exemple, il l'a passé ailleurs, (10:28) il n'a pas eu quelques modules, (10:30) il revient 6 mois après, c'est à son gré, il passe directement. (10:35) Mais la VAE, elle l'accompagne, la VAE, (10:37) parce qu'il y a des livrets. (10:38) Il y a un safa et un livret à remplir.
+(10:41) Donc, il a 2 mois, il nous appelle, on l'accompagne, (10:44) quand il remplit le livret... (10:46) Du coup, quand il va remplir, on va le... (10:50) OK, là, je vois ce qu'il...
+
+(0:00) Les documents, le sarfa, etc. Voilà, livret 2, ça c'est la VAE. Donc il remplit, (0:06) il remplit son âge, l'expérience, les diplômes.
+Ah ça c'est la liste à remplir, c'est un livret. (0:10) Voilà, c'est ça, c'est un livret. Toutes les compétences qu'il a, gestion d'entreprise, (0:15) qu'est-ce qu'il avait, dirigeant, qu'est-ce qu'il avait.
+Après la recevabilité aussi. (0:19) D'accord. Tout ça, ça c'est la VAE.
+Mais quand il a livre, il remplit pas ça, (0:22) il vient, il se débrouille. Mais lui, quand il remplit ça, on aura bien sûr, il faut le dossier (0:27) comme ça. Mais on va l'accompagner, il va m'appeler, il va me dire Youssef, page numéro 17, (0:33) je ne sais pas comment remplir.
+Du coup, celui qui a enlevé ça, il n'a pas à remplir celui-là, (0:36) ou il l'a caché ? Si, si, si, ça c'est le premier. Ça c'est une deuxième étape. En fait, (0:40) ça c'est un parcours.
+Ok. Ça c'est la liste d'enseignement, tu te souviens ? Ok. Après, (0:44) s'il a l'expérience et pas son VAE, il fait ça.
+Le mec qui a le BOC de plus... Il va remplir (0:51) numérique aussi. Numérique, tout numérique. À partir de quel moment du coup ? Quand on accepte (0:55) de lui accorder le parcours VAE.
+Ok, d'accord. Même si quand je vais en haut, il va envoyer le (1:01) dossier. Quand vous acceptez, là c'est le document d'accord.
+Il faut en avoir un VIAE je pense. Il (1:08) est sur le site, il y a sur le site tout. Sur le site ? Oui.
+Sur le site, il y a comment le remplir, (1:14) il y a tout. Il y a l'ivraie 2 ? Il y a l'ivraie 2, oui. Il y a ça.
+Nos formations, (1:17) tu mets sur VAE, voilà ça, VAE. Tu cliques dessus. Dans ma connexion, il y a un bug un petit peu.
+(1:47) Il les a mis où les documents ? Ici ? Ça c'est le guide, comment il remplit. Ça c'est la demande (1:59) de recevabilité, c'est le SARFA, le premier. Le SARFA en fait, on l'appelait à l'époque l'ivraie 1, (2:08) il faut qu'il remplisse un tableau, qu'est-ce qu'il a comme diplôme, les compétences, (2:13) et après on le valide.
+Ça s'appelle la recevabilité. C'est un autre procédé en fait, (2:19) la VIAE. C'est le dernier quoi.
+C'est la formation en ligne en fait. La formation en ligne sur la (2:30) plateforme d'Okyo. Quand tu cliques ici, tu accèdes directement, il y a un mot de passé, (2:40) l'identifiant.
+C'est vous qui lui donnez le mot de passé ? Oui c'est ça. Le mot de passe c'est (2:46) lui qui écrit. L'identifiant et après le mot de passe, il choisit.
+Ça c'est la demande de (2:59) recevabilité. Ça c'est la première étape. Donc il a envoyé le dossier, c'est bon, a priori on (3:05) accepte.
+Il faut qu'il remplisse ça. Il remplit ça, après on lui donne le livret 2, l'accès au (3:10) livret 2. Là je t'ai montré. Parce que s'il n'a pas ça, c'est pas la peine qu'il remplisse le (3:15) livret 2. C'est bien sur le site ça.
+Après ça c'est la responsable qui l'avait, c'est pour (3:23) le concept. C'est ça qu'on appelle la recevabilité. Voilà il remplit juste là.
+Là c'est pour le VAE (3:30) ou c'est pour la VIAE ? Pour la VIAE. Tout ça c'est que la VIAE. Recevabilité, livret 2, (3:35) le dossier expérience, c'est VIAE.
+Les autres non, ils ne font pas ça. Et les autres ils font (3:39) quoi ? Les autres ils font le dossier. Le dossier avec soit le VAC, soit l'expérience.
+Après on (3:46) puisse ficher le renseignement et après on leur ouvre les codes d'accès pour la partie e-learning. (3:51) Quand ils finissent, on fait la partie présentielle ici et on passe l'examen. Du coup à chaque fois que (3:56) vous ouvrez la partie e-learning, vous les appelez, vous leur envoyez les codes comment ? Ils (4:02) reçoivent un mail.
+Ils reçoivent un mail sur la procédure que l'on va mettre sur le CRM aussi, (4:09) et avec un identifiant. L'identifiant c'est leur mail. Dans le mail, on va lui demander de définir (4:17) un mot de passe parce qu'avec ces gars-là, on leur laisse le choix de définir.
+Malgré ça, (4:22) deux minutes, une journée après, j'ai oublié mon mot de passe, etc. Donc il va définir un mot de (4:28) passe. Dès qu'il définit un mot de passe, il rentre.
+Quand tu tapes sur plateforme, (4:32) et la plateforme d'e-learning ? Voilà, c'est ça, tu es dessus. Donc le login c'est automatiquement (4:36) un mot de passe. Si tu veux, je te montre sur mon ordinateur.
+Je vais fermer. C'est votre (5:06) développeur qui vous l'avait fait du coup ? Le concepteur du site qui l'a fait ? La plateforme (5:11) c'est Docur, c'est des professionnels avec des marocains studios. Moi, j'ai préparé les (5:17) supports pédagogiques et eux avec leur logiciel.
+Là, c'est mon nom d'adresse mail et j'ai défini un (5:25) mot de passe. Donc on leur laisse définir un mot de passe et je me connecte. Ça du coup, (5:30) il faudra le changer ou on le laisse ? Non, il faut juste le connecter avec l'interface.
+Il (5:35) est déjà sur le site, on le rajoutera sur le CRM1. Et là, il aura les parcours de formation. Par (5:41) exemple, si je suis un parcours, je porte un jour un parcours, il aura du cours.
+Il rentre les (5:46) modules et il fait les modules. Module par module. Ça c'est la partie en ligne qui est (5:56) obligatoire que pour la formation continue.
+L'AVE, il n'a pas besoin de faire ça. Et (6:02) le candidat libre aussi. Donc que la formation continue.
+Donc une partie en ligne. Après, (6:07) je te dirais parce que je suis en train justement, j'ai là-bas que des planiques et tout ça avec (6:12) le nouveau arrêté. Donc une partie en ligne.
+Là, je suis sur son 52, je pense. Plus travaux (6:22) dirigés, je suis sur 38 heures. Plus le présentiel.
+C'est pour minimiser le temps de présentiel (6:30) parce qu'ils n'ont pas le temps, ils travaillent, tout ça. Ils ne vont pas venir ici. Sinon, (6:34) à 280, il faut qu'ils assistent deux mois.
+Maintenant, dans la sécu, c'est un métier à (6:38) part la sécurité. Donc on est sur le présentiel, on est sur 70, 80. Je pense que j'étais sur 90.
+(6:47) Donc 152 plus 38, c'est à 40. 190. On est sur 190.
+280, voilà. Donc je suis sur 150. Donc la (6:59) partie en ligne, la plateforme 150.
+En fait, c'est des modules et chaque module est chronométré. Le (7:04) premier module, c'est 10 heures. Le deuxième, c'est 12 heures.
+Le troisième, c'est 6 heures, (7:08) 4 heures. Nous, on a un référentiel. Il faut respecter ce référentiel.
+Je ne comprends (7:13) pas. Il y a des cours, franchement, en une heure, tu as fini. Mais il est obligé de laisser (7:17) l'ordinateur pendant 10 heures.
+Parce qu'à la fin de la formation en ligne, on télécharge une (7:23) attestation avec le détail des heures, des connexions. C'est ça le problème. C'est que, (7:28) bon bref, c'est eux.
+Moi, je définis les temps et tout. OK, j'ai compris. Donc les travaux dirigés, (7:36) c'est un échange.
+Je leur donne une préparation d'une plaquette commerciale, un business plan et (7:41) tout ça. Mais ils le font à la maison. Et chaque travail, il est défini comme ça.
+Il n'y a pas de (7:47) chronomètre, etc. En plus, ça, c'est optionnel. C'est optionnel, mais enlevé, obligatoire.
+(7:53) Par rapport au référentiel, le référentiel, c'est ça et ça. Cette partie là, du coup, (7:57) elle restera sur l'imdkos, votre logiciel. L'imdkos, il n'y a que ça.
+Ça, ça restera sur l'imdkos, (8:07) nous on ne le changera pas. Non, ça va sur la plateforme d'imdkos, c'est juste le lien. (8:13) Voilà, c'est tout.
+Il l'a sur le site, il l'aura aussi sur le site. Il aura le lien, (8:21) il rentre son mot de passe. Après, dans l'avenir peut-être, mais pour le moment.
+Pourquoi, (8:27) qu'est-ce que tu peux faire au niveau de la plateforme ? En vrai, il faut que je regarde (8:35) s'ils ont une API. Bon, ça, c'est une partie technique. Je regarde s'ils ont une API.
+Et toi, (8:38) peut-être tu verras l'avancée si tu veux. Si ça t'intéresse peut-être. L'avancée ? L'avancée (8:42) de chaque élève.
+Comme une barre. C'est ce qu'on voit, on a tout ça, les stats, on a tout. (8:48) Voilà, sur cette partie, je pense qu'il n'y a rien à faire.
+C'est déjà bien, je pense. Si jamais (8:52) vous avez une idée, un jour, on pourra voir. Mais pour l'instant, pour moi, ça a l'air propre, (8:58) je viens de le voir et tout.
+Non, non, c'est bien. C'est déjà ça, oui. Même l'écho avec, (9:03) je ne sais pas qui l'utilise comme logiciel.
+Quand je compare les plateformes des autres centres (9:06) de formation, Marseille, Paris, c'est bizarre. Franchement, c'est joli. Et juste, votre épouse, (9:11) elle m'a dit tout à l'heure qu'il y avait d'autres documents à remplir, à générer, (9:15) à remplir.
+Bien sûr. Tout ça, c'est vraiment le début. C'est en amont.
+Et après, quand le (9:23) mec a accepté tout ça, on a des documents, par exemple, l'attestation d'entrée en formation, (9:28) l'attestation de fin de formation, les feuilles de margement. Ça, on va générer tout en automatique. (9:35) Sur son profil, il aura accès à tout ce qu'il a besoin d'avoir accès.
+Et ce qu'il n'a pas le (9:38) droit d'avoir accès, c'est vous qui aurez accès sur votre profil à vous. C'est ça. Alors voilà, (9:42) moi, j'aurais besoin d'un modèle de tout.
+Un modèle de tout. Je te mettrai un dossier, (9:46) dans le dossier. Et par contre, il faudra que je sache qu'est-ce qui est pour la personne et (9:50) qu'est-ce qui est pour vous.
+Ok, parfait. Pour moi, c'est très clair. Déjà, on a bien avancé.
+(9:55) On a vraiment bien avancé. Ça, c'est la partie administrative. Et l'attestation de fin de (10:03) formation, il y a une attestation de fin de formation.
+Du coup, elle, c'est qu'à la fin. (10:08) Du coup, c'est vous qui l'enverrez à la personne. En fait, elle est pré-remblée.
+Lui, (10:13) il signe, c'est tout. Tous les documents, mis à part les feuilles de marge. En fait, (10:18) moi, je parle pour la partie automatique, dans le sens où, techniquement, le lichel, il ne va pas (10:24) savoir quand est-ce qu'il finit la formation.
+Bien sûr. Du coup, c'est à vous de cliquer sur (10:28) un bouton, par exemple. Non, mais ce n'est pas grave.
+Il faut voir comment on le facilite. Non, (10:31) ce n'est pas grave. L'attestation d'entrée, ces attestations de fin, etc.
+(10:36) Ce qui nous intéresse, c'est que ça se remplit automatiquement. Oui, oui. Mais après, (10:41) on les imprime et ils signent.
+Ce n'est pas un problème. C'est sur votre interface le plus (10:46) important. Voilà, c'est ça.
+Lui, son interface, c'est surtout pour avoir le lien. Après, voilà. (10:51) Est-ce qu'on va prendre le choix? Je vais demander à ma responsable.
+Elle est en ancienne école, (10:55) elle veut les papiers. On a le système qualité. Est-ce qu'il va imposer le papier quand il va (11:00) contrôler le dossier? Est-ce qu'elle me dit oui, il faut qu'il signe.
+Donc, je vais les imprimer. (11:04) L'essentiel, ils se remplissent automatiquement. Dans tous les cas, voilà, c'est ça.
+C'est le plus (11:07) important au moins. C'est ça. Et après, si on doit développer, on verra.
+Est-ce qu'elle veut (11:13) mon papier? J'imprime tout. À la fin de la formation, ils signent. Même l'attestation d'entrée, (11:19) à la fin, ils signent.
+Ce n'est pas un problème. Est-ce qu'elle me dit oui? J'ouvre mon interface, (11:24) il viendra le dernier jour sur l'ordinateur, ils signent. C'est tout.
+On est signature électronique. (11:30) Non, oui, franchement, pour l'instant, pour moi, c'est clair. Le plus important que j'aurais (11:35) besoin, c'est tous les documents.
+Je te prépare un dossier avec les documents. J'avais des trucs (11:42) avant d'oublier. Dans tous les cas, il y a la conversation.
+Si jamais vous avez besoin de (11:47) quelque chose, d'avoir une idée, n'importe quand, il n'y a pas de souci. Un message vocal, (11:51) un message écrit, un transfert, il n'y a pas de problème. Peu importe l'heure et tout, (11:54) vous inquiétez pas.
+Donc la signature électronique sur un CRM, c'est faisable? Bien sûr. On peut (12:00) faire une vision classe virtuelle sur le CRM? T'as eu l'occasion de le faire déjà ou pas? Non, (12:06) en fait, il faut utiliser un organisme tierce comme Teams. Je l'ai, je l'ai.
+C'est comme ils (12:14) sont compliqués, c'est pour faciliter les choses. Ce qu'on peut faire, c'est qu'on leur dit, (12:17) Sofiane, pour t'expliquer un peu la mentalité, pour les appeler, post-connecter, tout ça. (12:23) Allez sur le CRM, vous cliquez là-bas.
+Regarde, ce qu'on va faire, c'est que toi, (12:28) t'auras comme une conversation avec eux sur le CRM et comme ça, tu pourras mettre des liens. Ça te (12:34) va ça ou pas? Par exemple, tu fais la déclaration Teams, tu crées l'appel Teams et tu lui mets le (12:41) lien sur le CRM. Et nous, par exemple, ce qu'on peut faire sinon, c'est dans chaque profil élève, (12:49) une case où vous pouvez mettre un lien.
+Vous mettez le lien et automatiquement, (12:53) lui, ça lui mettra un bouton Teams. Et sur ce bouton Teams, il clique, ça lui renvoie sur Teams. (12:58) Le bouton avec les nuages? Je peux faire ça.
+Appuie ici, appuie ici. Tu vois, on peut faire ça. (13:07) J'ai compris.
+Tu as compris ce que je veux dire ou pas? J'ai compris, ça c'est bien. (13:10) Je pense qu'on peut faire ça. Parce que pour t'expliquer, Sofiane, nous, il nous faut des (13:16) probes en cas de contrôle de qualité, comme c'est tout.
+Le reste, même, il se connecte des (13:21) fois parce que pour passer 6 heures, 7 heures en visio, franchement, on se connecte pendant une (13:26) heure, on a fini, mais il laisse tourner. Comme ça, on a la connexion qui a duré 7 heures. (13:31) Comment tu le prouves ça? Tu enregistres le temps d'appel Teams? Tu fais comment actuellement? (13:38) Sur Teams, tu es là après.
+Sur Teams, tu peux sortir les connexions et tout. (13:42) Après, moi, je ne pourrais pas te le gérer en automatique. (13:43) Non, non, ça c'est Teams, ça c'est Teams, tu le sors, bien sûr.
+Sur Teams, tu le sors. (13:52) OK, j'ai les stats, justement, tu sais, Sofiane, j'ai un prototype de tableau. (13:58) OK, tu veux avoir accès aux stats sur le CRM, un petit tableau? (14:02) Voilà, est-ce qu'on peut insérer justement ces tableaux, ils se remplissent automatiquement (14:05) comme les documents qui se génèrent.
+Bien sûr, les statistiques, ça doit être quoi? (14:11) On a le nom, le prénom, je ne sais pas en tête, mais date de naissance, numéro de diplôme, par exemple. (14:17) Mais ça, oui, ça, ça sera sur le profit de chaque élève. (14:20) Non, non, c'est sûrement sur vous.
+(14:23) Mais ce que je veux dire, c'est que quand vous cliquez sur un élève, (14:25) là, vous aurez accès à ces informations-là. (14:26) Non, c'est un tableau, par exemple, j'ai un tableau comme ça, par exemple, (14:30) sur la partie janvier, février, mars, les 3 mois, janvier, février et mars. (14:35) Donc, j'ai le tableau de tous les candidats qui ont passé pendant janvier, février, mars.
+(14:38) T'as le nom, prénom, date et lieu de naissance, numéro de carte vitale. (14:46) Tu vois ce que je veux dire? Je n'ai pas en tête, mais voilà, c'est un peu... (14:50) Après, je te donnerai l'exemple. (14:54) Oui, bien sûr, sur votre profit, vous aurez... (14:56) Et j'aurais un autre tableau, c'est juste qu'il se remplisse, c'est pas grave.
+(14:59) Ça, c'est pour les stats. (15:01) Et j'aurais un autre tableau à peu près comme ça, avec d'autres colonnes. (15:04) Ils demandent le code INSEE de la... (15:07) Tu utilises l'intelligence artificielle sur les tables? (15:08) Oui, bien sûr.
+(15:09) Très bien. (15:10) Donc, avec moi, c'est ça qui m'a permis de remplir mes manuels. (15:13) Moi, je l'ai fait.
+(15:14) Tableau Excel. (15:15) J'ai tout fait, 900 personnes. (15:16) Non, ce qui va se passer... (15:17) 900 personnes, je les ai remplis.
+(15:19) Heureusement qu'il y a CGPT. (15:20) Lui, on est en Cameroun, il me donne le code INSEE. (15:23) En Algérie, le code INSEE, au Maroc, au Togo, etc.
+(15:26) Mais sinon, ça va me prendre énormément. (15:29) Malgré ça, j'ai travaillé pendant 6 mois. (15:30) Vous êtes tombé sur les bons pays, en plus.
+(15:31) Je suis Algérien et Camerounais. (15:32) Ah oui, c'est vrai? (15:33) Je suis Camerounais. (15:35) Et moi, je suis Marocain.
+(15:36) Marocain, voilà. (15:37) On se retrouve tous, de toute façon. (15:38) Non, je suis Algérien.
+(15:39) T'es Algérien? (15:39) Non, je suis Algérien. (15:40) Ah oui. (15:42) Qu'est-ce que je voulais dire? (15:43) Regarde, ce qu'on va faire, automatiquement, c'est simple.
+(15:46) Je vais rester Marocain, mais enfin, moi, je vais être Algérien. (15:49) De toute façon, moi, en plus, j'ai un diplôme dans la Tata. (15:53) Ça veut dire que moi, je me connais bien en données.
+(15:55) C'est-à-dire, à la partie, ce qu'on va faire, c'est qu'automatiquement... (15:58) Là, j'ai un bac plus 3, Développeur en intelligence artificielle. (16:00) Ah, en intelligence artificielle? (16:02) Développeur en intelligence... (16:02) En fait, j'ai une spécialité qui s'appelle Data. (16:04) Développeur, mais Développeur logiciel, avec une spécialité qui s'appelle Data.
+(16:07) Data, je connais. (16:08) Voilà, c'est ça. (16:09) Et du coup, trie des données et tout ça.
+(16:10) Ça veut dire, moi, ce que vous me dites là, j'ai l'habitude de le voir, (16:13) mais j'ai jamais vu ça dans l'enfant. (16:15) Tu verras, le plus important, c'est ce qu'on a dit. (16:17) Et après, tu auras le temps de développer le Data.
+(16:21) Là, ce qu'on va faire, c'est qu'automatiquement, vous aurez des tableaux (16:24) et vous pourrez les exporter en Excel. (16:26) Automatiquement, vous avez votre fichier Excel. (16:27) Comme ça, vous pouvez les mettre de côté.
+(16:28) Et après, je vais convertir en XML. (16:30) XML, OK. (16:32) XML... (16:32) Ce n'est pas un problème.
+(16:33) Ah oui, ce n'est pas un problème? (16:33) Ce n'est pas un problème. (16:34) Qu'est-ce que j'ai souffert? (16:35) XML... (16:36) Je dors à 3 heures du matin, et à 8 heures du matin, (16:39) et je me réveille à 5 heures. (16:41) Tout ce qui est conversion en informatique... (16:42) J'ai passé 4-5 mois, je perds 50% de ma vie à cause de ça.
+(16:46) Tout ce qui est conversion en informatique, ce n'est pas un problème. (16:48) Franchement, conversion... (16:49) Tu entends? (16:50) Parce qu'elle, elle est ingénieure en informatique. (16:52) OK.
+(16:53) Elle connaît bien. (16:54) Elle comprend. (16:54) Ah oui, ingénieur.
+(16:55) Elle comprend. (16:56) Une DA, une licence, quoi. (16:57) Oui, oui.
+(16:58) C'est bien. (16:59) Une DA en informatique. (17:00) Oui, non, il n'y a pas d'issue XML, Excel, pas de problème.
+(17:03) Votre tableau, vous l'avez automatiquement sur votre vue, (17:05) et il y aura un bouton Excel, XML. (17:07) Cliquez sur Excel, vous l'avez en Excel, XML, XML. (17:09) Ah, super.
+(17:10) L'essentiel, il se remplit automatiquement. (17:11) Automatiquement. (17:12) Même s'il y a code NC, code... (17:13) Dès qu'il y a un nouvel élève qui s'inscrit, (17:15) et que vous l'acceptez, son nom, il va dans le tableau.
+(17:17) Il va dans le tableau. (17:18) Et après, quand il va réussir, il y aura le numéro de diplôme (17:21) qui va y aller automatiquement. (17:22) OK, oui, c'est d'accord.
+(17:23) Il faut que tu vois le... (17:25) Je ne sais pas si je l'ai ici. (17:27) Après, moi, je l'accroche sur la CDC, (17:29) ce n'est pas un problème. (17:30) L'accrochage automatiquement sur la CDD, pour eux.
+(17:34) Après, voilà, moi, ce que j'ai... (17:36) Ça, le problème, c'est que, ouais, (17:37) ce sera à vous automatiquement, sur le profil de chaque élève, (17:39) de mettre son numéro, du coup, de diplôme. (17:42) Vous voyez? (17:43) C'est à moi de le rendre. (17:45) Il faudra que vous le remplissiez, (17:46) mais que pas sur le Excel, (17:47) sur le dossier de l'élève, en gros.
+(17:49) Ah, oui, oui, OK. (17:50) Vous aurez un dossier pour chaque élève. (17:51) L'essentiel, le tableau, (17:52) pour qu'il soit remplissable automatiquement, (17:54) il faut que les données, déjà, (17:55) ils soient remplies.
+(17:56) Ah, OK, oui, c'est bon. (17:57) Mais vous inquiétez pas, (17:57) je vois très bien comment on va faire. (17:58) Franchement, c'est clair.
+(18:02) Le portail, c'est un truc. (18:03) Est-ce que je les ai ici? (18:06) La CD, c'est juste pour te montrer un truc. (18:11) C'est la CDC.
+(18:14) Voilà. (18:21) Tu vois, par exemple, (18:29) c'est ça, le tableau sophique. (18:31) Je te montre un prototype.
+(18:33) Ça, c'est le tableau à remplir. (18:34) Regarde. (18:34) Tout ça, je l'ai rempli (18:35) pour presque 1 000 personnes.
+(18:37) C'est trop gentil. (18:38) C'est un truc de fou. (18:38) Il m'a rendu fou.
+(18:40) Ça, c'est la progression. (18:41) Ça, c'est rien. (18:42) Ça, c'est son diplôme.
+(18:44) Quand il est rentré, (18:45) est-ce qu'il a l'agence, (18:46) est-ce qu'il a le bac, (18:46) où est-ce qu'il travaille? (18:48) Là, elle devait être remplie (18:49) dans ce genre de dossier. (18:50) Voilà, c'est ça. (18:51) Ici, voilà.
+(18:51) Moi, je prends le dossier par dossier. (18:54) Je remplis ici. (18:55) Et là, ça, c'est pour l'estata.
+(18:57) Et après, pour l'XML, (18:59) pour la caisse des dépôts. (19:10) Tu sais, des fois, (19:10) quand tu cherches l'introduction, (19:11) tu te rends compte (19:12) que l'estata, le pronom, (19:13) ça, c'est que... (19:21) Moi, j'ai pris, franchement, (19:22) ça m'a facilité à trouver. (19:23) J'ai essayé de le trouver (19:24) sur des informations.
+(19:24) Tu connais des informations? (19:27) Ouais, c'est une bienne truc. (19:28) Tu vois, là, c'est... (19:30) Il y a... (19:31) C'est plus connu. (19:41) C'est un... (19:42) C'est pour le CRM.
+(19:50) Je cherche...
