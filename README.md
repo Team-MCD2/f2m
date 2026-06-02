@@ -20,7 +20,7 @@ npm run dev
 Suivez le guide détaillé : **[docs/SETUP_CLERK_SUPABASE.md](docs/SETUP_CLERK_SUPABASE.md)**
 
 1. Créer le projet Supabase et exécuter `supabase/schema.sql`
-2. Créer l’app Clerk, personnaliser le jeton de session, créer les utilisateurs admin / partenaire
+2. Créer l’app Clerk, personnaliser le jeton de session, créer l’admin (`farenogif05@gmail.com`) et le partenaire
 3. Remplir `.env.local`
 
 ## Parcours utilisateur

@@ -1,12 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { CandidatList } from "@/components/admin/candidat-list";
 import { CandidaturesChart } from "@/components/admin/candidatures-chart";
 import { StatCards } from "@/components/admin/stat-cards";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useAdminSearch } from "@/components/layout/admin-search-context";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   candidatsToStatsRows,
   exportDashboardToYaml,
@@ -14,21 +13,34 @@ import {
 } from "@/lib/export-stats";
 import { useCandidats } from "@/lib/store";
 import type { DashboardStats } from "@/lib/supabase/types";
-import type { StatutCandidat } from "@/types";
-import { Download } from "lucide-react";
+import { CheckCircle, Clock, Download, XCircle } from "lucide-react";
 
-type Tab = "demandes" | "acceptes" | "refuses";
-
-const filterMap: Record<Tab, StatutCandidat | StatutCandidat[]> = {
-  demandes: "demande",
-  acceptes: ["accepte", "en_formation", "diplome"],
-  refuses: "refuse",
-};
+const quickLinks = [
+  {
+    href: "/admin/demandes/en-cours",
+    label: "En cours",
+    description: "Demandes à traiter",
+    icon: Clock,
+    color: "bg-amber-50 text-amber-600",
+  },
+  {
+    href: "/admin/demandes/acceptees",
+    label: "Acceptées",
+    description: "Dossiers validés",
+    icon: CheckCircle,
+    color: "bg-emerald-50 text-emerald-600",
+  },
+  {
+    href: "/admin/demandes/refusees",
+    label: "Refusées",
+    description: "Candidatures refusées",
+    icon: XCircle,
+    color: "bg-red-50 text-red-600",
+  },
+];
 
 export default function AdminDashboardPage() {
-  const { candidats, loading, updateStatut } = useCandidats();
-  const { query } = useAdminSearch();
-  const [tab, setTab] = useState<Tab>("demandes");
+  const { candidats } = useCandidats();
   const [dashboard, setDashboard] = useState<DashboardStats | null>(null);
 
   useEffect(() => {
@@ -37,12 +49,6 @@ export default function AdminDashboardPage() {
       .then(setDashboard)
       .catch(() => setDashboard(null));
   }, [candidats]);
-
-  const tabs: { id: Tab; label: string }[] = [
-    { id: "demandes", label: "Demandes en cours" },
-    { id: "acceptes", label: "Dossiers acceptés" },
-    { id: "refuses", label: "Dossiers refusés" },
-  ];
 
   const handleDownloadReport = () => {
     const rows = candidatsToStatsRows(candidats);
@@ -59,10 +65,7 @@ export default function AdminDashboardPage() {
         <h1 className="text-2xl font-bold tracking-tight text-slate-900 lg:text-3xl">
           Tableau de bord
         </h1>
-        <Button
-          onClick={handleDownloadReport}
-          className="bg-slate-900 hover:bg-slate-800"
-        >
+        <Button onClick={handleDownloadReport} className="bg-slate-900 hover:bg-slate-800">
           <Download className="mr-2 h-4 w-4" />
           Télécharger le rapport
         </Button>
@@ -70,47 +73,25 @@ export default function AdminDashboardPage() {
 
       <StatCards candidats={candidats} />
 
-      <CandidaturesChart data={dashboard} />
-
-      <div>
-        <div className="mb-4 flex flex-wrap gap-2 border-b border-slate-200">
-          {tabs.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => setTab(t.id)}
-              className={`border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
-                tab === t.id
-                  ? "border-slate-900 text-slate-900"
-                  : "border-transparent text-slate-500 hover:text-slate-700"
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
-
-        <Card className="border-slate-100 shadow-sm">
-          <CardHeader>
-            <CardTitle className="text-base font-semibold text-slate-900">
-              {tabs.find((t) => t.id === tab)?.label}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <p className="py-8 text-center text-slate-500">Chargement des candidats…</p>
-            ) : (
-              <CandidatList
-                filterStatut={filterMap[tab]}
-                search={query}
-                showActions={tab === "demandes"}
-                onAccept={(id) => void updateStatut(id, "accepte")}
-                onRefuse={(id) => void updateStatut(id, "refuse")}
-              />
-            )}
-          </CardContent>
-        </Card>
+      <div className="grid gap-4 sm:grid-cols-3">
+        {quickLinks.map(({ href, label, description, icon: Icon, color }) => (
+          <Link key={href} href={href}>
+            <Card className="border-slate-100 shadow-sm transition-shadow hover:shadow-md">
+              <CardContent className="flex items-center gap-4 p-5">
+                <div className={`rounded-xl p-3 ${color}`}>
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-900">{label}</p>
+                  <p className="text-xs text-slate-500">{description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
       </div>
+
+      <CandidaturesChart data={dashboard} />
     </div>
   );
 }

@@ -82,8 +82,8 @@ Sans cette étape, le middleware ne connaît pas le rôle utilisateur.
 ### Étape 2.4 — Créer le compte administrateur
 
 1. **Users** → **Create user**.
-2. E-mail : `dev@microdidact.com`
-3. Mot de passe : celui de votre choix (ex. `microdidact` en dev uniquement).
+2. E-mail : `farenogif05@gmail.com`
+3. Mot de passe : `microdidact` (ou celui défini dans Clerk).
 4. Après création, ouvrez l’utilisateur → **Public metadata** → **Edit** :
 
 ```json
@@ -158,7 +158,7 @@ Redémarrez le serveur : `npm run dev`.
 
 | Test | Action attendue |
 |------|-----------------|
-| Admin | `/connexion` → onglet Admin → `dev@microdidact.com` → `/admin` |
+| Admin | `/connexion` → onglet Admin → `farenogif05@gmail.com` → `/admin` |
 | Partenaire | Onglet Partenaire → e-mail centre → `/partenaire` |
 | Nouveau candidat | `/deposer-dossier` → soumettre → noter l’identifiant |
 | Candidat connecté | `/connexion` → onglet Candidat → identifiant → `/candidat/...` |
