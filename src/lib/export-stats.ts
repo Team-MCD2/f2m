@@ -1,6 +1,8 @@
+import yaml from "js-yaml";
 import type { Candidat } from "@/types";
 import { PARCOURS_LABELS } from "@/types";
 import { formatDate } from "@/lib/utils";
+import type { DashboardStats } from "@/lib/supabase/types";
 
 export interface StatsRow {
   nom: string;
@@ -98,4 +100,59 @@ export function getPeriodLabel(year: number, month?: number): string {
 
 export function formatStatsDate(dateStr: string): string {
   return formatDate(dateStr);
+}
+
+function downloadBlob(content: string, filename: string, mime: string) {
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+export function exportToYaml(rows: StatsRow[], filename: string): void {
+  const payload = {
+    export: {
+      genere_le: new Date().toISOString(),
+      format: "f2m-stats-v1",
+      nombre_lignes: rows.length,
+    },
+    candidats: rows.map((row) => ({
+      nom: row.nom,
+      prenom: row.prenom,
+      date_naissance: row.dateNaissance,
+      lieu_naissance: row.lieuNaissance,
+      numero_carte_vitale: row.numeroCarteVitale,
+      code_insee: row.codeInsee,
+      parcours: row.parcours,
+      date_acceptation: row.dateAcceptation,
+      numero_diplome: row.numeroDiplome,
+      statut: row.statut,
+    })),
+  };
+
+  const content = yaml.dump(payload, { lineWidth: 120, noRefs: true });
+  downloadBlob(content, filename, "application/x-yaml;charset=utf-8");
+}
+
+export function exportDashboardToYaml(stats: DashboardStats, filename: string): void {
+  const payload = {
+    tableau_de_bord: {
+      genere_le: new Date().toISOString(),
+      totaux: {
+        total: stats.total,
+        demandes: stats.demande,
+        acceptes: stats.accepte,
+        refuses: stats.refuse,
+        en_formation: stats.enFormation,
+        diplomes: stats.diplome,
+      },
+      evolution_mensuelle: stats.parMois,
+      repartition_parcours: stats.parParcours,
+    },
+  };
+  const content = yaml.dump(payload, { lineWidth: 120, noRefs: true });
+  downloadBlob(content, filename, "application/x-yaml;charset=utf-8");
 }

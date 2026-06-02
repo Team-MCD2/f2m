@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AdminPageHeader } from "@/components/layout/admin-nav";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,8 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { openDocumentPrint } from "@/lib/documents";
 import { useCandidats } from "@/lib/store";
-import { PARTENAIRES } from "@/data/mock";
-import type { DocumentType } from "@/types";
+import type { DocumentType, Partenaire } from "@/types";
 import {
   DOCUMENT_LABELS,
   PARCOURS_LABELS,
@@ -40,11 +39,28 @@ const DOC_TYPES: DocumentType[] = [
 export default function CandidatFichePage() {
   const params = useParams();
   const id = params.id as string;
-  const { getCandidat, updateNumeroDiplome, updateLiens, addDocument, updateStatut } =
-    useCandidats();
+  const {
+    getCandidat,
+    updateStatut,
+    updateNumeroDiplome,
+    updateLiens,
+    addDocument,
+  } = useCandidats();
   const candidat = getCandidat(id);
+  const [partenaire, setPartenaire] = useState<Partenaire | null>(null);
   const [numeroDiplome, setNumeroDiplome] = useState(candidat?.numeroDiplome || "");
   const [teamsUrl, setTeamsUrl] = useState(candidat?.liens.teamsUrl || "");
+
+  useEffect(() => {
+    if (!candidat?.partenaireId) {
+      setPartenaire(null);
+      return;
+    }
+    fetch(`/api/partenaires/${candidat.partenaireId}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setPartenaire)
+      .catch(() => setPartenaire(null));
+  }, [candidat?.partenaireId]);
 
   if (!candidat) {
     return (
@@ -57,21 +73,18 @@ export default function CandidatFichePage() {
     );
   }
 
-  const partenaire = candidat.partenaireId
-    ? PARTENAIRES.find((p) => p.id === candidat.partenaireId)
-    : null;
-
-  const handleGenerate = (type: DocumentType) => {
-    addDocument(candidat.id, type);
-    openDocumentPrint(candidat, type);
+  const handleGenerate = async (type: DocumentType) => {
+    await addDocument(candidat.id, type);
+    const fresh = getCandidat(candidat.id);
+    openDocumentPrint(fresh ?? candidat, type);
   };
 
-  const saveDiplome = () => {
-    updateNumeroDiplome(candidat.id, numeroDiplome);
+  const saveDiplome = async () => {
+    await updateNumeroDiplome(candidat.id, numeroDiplome);
   };
 
-  const saveTeams = () => {
-    updateLiens(candidat.id, { teamsUrl });
+  const saveTeams = async () => {
+    await updateLiens(candidat.id, { teamsUrl });
   };
 
   return (

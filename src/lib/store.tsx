@@ -4,30 +4,64 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
 } from "react";
-import { CANDIDATS_INIT } from "@/data/mock";
 import type { Candidat, DocumentGenere, DocumentType, FicheRenseignement, StatutCandidat } from "@/types";
 import { DOCUMENT_LABELS } from "@/types";
 
 interface CandidatStore {
   candidats: Candidat[];
+  loading: boolean;
+  error: string | null;
+  refresh: () => Promise<void>;
   getCandidat: (id: string) => Candidat | undefined;
   getCandidatByToken: (token: string) => Candidat | undefined;
-  updateStatut: (id: string, statut: StatutCandidat) => void;
-  updateNumeroDiplome: (id: string, numero: string) => void;
-  updateLiens: (id: string, liens: Partial<Candidat["liens"]>) => void;
-  addDocument: (id: string, type: DocumentType) => DocumentGenere;
-  addCandidat: (candidat: Candidat) => void;
-  updateCandidat: (id: string, patch: Partial<Candidat>) => void;
+  updateStatut: (id: string, statut: StatutCandidat) => Promise<void>;
+  updateNumeroDiplome: (id: string, numero: string) => Promise<void>;
+  updateLiens: (id: string, liens: Partial<Candidat["liens"]>) => Promise<void>;
+  addDocument: (id: string, type: DocumentType) => Promise<DocumentGenere>;
+  addCandidat: (candidat: Candidat) => Promise<Candidat>;
+  updateCandidat: (id: string, patch: Partial<Candidat>) => Promise<void>;
 }
 
 const CandidatContext = createContext<CandidatStore | null>(null);
 
+async function parseJson<T>(res: Response): Promise<T> {
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error ?? "Erreur serveur");
+  return data as T;
+}
+
 export function CandidatProvider({ children }: { children: ReactNode }) {
-  const [candidats, setCandidats] = useState<Candidat[]>(CANDIDATS_INIT);
+  const [candidats, setCandidats] = useState<Candidat[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const refresh = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const res = await fetch("/api/candidats");
+      if (res.status === 401) {
+        setCandidats([]);
+        return;
+      }
+      const data = await parseJson<Candidat[]>(res);
+      setCandidats(data);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Erreur de chargement");
+      setCandidats([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
 
   const getCandidat = useCallback(
     (id: string) => candidats.find((c) => c.id === id),
@@ -39,63 +73,96 @@ export function CandidatProvider({ children }: { children: ReactNode }) {
     [candidats]
   );
 
-  const updateStatut = useCallback((id: string, statut: StatutCandidat) => {
-    setCandidats((prev) =>
-      prev.map((c) => {
-        if (c.id !== id) return c;
-        const patch: Partial<Candidat> = { statut };
-        if (statut === "accepte" && !c.dateAcceptation) {
-          patch.dateAcceptation = new Date().toISOString().split("T")[0];
-        }
-        return { ...c, ...patch };
+  const updateStatut = useCallback(
+    async (id: string, statut: StatutCandidat) => {
+      const updated = await parseJson<Candidat>(
+        await fetch(`/api/candidats/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ statut }),
+        })
+      );
+      setCandidats((prev) => prev.map((c) => (c.id === id ? updated : c)));
+    },
+    []
+  );
+
+  const updateNumeroDiplome = useCallback(async (id: string, numero: string) => {
+    const updated = await parseJson<Candidat>(
+      await fetch(`/api/candidats/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ numeroDiplome: numero }),
       })
     );
+    setCandidats((prev) => prev.map((c) => (c.id === id ? updated : c)));
   }, []);
 
-  const updateNumeroDiplome = useCallback((id: string, numero: string) => {
-    setCandidats((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, numeroDiplome: numero } : c))
+  const updateLiens = useCallback(
+    async (id: string, liens: Partial<Candidat["liens"]>) => {
+      const current = candidats.find((c) => c.id === id);
+      if (!current) return;
+      const updated = await parseJson<Candidat>(
+        await fetch(`/api/candidats/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ liens: { ...current.liens, ...liens } }),
+        })
+      );
+      setCandidats((prev) => prev.map((c) => (c.id === id ? updated : c)));
+    },
+    [candidats]
+  );
+
+  const addDocument = useCallback(async (id: string, type: DocumentType) => {
+    const updated = await parseJson<Candidat>(
+      await fetch(`/api/candidats/${id}/documents`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type }),
+      })
+    );
+    setCandidats((prev) => prev.map((c) => (c.id === id ? updated : c)));
+    const doc = updated.documentsGeneres[updated.documentsGeneres.length - 1];
+    return (
+      doc ?? {
+        id: `doc-${Date.now()}`,
+        type,
+        nom: DOCUMENT_LABELS[type],
+        genereLe: new Date().toISOString().split("T")[0],
+      }
     );
   }, []);
 
-  const updateLiens = useCallback((id: string, liens: Partial<Candidat["liens"]>) => {
-    setCandidats((prev) =>
-      prev.map((c) =>
-        c.id === id ? { ...c, liens: { ...c.liens, ...liens } } : c
-      )
+  const addCandidat = useCallback(async (candidat: Candidat) => {
+    const created = await parseJson<Candidat>(
+      await fetch("/api/candidats", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(candidat),
+      })
     );
+    setCandidats((prev) => [...prev, created]);
+    return created;
   }, []);
 
-  const addDocument = useCallback((id: string, type: DocumentType): DocumentGenere => {
-    const doc: DocumentGenere = {
-      id: `doc-${Date.now()}`,
-      type,
-      nom: DOCUMENT_LABELS[type],
-      genereLe: new Date().toISOString().split("T")[0],
-    };
-    setCandidats((prev) =>
-      prev.map((c) =>
-        c.id === id
-          ? { ...c, documentsGeneres: [...c.documentsGeneres, doc] }
-          : c
-      )
+  const updateCandidat = useCallback(async (id: string, patch: Partial<Candidat>) => {
+    const updated = await parseJson<Candidat>(
+      await fetch(`/api/candidats/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(patch),
+      })
     );
-    return doc;
-  }, []);
-
-  const addCandidat = useCallback((candidat: Candidat) => {
-    setCandidats((prev) => [...prev, candidat]);
-  }, []);
-
-  const updateCandidat = useCallback((id: string, patch: Partial<Candidat>) => {
-    setCandidats((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, ...patch } : c))
-    );
+    setCandidats((prev) => prev.map((c) => (c.id === id ? updated : c)));
   }, []);
 
   const value = useMemo(
     () => ({
       candidats,
+      loading,
+      error,
+      refresh,
       getCandidat,
       getCandidatByToken,
       updateStatut,
@@ -107,6 +174,9 @@ export function CandidatProvider({ children }: { children: ReactNode }) {
     }),
     [
       candidats,
+      loading,
+      error,
+      refresh,
       getCandidat,
       getCandidatByToken,
       updateStatut,
@@ -127,10 +197,6 @@ export function useCandidats() {
   const ctx = useContext(CandidatContext);
   if (!ctx) throw new Error("useCandidats must be used within CandidatProvider");
   return ctx;
-}
-
-export function createCandidatId(): string {
-  return `cand-${Date.now()}`;
 }
 
 export function createTokenFromName(prenom: string, nom: string): string {

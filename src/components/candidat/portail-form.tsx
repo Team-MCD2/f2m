@@ -6,12 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { getChecklistItems, isChecklistComplete, piecesFromChecklist } from "@/lib/checklist";
-import {
-  createCandidatId,
-  createTokenFromName,
-  useCandidats,
-  type FicheRenseignement,
-} from "@/lib/store";
+import { createTokenFromName, useCandidats, type FicheRenseignement } from "@/lib/store";
 import type { Candidat, ParcoursType } from "@/types";
 import { PARCOURS_LABELS } from "@/types";
 import { Check, FileUp, Upload } from "lucide-react";
@@ -27,11 +22,18 @@ const PARCOURS_OPTIONS: ParcoursType[] = [
 interface PortailFormProps {
   partenaireId?: string;
   redirectAfterSubmit?: string;
+  /** Dépôt public sans connexion */
+  publicSubmit?: boolean;
 }
 
-export function PortailForm({ partenaireId, redirectAfterSubmit }: PortailFormProps) {
+export function PortailForm({
+  partenaireId,
+  redirectAfterSubmit,
+  publicSubmit = false,
+}: PortailFormProps) {
   const router = useRouter();
   const { addCandidat } = useCandidats();
+  const [submitting, setSubmitting] = useState(false);
   const [step, setStep] = useState(1);
   const [parcours, setParcours] = useState<ParcoursType>("formation_continue");
   const [experienceSecu, setExperienceSecu] = useState(false);
@@ -61,7 +63,7 @@ export function PortailForm({ partenaireId, redirectAfterSubmit }: PortailFormPr
     setUploaded((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const pieces = piecesFromChecklist(checklist, uploaded);
     if (!isChecklistComplete(pieces)) {
       alert("Veuillez fournir tous les documents obligatoires.");
@@ -72,9 +74,10 @@ export function PortailForm({ partenaireId, redirectAfterSubmit }: PortailFormPr
       return;
     }
 
+    setSubmitting(true);
     const newToken = createTokenFromName(fiche.prenom, fiche.nom);
     const candidat: Candidat = {
-      id: createCandidatId(),
+      id: "",
       token: newToken,
       nom: fiche.nom,
       prenom: fiche.prenom,
@@ -98,11 +101,28 @@ export function PortailForm({ partenaireId, redirectAfterSubmit }: PortailFormPr
       liens: { eLearningUrl: "" },
     };
 
-    addCandidat(candidat);
-    setToken(newToken);
-    setSubmitted(true);
-    if (redirectAfterSubmit) {
-      setTimeout(() => router.push(redirectAfterSubmit), 2000);
+    try {
+      if (publicSubmit) {
+        const res = await fetch("/api/public/dossiers", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(candidat),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error ?? "Erreur");
+        setToken(data.token);
+      } else {
+        const created = await addCandidat(candidat);
+        setToken(created.token);
+      }
+      setSubmitted(true);
+      if (redirectAfterSubmit) {
+        setTimeout(() => router.push(redirectAfterSubmit), 2000);
+      }
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Erreur lors de l'envoi.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -322,7 +342,9 @@ export function PortailForm({ partenaireId, redirectAfterSubmit }: PortailFormPr
               <Button variant="outline" onClick={() => setStep(2)}>
                 Retour
               </Button>
-              <Button onClick={handleSubmit}>Soumettre le dossier</Button>
+              <Button onClick={handleSubmit} disabled={submitting}>
+                {submitting ? "Envoi…" : "Soumettre le dossier"}
+              </Button>
             </div>
           </CardContent>
         </Card>

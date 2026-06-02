@@ -1,33 +1,59 @@
-# F2M Consulting — Prototype CRM
+# F2M Consulting — CRM
 
-Prototype de démonstration pour **F2M Consulting** (formation Dirigeant de sécurité, Laurence responsable).  
-Aligné sur l’entretien (`transcription.txt`) : priorité **génération automatique de documents** depuis l’interface admin, parcours candidat numérisé, exports CDC en seconde phase.
+Plateforme de gestion des candidats (certification Dirigeant de sécurité).
 
-## Prérequis
+**Stack :** Next.js 15 · TypeScript · Tailwind · **Clerk** (auth) · **Supabase** (données)
 
-- Node.js 18+
-- npm
-
-## Installation et lancement
+## Démarrage rapide
 
 ```bash
 npm install
+cp .env.example .env.local
+# Renseigner Clerk + Supabase (voir docs/SETUP_CLERK_SUPABASE.md)
 npm run dev
 ```
 
-Ouvrir [http://localhost:3000](http://localhost:3000) — landing page publique, bouton **Connexion** en haut à droite.
+→ [http://localhost:3000](http://localhost:3000)
 
-### Connexion (espaces séparés)
+## Configuration obligatoire
 
-| Espace | Identifiants (prototype) |
-|--------|--------------------------|
-| **Admin** | `dev@microdidact.com` / `microdidact` |
-| **Candidat** | Identifiant personnel (ex. `jean-dupont`, `fatima-benali`) |
-| **Partenaire** | `contact@cf-marseille-sud.fr` / `partenaire` |
+Suivez le guide détaillé : **[docs/SETUP_CLERK_SUPABASE.md](docs/SETUP_CLERK_SUPABASE.md)**
 
-Les routes `/admin`, `/candidat/*` et `/partenaire` sont protégées : redirection vers `/connexion` si non connecté.
+1. Créer le projet Supabase et exécuter `supabase/schema.sql`
+2. Créer l’app Clerk, personnaliser le jeton de session, créer les utilisateurs admin / partenaire
+3. Remplir `.env.local`
 
-> **Windows :** en cas d’erreur `npm install` (fichiers verrouillés), fermer les terminaux sur le projet, supprimer `node_modules`, relancer `npm install`.
+## Parcours utilisateur
+
+| Route | Description |
+|-------|-------------|
+| `/` | Landing page |
+| `/connexion` | Connexion (UI custom, Clerk en backend) |
+| `/deposer-dossier` | Première demande candidat (public) |
+| `/admin` | Tableau de bord F2M |
+| `/admin/stats` | Statistiques + export **CSV** et **YAML** |
+| `/partenaire` | Portail centre de formation |
+| `/candidat/[token]` | Espace candidat |
+
+## Exports statistiques
+
+Page `/admin/stats` :
+
+- **Exporter CSV** — liste des candidats acceptés pour la période
+- **Exporter YAML** — même données au format YAML
+- **Tableau de bord YAML** — agrégats (totaux, parcours, évolution mensuelle)
+
+## Structure
+
+```
+src/
+├── app/api/          # API REST (Supabase service role + Clerk)
+├── lib/supabase/     # Client, requêtes, mappers
+├── lib/auth/         # Rôles et session
+├── components/auth/  # Formulaire connexion custom
+└── data/document-templates.ts  # Catalogue modèles (métier, pas des données candidats)
+supabase/schema.sql   # Schéma base de données
+```
 
 ## Build production
 
@@ -35,63 +61,3 @@ Les routes `/admin`, `/candidat/*` et `/partenaire` sont protégées : redirecti
 npm run build
 npm start
 ```
-
-## Structure des fichiers clés
-
-```
-f2m/
-├── transcription.txt              # Source besoins client
-├── README.md
-├── package.json
-└── src/
-    ├── app/
-    │   ├── page.tsx               # Portail d'accueil (liens démo)
-    │   ├── admin/
-    │   │   ├── page.tsx           # Tableau de bord + listes candidats
-    │   │   ├── candidats/[id]/    # Fiche candidat (parcours, docs)
-    │   │   ├── documents/
-    │   │   │   ├── generer/       # Génération document (MVP prioritaire)
-    │   │   │   └── templates/     # Liste des ~10 modèles mock
-    │   │   └── stats/             # Tableaux statistiques (mock CDC)
-    │   ├── candidat/[token]/      # Portail candidat (bonus démo)
-    │   └── partenaire/            # Portail partenaire (bonus démo)
-    ├── components/
-    │   ├── admin/                 # Liste candidats, stat cards
-    │   ├── layout/admin-nav.tsx   # Navigation admin
-    │   └── ui/                    # Card, Badge, Button, Input…
-    ├── data/
-    │   ├── mock.ts                # Candidats & partenaires mock
-    │   └── document-templates.ts  # Catalogue modèles documents
-    ├── lib/
-    │   ├── store.tsx              # État candidats (session)
-    │   ├── documents.ts           # Génération HTML imprimable
-    │   └── export-stats.ts        # Export CSV stats
-    └── types/index.ts             # Types métier
-```
-
-## Flux de démo client (recommandé)
-
-1. **Accueil** (`/`) — Présenter les 3 espaces (Admin prioritaire).
-2. **Admin — Tableau de bord** (`/admin`) — Compteurs, onglets *Demandes / Acceptés / Refusés*, recherche, actions Accepter/Refuser.
-3. **Fiche candidat** — Ex. `/admin/candidats/cand-001` (Jean Dupont) : onglets Infos, Pièces jointes, **Documents générés**, Liens e-learning/Teams.
-4. **Génération de documents** (`/admin/documents/generer`) — Choisir candidat + modèle → **Aperçu / Imprimer** (fenêtre HTML pré-remplie) → **Générer** (ajout à l’historique).
-5. **Modèles** (`/admin/documents/templates`) — Vue des ~10 documents (4 actifs, reste « Phase 2 »).
-6. **Statistiques** (`/admin/stats`) — Tableau période + export CSV (aperçu exports CDC).
-
-*(Optionnel)* Portail candidat `/candidat/fatima-benali` ou partenaire `/partenaire`.
-
-## Points encore mock / simulés
-
-| Élément | État |
-|--------|------|
-| Données | Mémoire React (rechargement = reset) |
-| Documents | HTML imprimable, pas de Word/PDF natif |
-| Modèles SARFA, livret 2, grille jury… | Listés, génération « Phase 2 » |
-| Exports CDC XML | Non implémentés (CSV stats seulement) |
-| Signature électronique | Papier / impression simulée |
-| Plateforme e-learning Okyo | Lien mock uniquement |
-| Base de données / auth | Absents |
-
-## Stack
-
-Next.js 15 · TypeScript · Tailwind CSS · App Router

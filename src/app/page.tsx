@@ -71,13 +71,13 @@ export default function LandingPage() {
                   Accéder à mon espace
                 </Button>
               </Link>
-              <Link href="/connexion?role=candidat">
+              <Link href="/deposer-dossier">
                 <Button
                   size="lg"
                   variant="outline"
                   className="border-white/40 bg-transparent text-white hover:bg-white/10"
                 >
-                  Espace candidat
+                  Déposer un dossier
                 </Button>
               </Link>
             </div>

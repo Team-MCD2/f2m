@@ -38,9 +38,9 @@ export function GenererDocumentClient() {
     openDocumentPrint(candidat, docType as DocumentType);
   };
 
-  const handleGenerate = () => {
+  const handleGenerate = async () => {
     if (!candidat || !docType) return;
-    addDocument(candidat.id, docType as DocumentType);
+    await addDocument(candidat.id, docType as DocumentType);
     openDocumentPrint(candidat, docType as DocumentType);
     setMessage(
       `Document « ${DOCUMENT_LABELS[docType as DocumentType]} » généré pour ${fullName(candidat.nom, candidat.prenom)}.`

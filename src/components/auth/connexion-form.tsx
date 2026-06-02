@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useClerk, useSignIn } from "@clerk/nextjs";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import type { UserRole } from "@/lib/auth";
+import type { UserRole } from "@/lib/auth/roles";
 import { Building2, GraduationCap, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -39,6 +40,9 @@ const roles: {
 export function ConnexionForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { signIn: signInResource } = useSignIn();
+  const { signOut } = useClerk();
+
   const initialRole = (searchParams.get("role") as UserRole) || "admin";
   const initialToken = searchParams.get("token") ?? "";
 
@@ -53,35 +57,66 @@ export function ConnexionForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!signInResource) return;
+
     setError("");
     setLoading(true);
 
     try {
-      const payload: Record<string, string> = { role };
-      if (role === "admin" || role === "partenaire") {
-        payload.email = email;
-        payload.password = password;
-      } else {
-        payload.token = token;
-      }
+      if (role === "candidat") {
+        const ticketRes = await fetch("/api/auth/candidat-ticket", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
+        const ticketData = await ticketRes.json();
+        if (!ticketRes.ok) throw new Error(ticketData.error ?? "Connexion impossible.");
 
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+        const ticketResult = await signInResource.ticket({ ticket: ticketData.ticket });
+        if (ticketResult.error) throw new Error(ticketResult.error.message);
 
-      const data = await res.json();
+        const finalized = await signInResource.finalize();
+        if (finalized.error) throw new Error(finalized.error.message);
 
-      if (!res.ok) {
-        setError(data.error ?? "Connexion impossible.");
+        router.push(ticketData.redirect);
+        router.refresh();
         return;
       }
 
-      router.push(data.redirect);
+      const createResult = await signInResource.create({
+        identifier: email.trim(),
+        password,
+      });
+      if (createResult.error) throw new Error(createResult.error.message);
+
+      if (signInResource.status !== "complete") {
+        const pwdResult = await signInResource.password({ password });
+        if (pwdResult.error) throw new Error(pwdResult.error.message);
+      }
+
+      if (signInResource.status !== "complete") {
+        throw new Error("Identifiants incorrects ou étape supplémentaire requise.");
+      }
+
+      const finalized = await signInResource.finalize();
+      if (finalized.error) throw new Error(finalized.error.message);
+
+      const meRes = await fetch("/api/me");
+      const me = await meRes.json();
+      if (!meRes.ok) throw new Error(me.error ?? "Profil introuvable.");
+
+      if (me.role !== role) {
+        await signOut();
+        throw new Error(
+          `Ce compte n'est pas un compte « ${role} ». Vérifiez les métadonnées Clerk (publicMetadata.role).`
+        );
+      }
+
+      router.push(me.redirect);
       router.refresh();
-    } catch {
-      setError("Erreur réseau. Réessayez.");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Connexion impossible.";
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -122,7 +157,7 @@ export function ConnexionForm() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {role === "admin" && (
+            {(role === "admin" || role === "partenaire") && (
               <>
                 <div>
                   <label htmlFor="email" className="mb-1 block text-sm font-medium text-slate-700">
@@ -132,7 +167,6 @@ export function ConnexionForm() {
                     id="email"
                     type="email"
                     autoComplete="email"
-                    placeholder="dev@microdidact.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -162,49 +196,18 @@ export function ConnexionForm() {
                 <Input
                   id="token"
                   type="text"
-                  placeholder="jean-dupont"
+                  placeholder="prenom-nom"
                   value={token}
                   onChange={(e) => setToken(e.target.value)}
                   required
                 />
                 <p className="mt-2 text-xs text-slate-500">
-                  L&apos;identifiant figure dans le lien reçu par e-mail (ex.{" "}
-                  <code className="rounded bg-slate-100 px-1">/candidat/jean-dupont</code>
-                  ).
+                  Identifiant reçu après dépôt du dossier.{" "}
+                  <Link href="/deposer-dossier" className="text-f2m-blue hover:underline">
+                    Première demande ?
+                  </Link>
                 </p>
               </div>
-            )}
-
-            {role === "partenaire" && (
-              <>
-                <div>
-                  <label htmlFor="part-email" className="mb-1 block text-sm font-medium text-slate-700">
-                    E-mail du centre
-                  </label>
-                  <Input
-                    id="part-email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="contact@cf-marseille-sud.fr"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="part-password" className="mb-1 block text-sm font-medium text-slate-700">
-                    Mot de passe
-                  </label>
-                  <Input
-                    id="part-password"
-                    type="password"
-                    autoComplete="current-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-              </>
             )}
 
             {error && (
@@ -213,7 +216,12 @@ export function ConnexionForm() {
               </p>
             )}
 
-            <Button type="submit" className="w-full" size="lg" disabled={loading}>
+            <Button
+              type="submit"
+              className="w-full"
+              size="lg"
+              disabled={loading || !signInResource}
+            >
               {loading ? "Connexion…" : "Se connecter"}
             </Button>
           </form>

@@ -2,35 +2,68 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import type { Candidat } from "@/types";
-import { CheckCircle, Clock, GraduationCap, XCircle } from "lucide-react";
+import { BarChart3, CheckCircle, Clock, Users } from "lucide-react";
 
-export function StatCards({ candidats }: { candidats: Candidat[] }) {
+interface StatCardsProps {
+  candidats: Candidat[];
+}
+
+export function StatCards({ candidats }: StatCardsProps) {
+  const total = candidats.length;
   const demande = candidats.filter((c) => c.statut === "demande").length;
-  const accepte = candidats.filter((c) => c.statut === "accepte").length;
-  const refuse = candidats.filter((c) => c.statut === "refuse").length;
-  const formation = candidats.filter(
-    (c) => c.statut === "en_formation" || (c.statut === "accepte" && c.documentsGeneres.length > 0)
+  const actifs = candidats.filter(
+    (c) => c.statut === "accepte" || c.statut === "en_formation" || c.statut === "diplome"
   ).length;
+  const tauxConversion =
+    total > 0 ? ((actifs / total) * 100).toFixed(1).replace(".", ",") : "0,0";
 
   const stats = [
-    { label: "Demandes en attente", value: demande, icon: Clock, color: "text-amber-600 bg-amber-50" },
-    { label: "Acceptés", value: accepte, icon: CheckCircle, color: "text-emerald-600 bg-emerald-50" },
-    { label: "Refusés", value: refuse, icon: XCircle, color: "text-red-600 bg-red-50" },
-    { label: "En formation", value: formation, icon: GraduationCap, color: "text-indigo-600 bg-indigo-50" },
+    {
+      label: "Total candidats",
+      value: String(total),
+      icon: Users,
+      iconBg: "bg-violet-50 text-violet-600",
+    },
+    {
+      label: "Candidats actifs",
+      value: String(actifs),
+      icon: CheckCircle,
+      iconBg: "bg-emerald-50 text-emerald-600",
+    },
+    {
+      label: "Demandes en cours",
+      value: String(demande),
+      icon: Clock,
+      iconBg: "bg-amber-50 text-amber-600",
+    },
+    {
+      label: "Taux de conversion",
+      value: `${tauxConversion} %`,
+      icon: BarChart3,
+      iconBg: "bg-sky-50 text-sky-600",
+    },
   ];
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {stats.map(({ label, value, icon: Icon, color }) => (
-        <Card key={label}>
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className={`rounded-lg p-3 ${color}`}>
-              <Icon className="h-6 w-6" />
+    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      {stats.map(({ label, value, icon: Icon, iconBg }) => (
+        <Card key={label} className="border-slate-100 shadow-sm">
+          <CardContent className="p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-medium text-slate-500">{label}</p>
+                <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900">
+                  {value}
+                </p>
+              </div>
+              <div className={`rounded-xl p-3 ${iconBg}`}>
+                <Icon className="h-5 w-5" />
+              </div>
             </div>
-            <div>
-              <p className="text-2xl font-bold text-f2m-navy">{value}</p>
-              <p className="text-sm text-slate-600">{label}</p>
-            </div>
+            <p className="mt-4 flex items-center gap-1.5 text-xs text-red-500">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500" />
+              En direct par rapport au mois dernier
+            </p>
           </CardContent>
         </Card>
       ))}
