@@ -13,6 +13,7 @@ import {
   formatStatsDate,
   getPeriodLabel,
 } from "@/lib/export-stats";
+import { StatCards, StatCardsExtended } from "@/components/admin/stat-cards";
 import { useCandidats } from "@/lib/store";
 import type { DashboardStats } from "@/lib/supabase/types";
 import { Download, FileJson } from "lucide-react";
@@ -60,30 +61,10 @@ export default function StatsPage() {
         description="Indicateurs en temps réel depuis Supabase — exports CSV et YAML"
       />
 
-      {dashboard && (
-        <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <Card>
-            <CardContent className="p-6">
-              <p className="text-sm text-slate-600">Total candidats</p>
-              <p className="text-3xl font-bold text-f2m-navy">{dashboard.total}</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6">
-              <p className="text-sm text-slate-600">Demandes en attente</p>
-              <p className="text-3xl font-bold text-amber-600">{dashboard.demande}</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-6">
-              <p className="text-sm text-slate-600">Acceptés / en formation / diplômés</p>
-              <p className="text-3xl font-bold text-emerald-600">
-                {dashboard.accepte + dashboard.enFormation + dashboard.diplome}
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+      <div className="mb-8 space-y-6">
+        <StatCards candidats={candidats} />
+        <StatCardsExtended candidats={candidats} />
+      </div>
 
       {dashboard && dashboard.parParcours.length > 0 && (
         <Card className="mb-8">
