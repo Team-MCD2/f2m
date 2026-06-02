@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { LogoutButton } from "@/components/auth/logout-button";
 import { CandidatList } from "@/components/admin/candidat-list";
 import { PortailForm } from "@/components/candidat/portail-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,9 +32,12 @@ export default function PartenairePage() {
               <p className="text-sm text-slate-600">Portail partenaire — {partenaire.ville}</p>
             </div>
           </div>
-          <Link href="/" className="text-sm text-slate-500 hover:text-f2m-navy">
-            Accueil
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="text-sm text-slate-500 hover:text-f2m-navy">
+              Accueil
+            </Link>
+            <LogoutButton />
+          </div>
         </div>
       </header>
 

@@ -15,7 +15,17 @@ npm install
 npm run dev
 ```
 
-Ouvrir [http://localhost:3000](http://localhost:3000).
+Ouvrir [http://localhost:3000](http://localhost:3000) — landing page publique, bouton **Connexion** en haut à droite.
+
+### Connexion (espaces séparés)
+
+| Espace | Identifiants (prototype) |
+|--------|--------------------------|
+| **Admin** | `dev@microdidact.com` / `microdidact` |
+| **Candidat** | Identifiant personnel (ex. `jean-dupont`, `fatima-benali`) |
+| **Partenaire** | `contact@cf-marseille-sud.fr` / `partenaire` |
+
+Les routes `/admin`, `/candidat/*` et `/partenaire` sont protégées : redirection vers `/connexion` si non connecté.
 
 > **Windows :** en cas d’erreur `npm install` (fichiers verrouillés), fermer les terminaux sur le projet, supprimer `node_modules`, relancer `npm install`.
 

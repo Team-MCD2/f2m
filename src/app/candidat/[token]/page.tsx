@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { LogoutButton } from "@/components/auth/logout-button";
 import { PortailForm } from "@/components/candidat/portail-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCandidats } from "@/lib/store";
@@ -24,9 +25,12 @@ export default function CandidatPortailPage() {
             </h1>
             <p className="text-sm text-slate-600">Portail candidat</p>
           </div>
-          <Link href="/" className="text-sm text-slate-500 hover:text-f2m-navy">
-            Accueil
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="text-sm text-slate-500 hover:text-f2m-navy">
+              Accueil
+            </Link>
+            <LogoutButton />
+          </div>
         </div>
       </header>
 

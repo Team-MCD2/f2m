@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { LogoutButton } from "@/components/auth/logout-button";
 import { BarChart3, FileText, LayoutDashboard, Sparkles } from "lucide-react";
 
 const links = [
@@ -44,10 +45,11 @@ export function AdminNav() {
           ))}
           <Link
             href="/"
-            className="ml-2 text-sm text-slate-500 hover:text-f2m-navy"
+            className="ml-2 hidden text-sm text-slate-500 hover:text-f2m-navy sm:inline"
           >
-            Accueil
+            Site
           </Link>
+          <LogoutButton className="ml-1" />
         </nav>
       </div>
     </header>
