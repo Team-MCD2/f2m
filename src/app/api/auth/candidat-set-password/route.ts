@@ -41,6 +41,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       ok: true,
+      token: row.token,
       redirect: `/candidat/${row.token}`,
       message: "Mot de passe enregistré. Connectez-vous avec votre email.",
     });

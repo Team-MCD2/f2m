@@ -37,6 +37,19 @@ async function findClerkUserIdByEmail(email: string): Promise<string | null> {
   return list.data[0]?.id ?? null;
 }
 
+async function syncCandidatClerkMetadata(
+  clerkUserId: string,
+  candidat: { token: string; email: string }
+): Promise<void> {
+  const clerk = await clerkClient();
+  await clerk.users.updateUser(clerkUserId, {
+    publicMetadata: {
+      role: "candidat",
+      candidat_token: candidat.token,
+    },
+  });
+}
+
 export async function ensureClerkUserForCandidat(candidatId: string): Promise<string> {
   const candidat = await fetchCandidatById(candidatId);
   if (!candidat) throw new Error("Candidat introuvable");
@@ -56,6 +69,7 @@ export async function ensureClerkUserForCandidat(candidatId: string): Promise<st
     });
 
     await updateCandidatDb(candidatId, { clerk_user_id: user.id });
+    await syncCandidatClerkMetadata(user.id, candidat);
     await upsertProfile({
       clerk_user_id: user.id,
       role: "candidat",
@@ -69,6 +83,7 @@ export async function ensureClerkUserForCandidat(candidatId: string): Promise<st
     if (!existingId) throw createErr;
 
     await updateCandidatDb(candidatId, { clerk_user_id: existingId });
+    await syncCandidatClerkMetadata(existingId, candidat);
     await upsertProfile({
       clerk_user_id: existingId,
       role: "candidat",
@@ -88,7 +103,11 @@ export async function setCandidatPassword(
     throw new Error("Le mot de passe doit contenir au moins 8 caractères.");
   }
 
+  const candidat = await fetchCandidatById(candidatId);
+  if (!candidat) throw new Error("Candidat introuvable");
+
   const clerkUserId = await ensureClerkUserForCandidat(candidatId);
+  await syncCandidatClerkMetadata(clerkUserId, candidat);
   const clerk = await clerkClient();
 
   try {
@@ -106,6 +125,13 @@ export async function setCandidatPassword(
 
   await updateCandidatDb(candidatId, {
     mot_de_passe_defini: true,
+  });
+
+  await upsertProfile({
+    clerk_user_id: clerkUserId,
+    role: "candidat",
+    email: candidat.email,
+    candidat_token: candidat.token,
   });
 }
 

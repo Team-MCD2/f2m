@@ -28,8 +28,16 @@ export default clerkMiddleware(async (auth, req) => {
   const role = meta?.role as string | undefined;
   const pathname = req.nextUrl.pathname;
 
-  if (pathname.startsWith("/admin") && role !== "admin") {
-    return NextResponse.redirect(new URL("/connexion", req.url));
+  if (pathname.startsWith("/admin")) {
+    if (role === "candidat") {
+      const token = meta?.candidat_token as string | undefined;
+      return NextResponse.redirect(
+        new URL(token ? `/candidat/${token}` : "/connexion", req.url)
+      );
+    }
+    if (role !== "admin") {
+      return NextResponse.redirect(new URL("/connexion", req.url));
+    }
   }
 
   if (pathname.startsWith("/partenaire") && role !== "partenaire") {

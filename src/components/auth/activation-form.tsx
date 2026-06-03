@@ -85,7 +85,11 @@ export function ActivationForm() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Erreur");
 
-      router.push(`/connexion?activated=1&email=${encodeURIComponent(email.trim())}`);
+      const redirectPath =
+        data.redirect ?? (data.token ? `/candidat/${data.token}` : "/connexion");
+      router.push(
+        `/connexion?activated=1&email=${encodeURIComponent(email.trim())}&redirect=${encodeURIComponent(redirectPath)}`
+      );
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erreur");
     } finally {
