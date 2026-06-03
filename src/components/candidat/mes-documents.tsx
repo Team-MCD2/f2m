@@ -16,7 +16,7 @@ export function MesDocuments({ candidatId }: MesDocumentsProps) {
   );
 
   return (
-    <>
+    <div className="space-y-6">
       <CandidatNotifications
         items={notifications}
         enCours={enCours}
@@ -27,10 +27,10 @@ export function MesDocuments({ candidatId }: MesDocumentsProps) {
         key={refreshKey}
         candidatId={candidatId}
         canUpload
-        canDelete={(doc) => doc.source === "eleve"}
-        showSource
-        title="Mes documents"
+        canDelete={false}
+        showSource={false}
+        variant="candidat"
       />
-    </>
+    </div>
   );
 }

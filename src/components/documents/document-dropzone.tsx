@@ -8,12 +8,14 @@ interface DocumentDropzoneProps {
   onUpload: (files: FileList | File[]) => Promise<void>;
   disabled?: boolean;
   label?: string;
+  compact?: boolean;
 }
 
 export function DocumentDropzone({
   onUpload,
   disabled,
   label = "Glissez-déposez vos fichiers ici, ou cliquez pour parcourir",
+  compact = false,
 }: DocumentDropzoneProps) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -44,7 +46,8 @@ export function DocumentDropzone({
         if (e.dataTransfer.files.length) void handleFiles(e.dataTransfer.files);
       }}
       className={cn(
-        "relative flex min-h-[140px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed px-6 py-8 text-center transition-colors",
+        "relative flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed text-center transition-colors",
+        compact ? "min-h-[100px] px-4 py-5" : "min-h-[140px] px-6 py-8",
         dragging
           ? "border-f2m-navy bg-f2m-cream/50"
           : "border-slate-300 bg-slate-50/80 hover:border-f2m-blue hover:bg-white",
@@ -61,7 +64,7 @@ export function DocumentDropzone({
           e.target.value = "";
         }}
       />
-      <Upload className="mb-3 h-10 w-10 text-slate-400" />
+      <Upload className={cn("mb-2 text-slate-400", compact ? "h-7 w-7" : "mb-3 h-10 w-10")} />
       <p className="text-sm font-medium text-slate-700">
         {uploading ? "Envoi en cours…" : label}
       </p>

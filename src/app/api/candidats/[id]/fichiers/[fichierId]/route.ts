@@ -22,14 +22,14 @@ export async function DELETE(
       return NextResponse.json({ error: "Document introuvable." }, { status: 404 });
     }
 
-    if (profile.role === "candidat" && doc.source !== "eleve") {
+    if (profile.role === "candidat") {
       return NextResponse.json(
-        { error: "Vous ne pouvez supprimer que vos propres documents." },
+        { error: "La suppression de documents est réservée à l'équipe F2M." },
         { status: 403 }
       );
     }
 
-    if (profile.role !== "admin" && profile.role !== "candidat") {
+    if (profile.role !== "admin") {
       return NextResponse.json({ error: "Non autorisé" }, { status: 403 });
     }
 
