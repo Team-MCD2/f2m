@@ -104,17 +104,20 @@ export function RelancesPage() {
         error?: string;
         emailTo?: string;
       }[];
-      const emailsSent = data.emailsSent ?? results.filter((r) => r.email).length;
+      const emailsSent = data.emailsSent ?? 0;
+      const emailsSkipped = data.emailsSkipped ?? 0;
       const emailsFailed = data.emailsFailed ?? 0;
 
-      let msg = `Relance envoyée à ${selectedIds.size} candidat(s).`;
-      if (data.mockEmail) {
-        msg += " Emails non envoyés (configurez EMAIL_USER et EMAIL_PASS).";
-      } else if (emailsSent > 0) {
+      let msg = `Relance enregistrée pour ${selectedIds.size} candidat(s) (notification dans son espace).`;
+      if (emailsSent > 0) {
         msg += ` ${emailsSent} email(s) envoyé(s).`;
+      } else if (emailsSkipped > 0 || !data.emailConfigured) {
+        msg +=
+          " Aucun email : ajoutez EMAIL_USER et EMAIL_PASS dans .env.local puis redémarrez le serveur.";
       }
       if (emailsFailed > 0) {
-        msg += ` ${emailsFailed} email(s) en échec.`;
+        const detail = data.firstError ? ` Détail : ${data.firstError}` : "";
+        msg += ` ${emailsFailed} email(s) en échec.${detail}`;
       }
       setFeedback(msg);
       setMessage("");

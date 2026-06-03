@@ -23,6 +23,7 @@ export async function POST(request: Request) {
       id: string;
       ok: boolean;
       email?: boolean;
+      mock?: boolean;
       error?: string;
       emailTo?: string;
     }[] = [];
@@ -56,19 +57,24 @@ export async function POST(request: Request) {
         id: candidatId,
         ok: true,
         email: emailResult.ok && !emailResult.mock,
-        error: emailResult.error,
+        mock: emailResult.mock,
+        error: emailResult.mock ? undefined : emailResult.error,
         emailTo: candidat.email,
       });
     }
 
     const emailsSent = results.filter((r) => r.email).length;
-    const emailsFailed = results.filter((r) => r.ok && !r.email).length;
+    const emailsSkipped = results.filter((r) => r.mock).length;
+    const emailsFailed = results.filter((r) => r.ok && !r.email && !r.mock).length;
+    const firstError = results.find((r) => r.error)?.error;
 
     return NextResponse.json({
       results,
       emailsSent,
+      emailsSkipped,
       emailsFailed,
-      mockEmail: !process.env.EMAIL_USER,
+      firstError,
+      emailConfigured: Boolean(process.env.EMAIL_USER && process.env.EMAIL_PASS),
     });
   } catch (e) {
     console.error("relances", e);

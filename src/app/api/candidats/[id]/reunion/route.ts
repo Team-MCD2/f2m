@@ -27,6 +27,7 @@ export async function GET(
     return NextResponse.json({
       parcours: candidat.parcours,
       parcoursLabel: PARCOURS_LABELS[candidat.parcours],
+      statut: candidat.statut,
       teamsUrl: lien?.teamsUrl ?? "",
       elearningUrl: lien?.elearningUrl ?? "",
     });
