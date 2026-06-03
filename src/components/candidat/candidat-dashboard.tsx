@@ -2,43 +2,59 @@
 
 import Link from "next/link";
 import { useCandidatPortal } from "@/components/candidat/candidat-portal-context";
-import { CandidatNotifications } from "@/components/candidat/candidat-notifications";
-import { useCandidatSync } from "@/hooks/use-candidat-sync";
+import { useCandidatSync } from "@/components/candidat/candidat-sync-context";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PARCOURS_LABELS } from "@/types";
+import { PARCOURS_LABELS, STATUT_COLORS, STATUT_LABELS } from "@/types";
+import type { StatutCandidat } from "@/types";
 import { formatDate, fullName } from "@/lib/utils";
-import { ArrowRight, FileText, Video } from "lucide-react";
+import { ArrowRight, Bell, FileText, Video } from "lucide-react";
 
 export function CandidatDashboard() {
-  const { candidat, candidatId, basePath } = useCandidatPortal();
-  const { notifications, enCours, dismissNotifications, documentsCount, statut } =
-    useCandidatSync(candidatId, Boolean(candidatId));
+  const { candidat, basePath } = useCandidatPortal();
+  const { unreadCount, documentsCount, statut, enCours } = useCandidatSync();
 
   if (!candidat) return null;
 
+  const statutKey = (statut ?? candidat.statut) as StatutCandidat;
   const showFormation =
-    statut === "accepte" || statut === "en_formation" || statut === "diplome";
+    statutKey === "accepte" || statutKey === "en_formation" || statutKey === "diplome";
 
   return (
     <div className="space-y-6">
-      <Card className="border-f2m-navy/10 bg-gradient-to-br from-white to-f2m-cream/40">
+      <Card className="overflow-hidden border-f2m-navy/10 bg-gradient-to-br from-white to-f2m-cream/40">
         <CardContent className="p-6">
-          <p className="text-sm text-slate-500">Bienvenue</p>
-          <h2 className="mt-1 text-2xl font-bold text-f2m-navy">
-            {fullName(candidat.nom, candidat.prenom)}
-          </h2>
-          <p className="mt-2 text-sm text-slate-600">
-            Parcours : <strong>{PARCOURS_LABELS[candidat.parcours]}</strong> · Dossier déposé le{" "}
-            {formatDate(candidat.dateDemande)}
-          </p>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <p className="text-sm text-slate-500">Bienvenue</p>
+              <h2 className="mt-1 text-2xl font-bold text-f2m-navy">
+                {fullName(candidat.nom, candidat.prenom)}
+              </h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Parcours : <strong>{PARCOURS_LABELS[candidat.parcours]}</strong> · Dossier déposé
+                le {formatDate(candidat.dateDemande)}
+              </p>
+            </div>
+            <Badge className={`${STATUT_COLORS[statutKey]} shrink-0 text-sm`}>
+              {STATUT_LABELS[statutKey]}
+            </Badge>
+          </div>
+
+          {enCours && (
+            <p className="mt-4 flex items-center gap-2 rounded-lg border border-amber-200/80 bg-amber-50/90 px-3 py-2 text-sm text-amber-900">
+              <Bell className="h-4 w-4 shrink-0" />
+              Dossier en cours d&apos;examen. Vous serez notifié via la cloche en haut à droite.
+            </p>
+          )}
+
+          {unreadCount > 0 && (
+            <p className="mt-3 text-sm text-sky-800">
+              <strong>{unreadCount}</strong> notification{unreadCount > 1 ? "s" : ""} non lue
+              {unreadCount > 1 ? "s" : ""} — cliquez sur la cloche pour les lire.
+            </p>
+          )}
         </CardContent>
       </Card>
-
-      <CandidatNotifications
-        items={notifications}
-        enCours={enCours}
-        onDismiss={() => void dismissNotifications()}
-      />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card>
@@ -63,10 +79,8 @@ export function CandidatDashboard() {
             <CardTitle className="text-sm font-medium text-slate-500">Notifications</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold text-f2m-navy">
-              {notifications.filter((n) => !n.lu).length}
-            </p>
-            <p className="mt-1 text-xs text-slate-500">message(s) non lu(s)</p>
+            <p className="text-3xl font-bold text-f2m-navy">{unreadCount}</p>
+            <p className="mt-1 text-xs text-slate-500">non lue(s) — icône cloche en haut</p>
           </CardContent>
         </Card>
 

@@ -62,6 +62,18 @@ export async function markNotificationsRead(candidatId: string): Promise<void> {
     .eq("lu", false);
 }
 
+export async function markNotificationRead(
+  candidatId: string,
+  notificationId: string
+): Promise<void> {
+  const supabase = createServiceClient();
+  await supabase
+    .from("notifications")
+    .update({ lu: true })
+    .eq("candidat_id", candidatId)
+    .eq("id", notificationId);
+}
+
 export async function insertRelance(input: {
   candidatId: string;
   message: string;

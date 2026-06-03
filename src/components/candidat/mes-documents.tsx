@@ -1,34 +1,23 @@
 "use client";
 
 import { DocumentsPanel } from "@/components/documents/documents-panel";
-import { CandidatNotifications } from "@/components/candidat/candidat-notifications";
-import { useCandidatSync } from "@/hooks/use-candidat-sync";
+import { useCandidatSync } from "@/components/candidat/candidat-sync-context";
 
 interface MesDocumentsProps {
   candidatId: string;
 }
 
 export function MesDocuments({ candidatId }: MesDocumentsProps) {
-  const { notifications, enCours, refreshKey, dismissNotifications } = useCandidatSync(
-    candidatId,
-    true
-  );
+  const { refreshKey } = useCandidatSync();
 
   return (
-    <div className="space-y-6">
-      <CandidatNotifications
-        items={notifications}
-        enCours={enCours}
-        onDismiss={() => void dismissNotifications()}
-      />
-      <DocumentsPanel
-        key={refreshKey}
-        candidatId={candidatId}
-        canUpload
-        canDelete={false}
-        showSource={false}
-        variant="candidat"
-      />
-    </div>
+    <DocumentsPanel
+      key={refreshKey}
+      candidatId={candidatId}
+      canUpload
+      canDelete={false}
+      showSource={false}
+      variant="candidat"
+    />
   );
 }

@@ -3,6 +3,7 @@ import { assertCandidatAccess } from "@/lib/auth/candidat-access";
 import { getSessionProfile } from "@/lib/auth/session";
 import {
   fetchNotifications,
+  markNotificationRead,
   markNotificationsRead,
 } from "@/lib/supabase/notifications";
 import { fetchCandidatById, fetchDocumentsFichiers } from "@/lib/supabase/queries";
@@ -38,7 +39,7 @@ export async function GET(
 }
 
 export async function PATCH(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
@@ -47,7 +48,16 @@ export async function PATCH(
 
     const { id } = await params;
     await assertCandidatAccess(profile, id);
-    await markNotificationsRead(id);
+
+    const body = await request.json().catch(() => ({}));
+    const notificationId = body.notificationId as string | undefined;
+
+    if (notificationId) {
+      await markNotificationRead(id, notificationId);
+    } else {
+      await markNotificationsRead(id);
+    }
+
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: "Erreur" }, { status: 500 });
