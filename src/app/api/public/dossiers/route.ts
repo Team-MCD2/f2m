@@ -5,6 +5,7 @@ import type { Candidat } from "@/types";
 import { clerkClient } from "@clerk/nextjs/server";
 import { upsertProfile } from "@/lib/supabase/queries";
 import { insertNotification } from "@/lib/supabase/notifications";
+import { insertAdminNotification } from "@/lib/supabase/admin-notifications";
 
 /** Dépôt de dossier sans connexion (première demande) */
 export async function POST(request: Request) {
@@ -21,15 +22,13 @@ export async function POST(request: Request) {
 
     try {
       const clerk = await clerkClient();
-      const password = `F2m-${body.token}-${Date.now().toString(36).slice(-4)}!`;
       const user = await clerk.users.createUser({
         emailAddress: [body.email],
-        password,
+        skipPasswordRequirement: true,
         publicMetadata: {
           role: "candidat",
           candidat_token: body.token,
         },
-        skipPasswordChecks: true,
       });
 
       const { createServiceClient } = await import("@/lib/supabase/server");
@@ -55,6 +54,13 @@ export async function POST(request: Request) {
       titre: "Dossier en cours de traitement",
       message:
         "Votre demande a bien été reçue. Vous serez notifié ici dès qu'il y a du nouveau (aucun rechargement manuel nécessaire).",
+    });
+
+    await insertAdminNotification({
+      type: "dossier",
+      titre: "Nouveau dossier déposé",
+      message: `${created.prenom} ${created.nom} — ${created.email}`,
+      candidatId: created.id,
     });
 
     return NextResponse.json(created, { status: 201 });

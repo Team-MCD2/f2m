@@ -11,7 +11,7 @@ import { useCandidats } from "@/lib/store";
 import type { Candidat, StatutCandidat } from "@/types";
 import { STATUT_COLORS, STATUT_LABELS } from "@/types";
 import { formatDate, fullName } from "@/lib/utils";
-import { Ban, ExternalLink, Search, Trash2, UserCheck } from "lucide-react";
+import { Ban, ExternalLink, KeyRound, Search, Trash2, UserCheck } from "lucide-react";
 
 export function UtilisateursPage() {
   const { candidats, loading, refresh } = useCandidats();
@@ -62,6 +62,31 @@ export function UtilisateursPage() {
       if (!res.ok) throw new Error(data.error);
       await refresh();
       setFeedback(banni ? "Candidat banni." : "Bannissement levé.");
+    } catch (e) {
+      setFeedback(e instanceof Error ? e.message : "Erreur");
+    } finally {
+      setBusyId(null);
+    }
+  };
+
+  const handleResetPassword = async (c: Candidat) => {
+    if (
+      !confirm(
+        `Régénérer le mot de passe de ${fullName(c.nom, c.prenom)} ?\nUn email sera envoyé à ${c.email}.`
+      )
+    ) {
+      return;
+    }
+
+    setBusyId(c.id);
+    setFeedback(null);
+    try {
+      const res = await fetch(`/api/admin/candidats/${c.id}/reset-password`, {
+        method: "POST",
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      setFeedback(data.message ?? "Mot de passe envoyé par email.");
     } catch (e) {
       setFeedback(e instanceof Error ? e.message : "Erreur");
     } finally {
@@ -187,6 +212,19 @@ export function UtilisateursPage() {
                               Fiche
                             </Button>
                           </Link>
+                          {(c.statut === "accepte" ||
+                            c.statut === "en_formation" ||
+                            c.statut === "diplome") && (
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              disabled={busyId === c.id}
+                              onClick={() => void handleResetPassword(c)}
+                            >
+                              <KeyRound className="mr-1 h-3.5 w-3.5" />
+                              MDP
+                            </Button>
+                          )}
                           {c.banni ? (
                             <Button
                               variant="secondary"

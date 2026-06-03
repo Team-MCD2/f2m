@@ -13,6 +13,7 @@ import {
   Mail,
   Sparkles,
   Users,
+  Video,
   XCircle,
 } from "lucide-react";
 
@@ -28,6 +29,7 @@ const demandesNav = [
 
 const gestionNav = [
   { href: "/admin/relances", label: "Relances", icon: Mail },
+  { href: "/admin/reunions", label: "Espace réunion", icon: Video },
   { href: "/admin/utilisateurs", label: "Utilisateurs", icon: Users },
 ];
 

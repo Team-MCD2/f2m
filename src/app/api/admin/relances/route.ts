@@ -61,14 +61,14 @@ export async function POST(request: Request) {
       });
     }
 
-    const mock = results.some((r) => r.ok) && !process.env.RESEND_API_KEY;
+    const emailsSent = results.filter((r) => r.email).length;
+    const emailsFailed = results.filter((r) => r.ok && !r.email).length;
 
     return NextResponse.json({
       results,
-      mockEmail: mock,
-      hint: mock
-        ? "RESEND_API_KEY non configurée : notifications créées, emails simulés."
-        : undefined,
+      emailsSent,
+      emailsFailed,
+      mockEmail: !process.env.EMAIL_USER,
     });
   } catch (e) {
     console.error("relances", e);

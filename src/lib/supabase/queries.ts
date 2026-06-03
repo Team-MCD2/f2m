@@ -292,10 +292,30 @@ export async function updateCandidatStatut(
       titre: "Mise à jour de votre dossier",
       message: `Votre dossier est maintenant : ${STATUT_LABELS[statut]}.`,
     });
+
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+    const { sendMail } = await import("@/lib/email/send-mail");
+    const { acceptationEmailHtml, refusEmailHtml } = await import("@/lib/email/templates");
+
+    if (statut === "accepte") {
+      await sendMail(
+        existing.email,
+        "F2M Consulting — Candidature acceptée",
+        acceptationEmailHtml(existing.prenom, existing.nom, existing.token, appUrl)
+      );
+    } else if (statut === "refuse") {
+      await sendMail(
+        existing.email,
+        "F2M Consulting — Réponse à votre candidature",
+        refusEmailHtml(existing.prenom, existing.nom)
+      );
+    }
   }
 
   if (statut === "accepte") {
     try {
+      const { ensureClerkUserForCandidat } = await import("@/lib/auth/candidat-password");
+      await ensureClerkUserForCandidat(id);
       await generateAutoDocumentsForCandidat(id);
       await insertNotification({
         candidatId: id,

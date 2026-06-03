@@ -39,13 +39,15 @@ const DOC_TYPES: DocumentType[] = [
 export default function CandidatFichePage() {
   const params = useParams();
   const id = params.id as string;
-  const { getCandidat, updateStatut, updateNumeroDiplome, updateLiens, refresh } =
-    useCandidats();
+  const { getCandidat, updateStatut, updateNumeroDiplome, refresh } = useCandidats();
   const candidat = getCandidat(id);
   const [partenaire, setPartenaire] = useState<Partenaire | null>(null);
   const [documentsKey, setDocumentsKey] = useState(0);
   const [numeroDiplome, setNumeroDiplome] = useState(candidat?.numeroDiplome || "");
-  const [teamsUrl, setTeamsUrl] = useState(candidat?.liens.teamsUrl || "");
+  const [reunionLiens, setReunionLiens] = useState<{ teamsUrl: string; elearningUrl: string }>({
+    teamsUrl: "",
+    elearningUrl: "",
+  });
 
   useEffect(() => {
     if (!candidat?.partenaireId) {
@@ -57,6 +59,20 @@ export default function CandidatFichePage() {
       .then(setPartenaire)
       .catch(() => setPartenaire(null));
   }, [candidat?.partenaireId]);
+
+  useEffect(() => {
+    if (!candidat?.parcours) return;
+    fetch("/api/admin/reunions")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((rows: { parcours: string; teamsUrl: string; elearningUrl: string }[]) => {
+        const row = rows.find((r) => r.parcours === candidat.parcours);
+        setReunionLiens({
+          teamsUrl: row?.teamsUrl ?? "",
+          elearningUrl: row?.elearningUrl ?? "",
+        });
+      })
+      .catch(() => {});
+  }, [candidat?.parcours]);
 
   if (!candidat) {
     return (
@@ -84,10 +100,6 @@ export default function CandidatFichePage() {
 
   const saveDiplome = async () => {
     await updateNumeroDiplome(candidat.id, numeroDiplome);
-  };
-
-  const saveTeams = async () => {
-    await updateLiens(candidat.id, { teamsUrl });
   };
 
   return (
@@ -264,11 +276,37 @@ export default function CandidatFichePage() {
             <CardContent className="space-y-6 p-6">
               <div>
                 <p className="mb-2 text-sm font-medium text-f2m-navy">
-                  Plateforme e-learning (mock)
+                  Formation : {PARCOURS_LABELS[candidat.parcours]}
                 </p>
-                {candidat.liens.eLearningUrl ? (
+                <p className="text-sm text-slate-600">
+                  Les liens Teams et e-learning sont définis par formation dans{" "}
+                  <Link href="/admin/reunions" className="text-f2m-blue hover:underline">
+                    Espace réunion
+                  </Link>
+                  .
+                </p>
+              </div>
+              <div>
+                <p className="mb-2 text-sm font-medium text-f2m-navy">Lien Teams</p>
+                {reunionLiens.teamsUrl ? (
                   <a
-                    href={candidat.liens.eLearningUrl}
+                    href={reunionLiens.teamsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-f2m-blue hover:underline"
+                  >
+                    Ouvrir Teams
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                ) : (
+                  <p className="text-sm text-slate-500">Non configuré pour ce parcours</p>
+                )}
+              </div>
+              <div>
+                <p className="mb-2 text-sm font-medium text-f2m-navy">E-learning</p>
+                {reunionLiens.elearningUrl ? (
+                  <a
+                    href={reunionLiens.elearningUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm text-f2m-blue hover:underline"
@@ -278,32 +316,6 @@ export default function CandidatFichePage() {
                   </a>
                 ) : (
                   <p className="text-sm text-slate-500">Non configuré</p>
-                )}
-              </div>
-              <div>
-                <p className="mb-2 text-sm font-medium text-f2m-navy">
-                  Lien Teams (mock)
-                </p>
-                <div className="flex flex-wrap gap-2 max-w-lg">
-                  <Input
-                    value={teamsUrl}
-                    onChange={(e) => setTeamsUrl(e.target.value)}
-                    placeholder="https://teams.microsoft.com/..."
-                  />
-                  <Button variant="secondary" onClick={saveTeams}>
-                    Enregistrer
-                  </Button>
-                </div>
-                {teamsUrl && (
-                  <a
-                    href={teamsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 inline-flex items-center gap-2 text-sm text-f2m-blue hover:underline"
-                  >
-                    Ouvrir Teams
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
                 )}
               </div>
               <div>

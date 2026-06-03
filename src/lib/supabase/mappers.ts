@@ -107,6 +107,7 @@ export function mapCandidat(row: DbCandidat): Candidat {
     banniLe: row.banni_le ?? undefined,
     banniRaison: row.banni_raison ?? undefined,
     clerkUserId: row.clerk_user_id ?? undefined,
+    motDePasseDefini: row.mot_de_passe_defini ?? false,
   };
 }
 

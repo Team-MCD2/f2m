@@ -118,6 +118,7 @@ export interface Candidat {
   banniLe?: string;
   banniRaison?: string;
   clerkUserId?: string;
+  motDePasseDefini?: boolean;
 }
 
 export const STATUT_LABELS: Record<StatutCandidat, string> = {

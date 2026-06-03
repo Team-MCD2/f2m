@@ -1,0 +1,99 @@
+import { clerkClient } from "@clerk/nextjs/server";
+import { fetchCandidatById, updateCandidatDb } from "@/lib/supabase/queries";
+import { createServiceClient } from "@/lib/supabase/server";
+import { upsertProfile } from "@/lib/supabase/queries";
+
+export function generatePassword(): string {
+  const part = Math.random().toString(36).slice(2, 8);
+  return `F2m-${part}!9`;
+}
+
+export async function findCandidatByEmailOrToken(email?: string, token?: string) {
+  const supabase = createServiceClient();
+  if (token) {
+    const normalized = token.trim().toLowerCase().replace(/\s+/g, "-");
+    const { data } = await supabase
+      .from("candidats")
+      .select("*")
+      .eq("token", normalized)
+      .maybeSingle();
+    if (data) return data;
+  }
+  if (email) {
+    const { data } = await supabase
+      .from("candidats")
+      .select("*")
+      .ilike("email", email.trim())
+      .maybeSingle();
+    if (data) return data;
+  }
+  return null;
+}
+
+export async function ensureClerkUserForCandidat(candidatId: string): Promise<string> {
+  const candidat = await fetchCandidatById(candidatId);
+  if (!candidat) throw new Error("Candidat introuvable");
+
+  if (candidat.clerkUserId) return candidat.clerkUserId;
+
+  const clerk = await clerkClient();
+  const user = await clerk.users.createUser({
+    emailAddress: [candidat.email],
+    skipPasswordRequirement: true,
+    publicMetadata: {
+      role: "candidat",
+      candidat_token: candidat.token,
+    },
+  });
+
+  await updateCandidatDb(candidatId, { clerk_user_id: user.id });
+  await upsertProfile({
+    clerk_user_id: user.id,
+    role: "candidat",
+    email: candidat.email,
+    candidat_token: candidat.token,
+  });
+
+  return user.id;
+}
+
+export async function setCandidatPassword(
+  candidatId: string,
+  password: string
+): Promise<void> {
+  if (password.length < 8) {
+    throw new Error("Le mot de passe doit contenir au moins 8 caractères.");
+  }
+
+  const clerkUserId = await ensureClerkUserForCandidat(candidatId);
+  const clerk = await clerkClient();
+  await clerk.users.updateUser(clerkUserId, { password });
+
+  await updateCandidatDb(candidatId, {
+    mot_de_passe_defini: true,
+  });
+}
+
+export async function regenerateAndEmailPassword(candidatId: string): Promise<string> {
+  const candidat = await fetchCandidatById(candidatId);
+  if (!candidat) throw new Error("Candidat introuvable");
+
+  const password = generatePassword();
+  await setCandidatPassword(candidatId, password);
+
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const { sendMail } = await import("@/lib/email/send-mail");
+  const { motDePasseEmailHtml } = await import("@/lib/email/templates");
+
+  await sendMail(
+    candidat.email,
+    "F2M Consulting — Votre nouveau mot de passe",
+    motDePasseEmailHtml(candidat.prenom, candidat.nom, candidat.email, password, appUrl)
+  );
+
+  return password;
+}
+
+export function canActivateAccount(statut: string): boolean {
+  return statut === "accepte" || statut === "en_formation" || statut === "diplome";
+}

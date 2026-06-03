@@ -104,18 +104,17 @@ export function RelancesPage() {
         error?: string;
         emailTo?: string;
       }[];
-      const notifOk = results.filter((r) => r.ok).length;
-      const emailOk = results.filter((r) => r.email).length;
-      const emailFailed = results.filter((r) => r.ok && !r.email && r.error);
+      const emailsSent = data.emailsSent ?? results.filter((r) => r.email).length;
+      const emailsFailed = data.emailsFailed ?? 0;
 
-      let msg = `${notifOk} notification(s) créée(s) dans l'espace candidat.`;
+      let msg = `Relance envoyée à ${selectedIds.size} candidat(s).`;
       if (data.mockEmail) {
-        msg += " Emails non envoyés (RESEND_API_KEY manquante).";
-      } else if (emailOk > 0) {
-        msg += ` ${emailOk} email(s) envoyé(s) via Resend.`;
+        msg += " Emails non envoyés (configurez EMAIL_USER et EMAIL_PASS).";
+      } else if (emailsSent > 0) {
+        msg += ` ${emailsSent} email(s) envoyé(s).`;
       }
-      if (emailFailed.length > 0) {
-        msg += ` ${emailFailed.length} email(s) refusé(s) par Resend : ${emailFailed.map((r) => `${r.emailTo} — ${r.error}`).join(" | ")}`;
+      if (emailsFailed > 0) {
+        msg += ` ${emailsFailed} email(s) en échec.`;
       }
       setFeedback(msg);
       setMessage("");
@@ -133,21 +132,6 @@ export function RelancesPage() {
         title="Relances"
         description="Sélectionnez des candidats et envoyez un message (document manquant, problème d'affichage, etc.)"
       />
-
-      <div className="mb-6 rounded-lg border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-900">
-        <p className="font-medium">Envoi vers l&apos;email du candidat</p>
-        <p className="mt-1 text-sky-800">
-          L&apos;application envoie bien à l&apos;adresse enregistrée dans le dossier. Avec{" "}
-          <code className="rounded bg-white/80 px-1">onboarding@resend.dev</code> (mode test),
-          Resend n&apos;autorise souvent que votre propre adresse. Pour envoyer à tous les candidats,
-          vérifiez un domaine sur{" "}
-          <a href="https://resend.com/domains" className="underline" target="_blank" rel="noreferrer">
-            resend.com/domains
-          </a>{" "}
-          puis mettez <code className="rounded bg-white/80 px-1">RESEND_FROM_EMAIL</code> avec ce
-          domaine (ex. contact@f2mconsulting.fr).
-        </p>
-      </div>
 
       <Card className="mb-6">
         <CardHeader>

@@ -51,6 +51,7 @@ export interface DbCandidat {
   banni: boolean;
   banni_le: string | null;
   banni_raison: string | null;
+  mot_de_passe_defini: boolean;
   created_at: string;
   updated_at: string;
   documents_generes?: DbDocument[];

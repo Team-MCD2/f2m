@@ -8,6 +8,9 @@ const isPublicRoute = createRouteMatcher([
   "/deposer-dossier",
   "/api/public(.*)",
   "/api/auth/candidat-ticket",
+  "/api/auth/candidat-lookup",
+  "/api/auth/candidat-set-password",
+  "/connexion/activation",
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
