@@ -21,9 +21,6 @@ export default function ConnexionPage() {
       <main className="mx-auto max-w-lg px-4 py-12">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-bold text-f2m-navy">Connexion</h1>
-          <p className="mt-2 text-slate-600">
-            Un seul formulaire — redirection automatique selon votre rôle.
-          </p>
         </div>
 
         <Suspense fallback={<p className="text-center text-slate-500">Chargement…</p>}>

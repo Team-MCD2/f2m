@@ -56,11 +56,6 @@ export function ConnexionForm() {
 
   return (
     <div className="mx-auto w-full max-w-md">
-      <p className="mb-4 text-center text-sm text-slate-600">
-        Identifiez-vous avec votre compte. Votre espace s&apos;ouvre selon votre rôle
-        (administration, partenaire ou candidat).
-      </p>
-
       <div className="flex justify-center">
         <SignIn
           appearance={clerkAppearance}
