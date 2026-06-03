@@ -199,13 +199,6 @@ export function useCandidats() {
   return ctx;
 }
 
-export function createTokenFromName(prenom: string, nom: string): string {
-  return `${prenom}-${nom}`
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
+export { createTokenFromName } from "@/lib/utils";
 
 export type { FicheRenseignement };

@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { getChecklistItems, isChecklistComplete, piecesFromFiles } from "@/lib/checklist";
-import { createTokenFromName, useCandidats, type FicheRenseignement } from "@/lib/store";
+import { useCandidats, type FicheRenseignement } from "@/lib/store";
+import { createTokenFromName } from "@/lib/utils";
+import Link from "next/link";
 import type { Candidat, ParcoursType } from "@/types";
 import { PARCOURS_LABELS } from "@/types";
 import {
@@ -63,6 +65,7 @@ export function PortailForm({
   const [pendingFiles, setPendingFiles] = useState<Record<string, File>>({});
   const [submitted, setSubmitted] = useState(false);
   const [token, setToken] = useState("");
+  const [duplicateWarning, setDuplicateWarning] = useState<string | null>(null);
   const [secuError, setSecuError] = useState<string | null>(null);
 
   const [fiche, setFiche] = useState<FicheRenseignement>({
@@ -147,8 +150,17 @@ export function PortailForm({
           body: JSON.stringify(candidat),
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? "Erreur");
-        created = data as Candidat;
+        if (res.status === 409 && data.candidat) {
+          created = data.candidat as Candidat;
+          setDuplicateWarning(
+            data.error ??
+              "Un dossier existe déjà. Vos pièces jointes seront ajoutées à ce dossier."
+          );
+        } else if (!res.ok) {
+          throw new Error(data.error ?? "Erreur lors de l'enregistrement.");
+        } else {
+          created = data as Candidat;
+        }
       } else {
         created = await addCandidat(candidat);
       }
@@ -187,15 +199,30 @@ export function PortailForm({
       <Card className="border-emerald-200 bg-emerald-50">
         <CardContent className="p-8 text-center">
           <Check className="mx-auto mb-4 h-12 w-12 text-emerald-600" />
-          <h2 className="text-xl font-bold text-emerald-800">Dossier soumis avec succès</h2>
+          <h2 className="text-xl font-bold text-emerald-800">
+            {duplicateWarning ? "Dossier déjà enregistré" : "Dossier soumis avec succès"}
+          </h2>
+          {duplicateWarning && (
+            <p className="mt-2 text-sm text-amber-800">{duplicateWarning}</p>
+          )}
           <p className="mt-2 text-slate-600">
-            Votre demande a été enregistrée. Statut : <strong>DEMANDE</strong>
+            Statut : <strong>DEMANDE</strong> — conservez votre identifiant pour vous reconnecter.
           </p>
           {token && (
             <p className="mt-4 text-sm text-slate-500">
               Identifiant : <code className="rounded bg-white px-2 py-1">{token}</code>
             </p>
           )}
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link href="/connexion">
+              <Button type="button">Se connecter</Button>
+            </Link>
+            <Link href="/">
+              <Button type="button" variant="outline">
+                Retour à l&apos;accueil
+              </Button>
+            </Link>
+          </div>
         </CardContent>
       </Card>
     );

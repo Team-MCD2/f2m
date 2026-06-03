@@ -18,3 +18,12 @@ export function formatDate(dateStr: string): string {
 export function fullName(nom: string, prenom: string): string {
   return `${prenom} ${nom}`.trim();
 }
+
+export function createTokenFromName(prenom: string, nom: string): string {
+  return `${prenom}-${nom}`
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}

@@ -49,6 +49,18 @@ export async function fetchCandidatByToken(token: string): Promise<Candidat | nu
   return data ? mapCandidat(data) : null;
 }
 
+export async function fetchCandidatByEmail(email: string): Promise<Candidat | null> {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("candidats")
+    .select(CANDIDAT_SELECT)
+    .ilike("email", email.trim())
+    .maybeSingle();
+
+  if (error) throw error;
+  return data ? mapCandidat(data) : null;
+}
+
 export async function fetchCandidatsByPartenaire(partenaireId: string): Promise<Candidat[]> {
   const supabase = createServiceClient();
   const { data, error } = await supabase

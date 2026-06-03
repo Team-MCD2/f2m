@@ -20,14 +20,20 @@ export function AdminNotificationsBell() {
   const [unreadCount, setUnreadCount] = useState(0);
   const [items, setItems] = useState<AdminNotification[]>([]);
   const panelRef = useRef<HTMLDivElement>(null);
+  const prevUnread = useRef(0);
 
   const load = useCallback(async () => {
     try {
       const res = await fetch("/api/admin/notifications");
       if (!res.ok) return;
       const data = await res.json();
+      const count = data.unreadCount ?? 0;
       setItems(data.notifications ?? []);
-      setUnreadCount(data.unreadCount ?? 0);
+      setUnreadCount(count);
+      if (count > prevUnread.current) {
+        window.dispatchEvent(new CustomEvent("admin:new-notification"));
+      }
+      prevUnread.current = count;
     } catch {
       /* ignore */
     }
@@ -35,7 +41,7 @@ export function AdminNotificationsBell() {
 
   useEffect(() => {
     void load();
-    const id = setInterval(() => void load(), 120_000);
+    const id = setInterval(() => void load(), 20_000);
     return () => clearInterval(id);
   }, [load]);
 
