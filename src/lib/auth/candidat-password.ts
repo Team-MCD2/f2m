@@ -81,7 +81,8 @@ export async function regenerateAndEmailPassword(candidatId: string): Promise<st
   const password = generatePassword();
   await setCandidatPassword(candidatId, password);
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const { getAppUrl } = await import("@/lib/app-url");
+  const appUrl = getAppUrl();
   const { sendMail } = await import("@/lib/email/send-mail");
   const { motDePasseEmailHtml } = await import("@/lib/email/templates");
 
