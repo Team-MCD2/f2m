@@ -113,11 +113,18 @@ export async function POST(request: Request) {
   } catch (e) {
     console.error("POST dossier public", e);
     if (isDuplicateKeyError(e)) {
+      const existing =
+        (await fetchCandidatByEmail(body.email)) ??
+        (await fetchCandidatByToken(
+          body.token?.trim().toLowerCase() ||
+            createTokenFromName(body.prenom, body.nom)
+        ));
       return NextResponse.json(
         {
           code: "duplicate",
           error:
-            "Un dossier existe déjà avec ces informations. Connectez-vous plutôt que de créer un second dossier.",
+            "Un dossier existe déjà avec cet email. Utilisez Connexion ou Activation de compte.",
+          candidat: existing ?? undefined,
         },
         { status: 409 }
       );

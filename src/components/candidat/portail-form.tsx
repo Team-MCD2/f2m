@@ -150,7 +150,13 @@ export function PortailForm({
           body: JSON.stringify(candidat),
         });
         const data = await res.json();
-        if (res.status === 409 && data.candidat) {
+        if (res.status === 409) {
+          if (!data.candidat) {
+            throw new Error(
+              data.error ??
+                "Un dossier existe déjà avec cet email. Connectez-vous ou contactez F2M."
+            );
+          }
           created = data.candidat as Candidat;
           setDuplicateWarning(
             data.error ??
