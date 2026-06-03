@@ -16,8 +16,14 @@ function isDuplicateKeyError(e: unknown): boolean {
 
 /** Dépôt de dossier sans connexion (première demande) */
 export async function POST(request: Request) {
+  let body: Candidat;
   try {
-    const body = (await request.json()) as Candidat;
+    body = (await request.json()) as Candidat;
+  } catch {
+    return NextResponse.json({ error: "Données invalides." }, { status: 400 });
+  }
+
+  try {
 
     if (!body.nom || !body.prenom || !body.email || !body.token) {
       return NextResponse.json({ error: "Données incomplètes." }, { status: 400 });
@@ -112,13 +118,13 @@ export async function POST(request: Request) {
     return NextResponse.json(created, { status: 201 });
   } catch (e) {
     console.error("POST dossier public", e);
-    if (isDuplicateKeyError(e)) {
+    if (isDuplicateKeyError(e) && body.email) {
+      const tokenGuess =
+        body.token?.trim().toLowerCase() ||
+        createTokenFromName(body.prenom, body.nom);
       const existing =
         (await fetchCandidatByEmail(body.email)) ??
-        (await fetchCandidatByToken(
-          body.token?.trim().toLowerCase() ||
-            createTokenFromName(body.prenom, body.nom)
-        ));
+        (await fetchCandidatByToken(tokenGuess));
       return NextResponse.json(
         {
           code: "duplicate",
