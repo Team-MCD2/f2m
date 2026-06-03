@@ -5,10 +5,15 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { getChecklistItems, isChecklistComplete, piecesFromChecklist } from "@/lib/checklist";
+import { getChecklistItems, isChecklistComplete, piecesFromFiles } from "@/lib/checklist";
 import { createTokenFromName, useCandidats, type FicheRenseignement } from "@/lib/store";
 import type { Candidat, ParcoursType } from "@/types";
 import { PARCOURS_LABELS } from "@/types";
+import {
+  isValidNumeroSecu,
+  numeroSecuError,
+  sanitizeNumeroSecu,
+} from "@/lib/validators/secu";
 import { Check, FileUp, Upload } from "lucide-react";
 
 const PARCOURS_OPTIONS: ParcoursType[] = [
@@ -22,8 +27,25 @@ const PARCOURS_OPTIONS: ParcoursType[] = [
 interface PortailFormProps {
   partenaireId?: string;
   redirectAfterSubmit?: string;
-  /** Dépôt public sans connexion */
   publicSubmit?: boolean;
+}
+
+async function uploadPiece(
+  candidatId: string,
+  token: string,
+  pieceId: string,
+  file: File
+) {
+  const form = new FormData();
+  form.append("token", token);
+  form.append("pieceId", pieceId);
+  form.append("file", file);
+  const res = await fetch(`/api/public/candidats/${candidatId}/fichiers`, {
+    method: "POST",
+    body: form,
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error ?? `Échec envoi : ${file.name}`);
 }
 
 export function PortailForm({
@@ -38,9 +60,10 @@ export function PortailForm({
   const [parcours, setParcours] = useState<ParcoursType>("formation_continue");
   const [experienceSecu, setExperienceSecu] = useState(false);
   const [diplomeScolaire, setDiplomeScolaire] = useState(false);
-  const [uploaded, setUploaded] = useState<Record<string, boolean>>({});
+  const [pendingFiles, setPendingFiles] = useState<Record<string, File>>({});
   const [submitted, setSubmitted] = useState(false);
   const [token, setToken] = useState("");
+  const [secuError, setSecuError] = useState<string | null>(null);
 
   const [fiche, setFiche] = useState<FicheRenseignement>({
     nom: "",
@@ -59,20 +82,34 @@ export function PortailForm({
 
   const checklist = getChecklistItems(parcours, experienceSecu, diplomeScolaire);
 
-  const toggleUpload = (id: string) => {
-    setUploaded((prev) => ({ ...prev, [id]: !prev[id] }));
+  const setFileForPiece = (pieceId: string, file: File | null) => {
+    setPendingFiles((prev) => {
+      const next = { ...prev };
+      if (file) next[pieceId] = file;
+      else delete next[pieceId];
+      return next;
+    });
   };
 
   const handleSubmit = async () => {
-    const pieces = piecesFromChecklist(checklist, uploaded);
+    const pieces = piecesFromFiles(checklist, pendingFiles);
     if (!isChecklistComplete(pieces)) {
-      alert("Veuillez fournir tous les documents obligatoires.");
+      alert("Veuillez téléverser tous les documents obligatoires.");
       return;
     }
     if (!fiche.nom || !fiche.prenom || !fiche.email) {
       alert("Veuillez remplir la fiche de renseignement.");
       return;
     }
+
+    const secuErr = numeroSecuError(fiche.numeroSecu);
+    if (secuErr) {
+      setSecuError(secuErr);
+      return;
+    }
+    setSecuError(null);
+
+    const numeroSecu = fiche.numeroSecu ? sanitizeNumeroSecu(fiche.numeroSecu) : undefined;
 
     setSubmitting(true);
     const newToken = createTokenFromName(fiche.prenom, fiche.nom);
@@ -88,7 +125,7 @@ export function PortailForm({
       adresse: fiche.adresse,
       codePostal: fiche.codePostal,
       ville: fiche.ville,
-      numeroSecu: fiche.numeroSecu,
+      numeroSecu,
       parcours,
       statut: "demande",
       partenaireId,
@@ -96,12 +133,13 @@ export function PortailForm({
       experienceSecu,
       diplomeScolaire,
       piecesJointes: pieces,
-      fiche: { ...fiche, experienceSecu, diplomeScolaire, rempli: true },
+      fiche: { ...fiche, numeroSecu, experienceSecu, diplomeScolaire, rempli: true },
       documentsGeneres: [],
       liens: { eLearningUrl: "" },
     };
 
     try {
+      let created: Candidat;
       if (publicSubmit) {
         const res = await fetch("/api/public/dossiers", {
           method: "POST",
@@ -110,11 +148,29 @@ export function PortailForm({
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error ?? "Erreur");
-        setToken(data.token);
+        created = data as Candidat;
       } else {
-        const created = await addCandidat(candidat);
-        setToken(created.token);
+        created = await addCandidat(candidat);
       }
+
+      for (const [pieceId, file] of Object.entries(pendingFiles)) {
+        if (publicSubmit) {
+          await uploadPiece(created.id, created.token, pieceId, file);
+        } else {
+          const form = new FormData();
+          form.append("file", file);
+          const up = await fetch(`/api/candidats/${created.id}/fichiers`, {
+            method: "POST",
+            body: form,
+          });
+          if (!up.ok) {
+            const err = await up.json();
+            throw new Error(err.error ?? file.name);
+          }
+        }
+      }
+
+      setToken(created.token);
       setSubmitted(true);
       if (redirectAfterSubmit) {
         setTimeout(() => router.push(redirectAfterSubmit), 2000);
@@ -137,7 +193,7 @@ export function PortailForm({
           </p>
           {token && (
             <p className="mt-4 text-sm text-slate-500">
-              Référence : <code className="rounded bg-white px-2 py-1">{token}</code>
+              Identifiant : <code className="rounded bg-white px-2 py-1">{token}</code>
             </p>
           )}
         </CardContent>
@@ -147,7 +203,6 @@ export function PortailForm({
 
   return (
     <div className="space-y-6">
-      {/* Étape 1 — Parcours */}
       {step >= 1 && (
         <Card>
           <CardHeader>
@@ -200,52 +255,62 @@ export function PortailForm({
         </Card>
       )}
 
-      {/* Étape 2 — Pièces */}
       {step >= 2 && (
         <Card>
           <CardHeader>
-            <CardTitle>2. Pièces jointes (simulation)</CardTitle>
+            <CardTitle>2. Pièces jointes</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="mb-4 text-sm text-slate-600">
-              Cochez chaque document que vous auriez téléversé. Les champs obligatoires dépendent de votre profil.
+              Téléversez chaque document (PDF, image ou Word). Les fichiers sont enregistrés
+              immédiatement après validation du dossier.
             </p>
             <ul className="space-y-3">
-              {checklist.map((item) => (
-                <li
-                  key={item.id}
-                  className="flex items-start gap-3 rounded-lg border border-slate-100 p-3"
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggleUpload(item.id)}
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border-2 border-dashed transition-colors ${
-                      uploaded[item.id]
-                        ? "border-emerald-500 bg-emerald-50 text-emerald-600"
-                        : "border-slate-300 text-slate-400 hover:border-f2m-blue"
-                    }`}
+              {checklist.map((item) => {
+                const file = pendingFiles[item.id];
+                return (
+                  <li
+                    key={item.id}
+                    className="flex flex-col gap-2 rounded-lg border border-slate-100 p-3 sm:flex-row sm:items-center"
                   >
-                    {uploaded[item.id] ? <Check className="h-5 w-5" /> : <Upload className="h-5 w-5" />}
-                  </button>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">
-                      {item.label}
-                      {item.obligatoire && (
-                        <span className="ml-1 text-red-500">*</span>
-                      )}
-                    </p>
-                    {item.condition && (
-                      <p className="text-xs text-slate-500">{item.condition}</p>
-                    )}
-                    {uploaded[item.id] && (
-                      <p className="mt-1 flex items-center gap-1 text-xs text-emerald-600">
-                        <FileUp className="h-3 w-3" />
-                        {item.id}.pdf (fichier fictif)
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">
+                        {item.label}
+                        {item.obligatoire && <span className="ml-1 text-red-500">*</span>}
                       </p>
-                    )}
-                  </div>
-                </li>
-              ))}
+                      {item.condition && (
+                        <p className="text-xs text-slate-500">{item.condition}</p>
+                      )}
+                      {file && (
+                        <p className="mt-1 flex items-center gap-1 text-xs text-emerald-600">
+                          <FileUp className="h-3 w-3" />
+                          {file.name}
+                        </p>
+                      )}
+                    </div>
+                    <label
+                      className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed px-4 py-2 text-sm transition-colors ${
+                        file
+                          ? "border-emerald-500 bg-emerald-50 text-emerald-700"
+                          : "border-slate-300 text-slate-600 hover:border-f2m-blue"
+                      }`}
+                    >
+                      <Upload className="h-4 w-4" />
+                      {file ? "Changer" : "Choisir un fichier"}
+                      <input
+                        type="file"
+                        className="sr-only"
+                        accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"
+                        onChange={(e) => {
+                          const f = e.target.files?.[0];
+                          setFileForPiece(item.id, f ?? null);
+                          e.target.value = "";
+                        }}
+                      />
+                    </label>
+                  </li>
+                );
+              })}
             </ul>
             <div className="mt-4 flex gap-2">
               <Button variant="outline" onClick={() => setStep(1)}>
@@ -257,7 +322,6 @@ export function PortailForm({
         </Card>
       )}
 
-      {/* Étape 3 — Fiche */}
       {step >= 3 && (
         <Card>
           <CardHeader>
@@ -331,19 +395,34 @@ export function PortailForm({
                 />
               </div>
               <div className="sm:col-span-2">
-                <label className="mb-1 block text-sm font-medium">N° Sécurité sociale</label>
+                <label className="mb-1 block text-sm font-medium">
+                  N° Sécurité sociale (chiffres uniquement)
+                </label>
                 <Input
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   value={fiche.numeroSecu || ""}
-                  onChange={(e) => setFiche({ ...fiche, numeroSecu: e.target.value })}
+                  onChange={(e) => {
+                    const v = sanitizeNumeroSecu(e.target.value);
+                    setFiche({ ...fiche, numeroSecu: v });
+                    setSecuError(numeroSecuError(v));
+                  }}
+                  placeholder="15 chiffres maximum"
                 />
+                {secuError && <p className="mt-1 text-xs text-red-600">{secuError}</p>}
+                {fiche.numeroSecu && isValidNumeroSecu(fiche.numeroSecu) && !secuError && (
+                  <p className="mt-1 text-xs text-emerald-600">
+                    {sanitizeNumeroSecu(fiche.numeroSecu).length} chiffres
+                  </p>
+                )}
               </div>
             </div>
             <div className="mt-6 flex gap-2">
               <Button variant="outline" onClick={() => setStep(2)}>
                 Retour
               </Button>
-              <Button onClick={handleSubmit} disabled={submitting}>
-                {submitting ? "Envoi…" : "Soumettre le dossier"}
+              <Button onClick={handleSubmit} disabled={submitting || Boolean(secuError)}>
+                {submitting ? "Envoi et upload des fichiers…" : "Soumettre le dossier"}
               </Button>
             </div>
           </CardContent>

@@ -97,6 +97,25 @@ CREATE TABLE IF NOT EXISTS documents_fichiers (
 
 CREATE INDEX IF NOT EXISTS idx_documents_fichiers_candidat ON documents_fichiers(candidat_id);
 
+CREATE TABLE IF NOT EXISTS notifications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  candidat_id UUID NOT NULL REFERENCES candidats(id) ON DELETE CASCADE,
+  type TEXT NOT NULL CHECK (type IN ('document', 'statut', 'relance', 'info')),
+  titre TEXT NOT NULL,
+  message TEXT NOT NULL,
+  lu BOOLEAN NOT NULL DEFAULT false,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS relances (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  candidat_id UUID NOT NULL REFERENCES candidats(id) ON DELETE CASCADE,
+  message TEXT NOT NULL,
+  email_envoye BOOLEAN NOT NULL DEFAULT false,
+  envoye_par TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 -- Mise à jour automatique updated_at
 CREATE OR REPLACE FUNCTION set_updated_at()
 RETURNS TRIGGER AS $$
@@ -117,6 +136,8 @@ ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE candidats ENABLE ROW LEVEL SECURITY;
 ALTER TABLE documents_generes ENABLE ROW LEVEL SECURITY;
 ALTER TABLE documents_fichiers ENABLE ROW LEVEL SECURITY;
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+ALTER TABLE relances ENABLE ROW LEVEL SECURITY;
 
 -- Partenaire exemple (optionnel — adapter l'e-mail à votre compte Clerk)
 INSERT INTO partenaires (slug, nom, ville, email)

@@ -6,6 +6,7 @@ import {
   insertDocumentFichier,
 } from "@/lib/supabase/queries";
 import { isAllowedMime, MAX_FILE_BYTES } from "@/lib/storage/detect";
+import { insertNotification } from "@/lib/supabase/notifications";
 import { uploadCandidatFile } from "@/lib/storage/upload-file";
 import type { DocumentSource } from "@/types";
 
@@ -77,6 +78,15 @@ export async function POST(
       source,
       uploadedBy: profile.clerk_user_id,
     });
+
+    if (source === "admin") {
+      await insertNotification({
+        candidatId: id,
+        type: "document",
+        titre: "Nouveau document disponible",
+        message: `L'administration a ajouté « ${file.name} » à votre espace.`,
+      });
+    }
 
     return NextResponse.json(doc, { status: 201 });
   } catch (e) {

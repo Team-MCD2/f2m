@@ -4,6 +4,7 @@ import { candidatToDbInsert } from "@/lib/supabase/mappers";
 import type { Candidat } from "@/types";
 import { clerkClient } from "@clerk/nextjs/server";
 import { upsertProfile } from "@/lib/supabase/queries";
+import { insertNotification } from "@/lib/supabase/notifications";
 
 /** Dépôt de dossier sans connexion (première demande) */
 export async function POST(request: Request) {
@@ -47,6 +48,14 @@ export async function POST(request: Request) {
     } catch (clerkErr) {
       console.warn("Clerk user creation:", clerkErr);
     }
+
+    await insertNotification({
+      candidatId: created.id,
+      type: "info",
+      titre: "Dossier en cours de traitement",
+      message:
+        "Votre demande a bien été reçue. Vous serez notifié ici dès qu'il y a du nouveau (aucun rechargement manuel nécessaire).",
+    });
 
     return NextResponse.json(created, { status: 201 });
   } catch (e) {

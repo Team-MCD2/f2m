@@ -10,6 +10,7 @@ import {
   Cloud,
   FileStack,
   LayoutDashboard,
+  Mail,
   Sparkles,
   XCircle,
 } from "lucide-react";
@@ -25,6 +26,7 @@ const demandesNav = [
 ];
 
 const toolsNav = [
+  { href: "/admin/relances", label: "Relances", icon: Mail },
   { href: "/admin/documents/generer", label: "Documents", icon: Sparkles },
   { href: "/admin/documents/templates", label: "Modèles", icon: FileStack },
 ];

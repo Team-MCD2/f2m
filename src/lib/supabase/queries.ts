@@ -1,12 +1,13 @@
 import { createServiceClient } from "./server";
 import { mapCandidat, mapDocument, mapDocumentFichier, mapPartenaire } from "./mappers";
 import { generateAutoDocumentsForCandidat } from "@/lib/documents/auto-generate";
+import { insertNotification } from "@/lib/supabase/notifications";
 import { deleteFromCloudinary } from "@/lib/storage/cloudinary-upload";
 import { deleteFromSupabaseStorage } from "@/lib/storage/supabase-upload";
 import type { DocumentFichier, DocumentSource } from "@/types";
 import type { DashboardStats, DbProfile, DbRole } from "./types";
 import type { Candidat, DocumentType, Partenaire, StatutCandidat } from "@/types";
-import { PARCOURS_LABELS } from "@/types";
+import { PARCOURS_LABELS, STATUT_LABELS } from "@/types";
 
 const CANDIDAT_SELECT = `
   *,
@@ -284,9 +285,24 @@ export async function updateCandidatStatut(
   }
   const updated = await updateCandidatDb(id, patch);
 
+  if (statut !== existing.statut) {
+    await insertNotification({
+      candidatId: id,
+      type: "statut",
+      titre: "Mise à jour de votre dossier",
+      message: `Votre dossier est maintenant : ${STATUT_LABELS[statut]}.`,
+    });
+  }
+
   if (statut === "accepte") {
     try {
       await generateAutoDocumentsForCandidat(id);
+      await insertNotification({
+        candidatId: id,
+        type: "document",
+        titre: "Documents F2M disponibles",
+        message: "Vos documents officiels ont été générés et sont dans « Mes documents ».",
+      });
     } catch (e) {
       console.error("Génération auto documents:", e);
     }

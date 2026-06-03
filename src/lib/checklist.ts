@@ -61,17 +61,20 @@ export function getChecklistItems(
   return base;
 }
 
-export function piecesFromChecklist(
+export function piecesFromFiles(
   items: ChecklistItem[],
-  uploaded: Record<string, boolean>
+  files: Record<string, File>
 ): PieceJointe[] {
-  return items.map((item) => ({
-    id: item.id,
-    label: item.label,
-    obligatoire: item.obligatoire,
-    fournie: uploaded[item.id] ?? false,
-    fichierNom: uploaded[item.id] ? `${item.id}.pdf` : undefined,
-  }));
+  return items.map((item) => {
+    const file = files[item.id];
+    return {
+      id: item.id,
+      label: item.label,
+      obligatoire: item.obligatoire,
+      fournie: Boolean(file),
+      fichierNom: file?.name,
+    };
+  });
 }
 
 export function isChecklistComplete(pieces: PieceJointe[]): boolean {
