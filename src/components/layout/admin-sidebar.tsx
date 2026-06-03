@@ -12,6 +12,7 @@ import {
   LayoutDashboard,
   Mail,
   Sparkles,
+  Users,
   XCircle,
 } from "lucide-react";
 
@@ -25,8 +26,12 @@ const demandesNav = [
   { href: "/admin/demandes/refusees", label: "Refusées", icon: XCircle },
 ];
 
-const toolsNav = [
+const gestionNav = [
   { href: "/admin/relances", label: "Relances", icon: Mail },
+  { href: "/admin/utilisateurs", label: "Utilisateurs", icon: Users },
+];
+
+const toolsNav = [
   { href: "/admin/documents/generer", label: "Documents", icon: Sparkles },
   { href: "/admin/documents/templates", label: "Modèles", icon: FileStack },
 ];
@@ -93,6 +98,17 @@ export function AdminSidebar() {
           </p>
           <div className="space-y-1">
             {demandesNav.map((item) => (
+              <NavLink key={item.href} pathname={pathname} {...item} />
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="mb-2 px-4 text-xs font-semibold uppercase tracking-wider text-slate-400">
+            Gestion
+          </p>
+          <div className="space-y-1">
+            {gestionNav.map((item) => (
               <NavLink key={item.href} pathname={pathname} {...item} />
             ))}
           </div>

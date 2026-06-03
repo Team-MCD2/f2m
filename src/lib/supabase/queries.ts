@@ -323,3 +323,44 @@ export async function linkCandidatClerkUser(
 
   if (error) throw error;
 }
+
+export async function setCandidatBanni(
+  id: string,
+  banni: boolean,
+  raison?: string
+): Promise<Candidat> {
+  const existing = await fetchCandidatById(id);
+  if (!existing) throw new Error("Candidat introuvable");
+
+  const { banClerkUser, unbanClerkUser } = await import("@/lib/clerk/candidat-account");
+
+  if (existing.clerkUserId) {
+    if (banni) await banClerkUser(existing.clerkUserId);
+    else await unbanClerkUser(existing.clerkUserId);
+  }
+
+  return updateCandidatDb(id, {
+    banni,
+    banni_le: banni ? new Date().toISOString() : null,
+    banni_raison: banni ? raison ?? null : null,
+  });
+}
+
+export async function deleteCandidatById(id: string): Promise<void> {
+  const existing = await fetchCandidatById(id);
+  if (!existing) throw new Error("Candidat introuvable");
+
+  if (existing.clerkUserId) {
+    const { deleteClerkUser } = await import("@/lib/clerk/candidat-account");
+    try {
+      await deleteClerkUser(existing.clerkUserId);
+    } catch (e) {
+      console.warn("Suppression Clerk:", e);
+    }
+  }
+
+  const supabase = createServiceClient();
+  await supabase.from("profiles").delete().eq("candidat_token", existing.token);
+  const { error } = await supabase.from("candidats").delete().eq("id", id);
+  if (error) throw error;
+}

@@ -48,6 +48,9 @@ export interface DbCandidat {
   liens: unknown;
   notes: string | null;
   clerk_user_id: string | null;
+  banni: boolean;
+  banni_le: string | null;
+  banni_raison: string | null;
   created_at: string;
   updated_at: string;
   documents_generes?: DbDocument[];

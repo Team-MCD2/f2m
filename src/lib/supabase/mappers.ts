@@ -103,6 +103,10 @@ export function mapCandidat(row: DbCandidat): Candidat {
     documentsGeneres: (row.documents_generes ?? []).map(mapDocument),
     liens: asLiens(row.liens),
     notes: row.notes ?? undefined,
+    banni: row.banni ?? false,
+    banniLe: row.banni_le ?? undefined,
+    banniRaison: row.banni_raison ?? undefined,
+    clerkUserId: row.clerk_user_id ?? undefined,
   };
 }
 

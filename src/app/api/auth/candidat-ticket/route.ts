@@ -18,16 +18,28 @@ export async function POST(request: Request) {
     const supabase = createServiceClient();
     const { data: dbRow, error } = await supabase
       .from("candidats")
-      .select("id, clerk_user_id, token")
+      .select("id, clerk_user_id, token, banni")
       .eq("token", normalized)
       .maybeSingle();
 
     if (error) throw error;
-    const row = dbRow as { id: string; clerk_user_id: string | null; token: string } | null;
+    const row = dbRow as {
+      id: string;
+      clerk_user_id: string | null;
+      token: string;
+      banni?: boolean;
+    } | null;
     if (!row) {
       return NextResponse.json(
         { error: "Aucun dossier trouvé pour cet identifiant." },
         { status: 404 }
+      );
+    }
+
+    if (row.banni) {
+      return NextResponse.json(
+        { error: "Ce compte a été suspendu. Contactez F2M Consulting." },
+        { status: 403 }
       );
     }
 

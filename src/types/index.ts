@@ -114,6 +114,10 @@ export interface Candidat {
   documentsGeneres: DocumentGenere[];
   liens: LiensCandidat;
   notes?: string;
+  banni?: boolean;
+  banniLe?: string;
+  banniRaison?: string;
+  clerkUserId?: string;
 }
 
 export const STATUT_LABELS: Record<StatutCandidat, string> = {

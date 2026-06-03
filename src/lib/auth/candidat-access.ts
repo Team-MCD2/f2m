@@ -10,6 +10,10 @@ export async function assertCandidatAccess(
   const candidat = await fetchCandidatById(candidatId);
   if (!candidat) throw new Error("Candidat introuvable");
 
+  if (candidat.banni) {
+    throw new Error("Compte suspendu");
+  }
+
   if (profile.role === "candidat") {
     if (profile.candidat_token && candidat.token === profile.candidat_token) return;
     throw new Error("Accès non autorisé");

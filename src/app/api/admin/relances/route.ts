@@ -19,7 +19,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Message de relance requis." }, { status: 400 });
     }
 
-    const results: { id: string; ok: boolean; email?: boolean; error?: string }[] = [];
+    const results: {
+      id: string;
+      ok: boolean;
+      email?: boolean;
+      error?: string;
+      emailTo?: string;
+    }[] = [];
 
     for (const candidatId of candidatIds) {
       const candidat = await fetchCandidatById(candidatId);

@@ -58,6 +58,9 @@ CREATE TABLE IF NOT EXISTS candidats (
   liens JSONB NOT NULL DEFAULT '{"eLearningUrl":"","teamsUrl":null}'::jsonb,
   notes TEXT,
   clerk_user_id TEXT UNIQUE,
+  banni BOOLEAN NOT NULL DEFAULT false,
+  banni_le TIMESTAMPTZ,
+  banni_raison TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
