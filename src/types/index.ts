@@ -56,6 +56,30 @@ export interface DocumentGenere {
   genereLe: string;
 }
 
+export type DocumentSource = "eleve" | "admin" | "auto_genere";
+export type DocumentStorage = "supabase" | "cloudinary";
+
+export interface DocumentFichier {
+  id: string;
+  candidatId: string;
+  nomFichier: string;
+  mimeType: string;
+  tailleOctets: number;
+  storage: DocumentStorage;
+  storagePath: string;
+  url: string;
+  source: DocumentSource;
+  templateType?: string;
+  uploadedBy?: string;
+  createdAt: string;
+}
+
+export const DOCUMENT_SOURCE_LABELS: Record<DocumentSource, string> = {
+  eleve: "Déposé par l'élève",
+  admin: "Déposé par l'administration",
+  auto_genere: "Généré automatiquement",
+};
+
 export interface LiensCandidat {
   eLearningUrl: string;
   teamsUrl?: string;

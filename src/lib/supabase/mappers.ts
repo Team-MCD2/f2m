@@ -1,6 +1,7 @@
-import type { DbCandidat, DbDocument, DbPartenaire } from "./types";
+import type { DbCandidat, DbDocument, DbDocumentFichier, DbPartenaire } from "./types";
 import type {
   Candidat,
+  DocumentFichier,
   DocumentGenere,
   FicheRenseignement,
   LiensCandidat,
@@ -39,6 +40,23 @@ function asLiens(raw: unknown): LiensCandidat {
   return {
     eLearningUrl: l.eLearningUrl ?? "",
     teamsUrl: l.teamsUrl ?? undefined,
+  };
+}
+
+export function mapDocumentFichier(row: DbDocumentFichier): DocumentFichier {
+  return {
+    id: row.id,
+    candidatId: row.candidat_id,
+    nomFichier: row.nom_fichier,
+    mimeType: row.mime_type,
+    tailleOctets: Number(row.taille_octets),
+    storage: row.storage,
+    storagePath: row.storage_path,
+    url: row.url,
+    source: row.source,
+    templateType: row.template_type ?? undefined,
+    uploadedBy: row.uploaded_by ?? undefined,
+    createdAt: row.created_at,
   };
 }
 

@@ -5,13 +5,11 @@ import { usePathname } from "next/navigation";
 import { LogoutButton } from "@/components/auth/logout-button";
 import { cn } from "@/lib/utils";
 import {
-  BarChart3,
   CheckCircle,
   Clock,
   Cloud,
   FileStack,
   LayoutDashboard,
-  Settings,
   Sparkles,
   XCircle,
 } from "lucide-react";
@@ -29,7 +27,6 @@ const demandesNav = [
 const toolsNav = [
   { href: "/admin/documents/generer", label: "Documents", icon: Sparkles },
   { href: "/admin/documents/templates", label: "Modèles", icon: FileStack },
-  { href: "/admin/stats", label: "Statistiques", icon: BarChart3 },
 ];
 
 function isActive(pathname: string, href: string, exact?: boolean) {
@@ -112,13 +109,6 @@ export function AdminSidebar() {
       </nav>
 
       <div className="space-y-1 border-t border-slate-100 px-3 py-4">
-        <Link
-          href="/"
-          className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50"
-        >
-          <Settings className="h-5 w-5" />
-          Site public
-        </Link>
         <LogoutButton className="w-full justify-start rounded-xl px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-700">
           Déconnexion
         </LogoutButton>

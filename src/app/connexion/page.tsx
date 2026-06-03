@@ -22,7 +22,7 @@ export default function ConnexionPage() {
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-bold text-f2m-navy">Connexion</h1>
           <p className="mt-2 text-slate-600">
-            Choisissez votre espace puis identifiez-vous.
+            Un seul formulaire — redirection automatique selon votre rôle.
           </p>
         </div>
 

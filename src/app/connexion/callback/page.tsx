@@ -1,24 +1,20 @@
 "use client";
 
 import { useAuth } from "@clerk/nextjs";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
-import type { UserRole } from "@/lib/auth/roles";
 
 function CallbackHandler() {
   const { isLoaded, isSignedIn } = useAuth();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const expected = searchParams.get("expected") as UserRole | null;
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!isLoaded) return;
 
     if (!isSignedIn) {
-      const q = expected ? `?role=${expected}` : "";
-      router.replace(`/connexion${q}`);
+      router.replace("/connexion");
       return;
     }
 
@@ -31,20 +27,13 @@ function CallbackHandler() {
           return;
         }
 
-        if (expected && me.role !== expected) {
-          setError(
-            `Ce compte est un compte « ${me.role} », pas « ${expected} ». Choisissez le bon onglet à la connexion.`
-          );
-          return;
-        }
-
         router.replace(me.redirect);
         router.refresh();
       } catch {
         setError("Erreur lors de la vérification du profil.");
       }
     })();
-  }, [isLoaded, isSignedIn, expected, router]);
+  }, [isLoaded, isSignedIn, router]);
 
   return (
     <div className="flex min-h-[40vh] flex-col items-center justify-center text-center">

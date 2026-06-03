@@ -1,5 +1,9 @@
 import { createServiceClient } from "./server";
-import { mapCandidat, mapDocument, mapPartenaire } from "./mappers";
+import { mapCandidat, mapDocument, mapDocumentFichier, mapPartenaire } from "./mappers";
+import { generateAutoDocumentsForCandidat } from "@/lib/documents/auto-generate";
+import { deleteFromCloudinary } from "@/lib/storage/cloudinary-upload";
+import { deleteFromSupabaseStorage } from "@/lib/storage/supabase-upload";
+import type { DocumentFichier, DocumentSource } from "@/types";
 import type { DashboardStats, DbProfile, DbRole } from "./types";
 import type { Candidat, DocumentType, Partenaire, StatutCandidat } from "@/types";
 import { PARCOURS_LABELS } from "@/types";
@@ -200,6 +204,73 @@ export async function fetchDashboardStats(): Promise<DashboardStats> {
   return { total, demande, accepte, refuse, enFormation, diplome, parMois, parParcours };
 }
 
+export async function fetchDocumentsFichiers(candidatId: string): Promise<DocumentFichier[]> {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("documents_fichiers")
+    .select("*")
+    .eq("candidat_id", candidatId)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map((row) => mapDocumentFichier(row));
+}
+
+export async function insertDocumentFichier(input: {
+  candidatId: string;
+  nomFichier: string;
+  mimeType: string;
+  tailleOctets: number;
+  storage: "supabase" | "cloudinary";
+  storagePath: string;
+  url: string;
+  source: DocumentSource;
+  templateType?: string;
+  uploadedBy?: string;
+}): Promise<DocumentFichier> {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("documents_fichiers")
+    .insert({
+      candidat_id: input.candidatId,
+      nom_fichier: input.nomFichier,
+      mime_type: input.mimeType,
+      taille_octets: input.tailleOctets,
+      storage: input.storage,
+      storage_path: input.storagePath,
+      url: input.url,
+      source: input.source,
+      template_type: input.templateType ?? null,
+      uploaded_by: input.uploadedBy ?? null,
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return mapDocumentFichier(data);
+}
+
+export async function deleteDocumentFichier(id: string): Promise<DocumentFichier> {
+  const supabase = createServiceClient();
+  const { data: row, error: fetchErr } = await supabase
+    .from("documents_fichiers")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (fetchErr || !row) throw new Error("Document introuvable");
+
+  if (row.storage === "supabase") {
+    await deleteFromSupabaseStorage(row.storage_path);
+  } else if (row.storage === "cloudinary") {
+    await deleteFromCloudinary(row.storage_path);
+  }
+
+  const { error } = await supabase.from("documents_fichiers").delete().eq("id", id);
+  if (error) throw error;
+  return mapDocumentFichier(row);
+}
+
 export async function updateCandidatStatut(
   id: string,
   statut: StatutCandidat
@@ -211,7 +282,17 @@ export async function updateCandidatStatut(
   if (statut === "accepte" && !existing.dateAcceptation) {
     patch.date_acceptation = new Date().toISOString().split("T")[0];
   }
-  return updateCandidatDb(id, patch);
+  const updated = await updateCandidatDb(id, patch);
+
+  if (statut === "accepte") {
+    try {
+      await generateAutoDocumentsForCandidat(id);
+    } catch (e) {
+      console.error("Génération auto documents:", e);
+    }
+  }
+
+  return updated;
 }
 
 export async function linkCandidatClerkUser(

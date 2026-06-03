@@ -13,7 +13,7 @@ export default function DeposerDossierPage() {
           <Link href="/" className="text-xl font-bold text-f2m-navy">
             F2M <span className="text-f2m-gold">Consulting</span>
           </Link>
-          <Link href="/connexion?role=candidat" className="text-sm text-f2m-blue hover:underline">
+          <Link href="/connexion" className="text-sm text-f2m-blue hover:underline">
             Déjà un compte ?
           </Link>
         </div>

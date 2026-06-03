@@ -79,6 +79,24 @@ CREATE TABLE IF NOT EXISTS documents_generes (
 
 CREATE INDEX IF NOT EXISTS idx_documents_candidat ON documents_generes(candidat_id);
 
+-- Fichiers uploadés / générés (PDF Supabase, autres Cloudinary)
+CREATE TABLE IF NOT EXISTS documents_fichiers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  candidat_id UUID NOT NULL REFERENCES candidats(id) ON DELETE CASCADE,
+  nom_fichier TEXT NOT NULL,
+  mime_type TEXT NOT NULL,
+  taille_octets BIGINT NOT NULL DEFAULT 0,
+  storage TEXT NOT NULL CHECK (storage IN ('supabase', 'cloudinary')),
+  storage_path TEXT NOT NULL,
+  url TEXT NOT NULL,
+  source TEXT NOT NULL CHECK (source IN ('eleve', 'admin', 'auto_genere')),
+  template_type TEXT,
+  uploaded_by TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_documents_fichiers_candidat ON documents_fichiers(candidat_id);
+
 -- Mise à jour automatique updated_at
 CREATE OR REPLACE FUNCTION set_updated_at()
 RETURNS TRIGGER AS $$
@@ -98,6 +116,7 @@ ALTER TABLE partenaires ENABLE ROW LEVEL SECURITY;
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE candidats ENABLE ROW LEVEL SECURITY;
 ALTER TABLE documents_generes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE documents_fichiers ENABLE ROW LEVEL SECURITY;
 
 -- Partenaire exemple (optionnel — adapter l'e-mail à votre compte Clerk)
 INSERT INTO partenaires (slug, nom, ville, email)

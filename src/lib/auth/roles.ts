@@ -9,7 +9,7 @@ export function redirectForRole(role: UserRole, candidatToken?: string | null): 
     case "partenaire":
       return "/partenaire";
     case "candidat":
-      return candidatToken ? `/candidat/${candidatToken}` : "/connexion?role=candidat";
+      return candidatToken ? `/candidat/${candidatToken}` : "/connexion";
     default:
       return "/connexion";
   }

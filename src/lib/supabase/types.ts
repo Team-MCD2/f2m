@@ -62,6 +62,21 @@ export interface DbDocument {
   created_at: string;
 }
 
+export interface DbDocumentFichier {
+  id: string;
+  candidat_id: string;
+  nom_fichier: string;
+  mime_type: string;
+  taille_octets: number;
+  storage: "supabase" | "cloudinary";
+  storage_path: string;
+  url: string;
+  source: "eleve" | "admin" | "auto_genere";
+  template_type: string | null;
+  uploaded_by: string | null;
+  created_at: string;
+}
+
 export interface DashboardStats {
   total: number;
   demande: number;

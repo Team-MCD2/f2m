@@ -16,13 +16,8 @@ export default clerkMiddleware(async (auth, req) => {
   const { userId, sessionClaims } = await auth();
   if (!userId) {
     const url = new URL("/connexion", req.url);
-    if (req.nextUrl.pathname.startsWith("/admin")) url.searchParams.set("role", "admin");
-    if (req.nextUrl.pathname.startsWith("/partenaire")) url.searchParams.set("role", "partenaire");
     const candidatMatch = req.nextUrl.pathname.match(/^\/candidat\/([^/]+)/);
-    if (candidatMatch) {
-      url.searchParams.set("role", "candidat");
-      url.searchParams.set("token", candidatMatch[1]);
-    }
+    if (candidatMatch) url.searchParams.set("token", candidatMatch[1]);
     return NextResponse.redirect(url);
   }
 
@@ -31,11 +26,11 @@ export default clerkMiddleware(async (auth, req) => {
   const pathname = req.nextUrl.pathname;
 
   if (pathname.startsWith("/admin") && role !== "admin") {
-    return NextResponse.redirect(new URL("/connexion?role=admin", req.url));
+    return NextResponse.redirect(new URL("/connexion", req.url));
   }
 
   if (pathname.startsWith("/partenaire") && role !== "partenaire") {
-    return NextResponse.redirect(new URL("/connexion?role=partenaire", req.url));
+    return NextResponse.redirect(new URL("/connexion", req.url));
   }
 
   const candidatMatch = pathname.match(/^\/candidat\/([^/]+)/);
@@ -44,7 +39,6 @@ export default clerkMiddleware(async (auth, req) => {
     const metaToken = meta?.candidat_token as string | undefined;
     if (role !== "candidat" || (metaToken && metaToken !== pathToken)) {
       const url = new URL("/connexion", req.url);
-      url.searchParams.set("role", "candidat");
       url.searchParams.set("token", pathToken);
       return NextResponse.redirect(url);
     }

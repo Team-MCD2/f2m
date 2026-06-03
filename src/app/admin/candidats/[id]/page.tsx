@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { openDocumentPrint } from "@/lib/documents";
+import { DocumentsPanel } from "@/components/documents/documents-panel";
 import { useCandidats } from "@/lib/store";
 import type { DocumentType, Partenaire } from "@/types";
 import {
@@ -39,15 +39,11 @@ const DOC_TYPES: DocumentType[] = [
 export default function CandidatFichePage() {
   const params = useParams();
   const id = params.id as string;
-  const {
-    getCandidat,
-    updateStatut,
-    updateNumeroDiplome,
-    updateLiens,
-    addDocument,
-  } = useCandidats();
+  const { getCandidat, updateStatut, updateNumeroDiplome, updateLiens, refresh } =
+    useCandidats();
   const candidat = getCandidat(id);
   const [partenaire, setPartenaire] = useState<Partenaire | null>(null);
+  const [documentsKey, setDocumentsKey] = useState(0);
   const [numeroDiplome, setNumeroDiplome] = useState(candidat?.numeroDiplome || "");
   const [teamsUrl, setTeamsUrl] = useState(candidat?.liens.teamsUrl || "");
 
@@ -74,9 +70,16 @@ export default function CandidatFichePage() {
   }
 
   const handleGenerate = async (type: DocumentType) => {
-    await addDocument(candidat.id, type);
-    const fresh = getCandidat(candidat.id);
-    openDocumentPrint(fresh ?? candidat, type);
+    const res = await fetch(`/api/candidats/${candidat.id}/documents/generate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error ?? "Génération impossible");
+    if (data.fichier?.url) window.open(data.fichier.url, "_blank");
+    await refresh();
+    setDocumentsKey((k) => k + 1);
   };
 
   const saveDiplome = async () => {
@@ -134,7 +137,7 @@ export default function CandidatFichePage() {
           </TabsTrigger>
           <TabsTrigger value="documents">
             <FileText className="mr-1 h-4 w-4" />
-            Documents générés
+            Documents
           </TabsTrigger>
           <TabsTrigger value="liens">
             <Link2 className="mr-1 h-4 w-4" />
@@ -224,44 +227,36 @@ export default function CandidatFichePage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="documents">
-          <Card className="mb-4">
+        <TabsContent value="documents" className="space-y-6">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-base">Générer un document</CardTitle>
+              <CardTitle className="text-base">Générer un document F2M</CardTitle>
+              <p className="text-sm text-slate-500">
+                Le document est enregistré et visible immédiatement dans l&apos;espace élève.
+              </p>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               {DOC_TYPES.map((type) => (
-                <Button key={type} variant="outline" onClick={() => handleGenerate(type)}>
+                <Button
+                  key={type}
+                  variant="outline"
+                  onClick={() => void handleGenerate(type).catch((e) => alert(e.message))}
+                >
                   <FileText className="mr-2 h-4 w-4" />
                   {DOCUMENT_LABELS[type]}
                 </Button>
               ))}
             </CardContent>
           </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Historique</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {candidat.documentsGeneres.length === 0 ? (
-                <p className="text-sm text-slate-500">Aucun document généré.</p>
-              ) : (
-                <ul className="space-y-2">
-                  {candidat.documentsGeneres.map((d) => (
-                    <li
-                      key={d.id}
-                      className="flex items-center justify-between rounded-lg border border-slate-100 px-4 py-3"
-                    >
-                      <span className="text-sm font-medium">{d.nom}</span>
-                      <span className="text-xs text-slate-500">
-                        {formatDate(d.genereLe)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </CardContent>
-          </Card>
+
+          <DocumentsPanel
+            key={documentsKey}
+            candidatId={candidat.id}
+            canUpload
+            canDelete
+            showSource
+            title="Tous les documents de l'élève"
+          />
         </TabsContent>
 
         <TabsContent value="liens">
