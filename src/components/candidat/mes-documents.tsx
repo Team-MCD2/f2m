@@ -2,7 +2,6 @@
 
 import { DocumentsPanel } from "@/components/documents/documents-panel";
 import { CandidatNotifications } from "@/components/candidat/candidat-notifications";
-import { LiensReunion } from "@/components/candidat/liens-reunion";
 import { useCandidatSync } from "@/hooks/use-candidat-sync";
 
 interface MesDocumentsProps {
@@ -22,7 +21,6 @@ export function MesDocuments({ candidatId }: MesDocumentsProps) {
         enCours={enCours}
         onDismiss={() => void dismissNotifications()}
       />
-      <LiensReunion candidatId={candidatId} />
       <DocumentsPanel
         key={refreshKey}
         candidatId={candidatId}

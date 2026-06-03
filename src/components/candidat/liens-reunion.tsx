@@ -76,7 +76,7 @@ export function LiensReunion({ candidatId }: LiensReunionProps) {
   if (!hasLinks) return null;
 
   return (
-    <Card className="mb-6 border-f2m-navy/20 bg-white shadow-sm">
+    <Card className="border-f2m-navy/20 bg-white shadow-sm">
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center gap-2 text-base text-f2m-navy">
           <Video className="h-4 w-4" />

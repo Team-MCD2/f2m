@@ -26,7 +26,7 @@ export async function GET(
       return NextResponse.json({ error: "Non autorisé" }, { status: 403 });
     }
 
-    return NextResponse.json({ id: candidat.id, token: candidat.token });
+    return NextResponse.json(candidat);
   } catch {
     return NextResponse.json({ error: "Erreur" }, { status: 500 });
   }
