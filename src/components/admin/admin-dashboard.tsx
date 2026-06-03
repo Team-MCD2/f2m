@@ -29,6 +29,8 @@ export function AdminDashboard() {
         </p>
       </div>
 
+      <AdminDataTable />
+
       <StatCards candidats={candidats} />
       <StatCardsExtended candidats={candidats} />
 
@@ -52,8 +54,6 @@ export function AdminDashboard() {
           </CardContent>
         </Card>
       )}
-
-      <AdminDataTable />
     </div>
   );
 }
