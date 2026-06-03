@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { formatClerkError } from "@/lib/auth/clerk-errors";
 import {
   canActivateAccount,
   findCandidatByEmailOrToken,
@@ -45,9 +46,8 @@ export async function POST(request: Request) {
     });
   } catch (e) {
     console.error("candidat-set-password", e);
-    return NextResponse.json(
-      { error: e instanceof Error ? e.message : "Erreur" },
-      { status: 500 }
-    );
+    const message = e instanceof Error ? e.message : formatClerkError(e);
+    const status = message.includes("8 caractères") ? 400 : 422;
+    return NextResponse.json({ error: message }, { status });
   }
 }

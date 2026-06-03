@@ -1,4 +1,5 @@
 import { clerkClient } from "@clerk/nextjs/server";
+import { formatClerkError } from "@/lib/auth/clerk-errors";
 import { fetchCandidatById, updateCandidatDb } from "@/lib/supabase/queries";
 import { createServiceClient } from "@/lib/supabase/server";
 import { upsertProfile } from "@/lib/supabase/queries";
@@ -30,6 +31,12 @@ export async function findCandidatByEmailOrToken(email?: string, token?: string)
   return null;
 }
 
+async function findClerkUserIdByEmail(email: string): Promise<string | null> {
+  const clerk = await clerkClient();
+  const list = await clerk.users.getUserList({ emailAddress: [email.trim()] });
+  return list.data[0]?.id ?? null;
+}
+
 export async function ensureClerkUserForCandidat(candidatId: string): Promise<string> {
   const candidat = await fetchCandidatById(candidatId);
   if (!candidat) throw new Error("Candidat introuvable");
@@ -37,24 +44,40 @@ export async function ensureClerkUserForCandidat(candidatId: string): Promise<st
   if (candidat.clerkUserId) return candidat.clerkUserId;
 
   const clerk = await clerkClient();
-  const user = await clerk.users.createUser({
-    emailAddress: [candidat.email],
-    skipPasswordRequirement: true,
-    publicMetadata: {
+
+  try {
+    const user = await clerk.users.createUser({
+      emailAddress: [candidat.email],
+      skipPasswordRequirement: true,
+      publicMetadata: {
+        role: "candidat",
+        candidat_token: candidat.token,
+      },
+    });
+
+    await updateCandidatDb(candidatId, { clerk_user_id: user.id });
+    await upsertProfile({
+      clerk_user_id: user.id,
       role: "candidat",
+      email: candidat.email,
       candidat_token: candidat.token,
-    },
-  });
+    });
 
-  await updateCandidatDb(candidatId, { clerk_user_id: user.id });
-  await upsertProfile({
-    clerk_user_id: user.id,
-    role: "candidat",
-    email: candidat.email,
-    candidat_token: candidat.token,
-  });
+    return user.id;
+  } catch (createErr) {
+    const existingId = await findClerkUserIdByEmail(candidat.email);
+    if (!existingId) throw createErr;
 
-  return user.id;
+    await updateCandidatDb(candidatId, { clerk_user_id: existingId });
+    await upsertProfile({
+      clerk_user_id: existingId,
+      role: "candidat",
+      email: candidat.email,
+      candidat_token: candidat.token,
+    });
+
+    return existingId;
+  }
 }
 
 export async function setCandidatPassword(
@@ -67,7 +90,19 @@ export async function setCandidatPassword(
 
   const clerkUserId = await ensureClerkUserForCandidat(candidatId);
   const clerk = await clerkClient();
-  await clerk.users.updateUser(clerkUserId, { password });
+
+  try {
+    await clerk.users.updateUser(clerkUserId, {
+      password,
+      skipPasswordChecks: true,
+    });
+  } catch (e) {
+    try {
+      await clerk.users.updateUser(clerkUserId, { password });
+    } catch (e2) {
+      throw new Error(formatClerkError(e2));
+    }
+  }
 
   await updateCandidatDb(candidatId, {
     mot_de_passe_defini: true,

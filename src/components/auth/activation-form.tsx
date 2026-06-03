@@ -141,6 +141,9 @@ export function ActivationForm() {
                 required
                 minLength={8}
               />
+              <p className="mt-1 text-xs text-slate-500">
+                8 caractères minimum, avec lettres et chiffres (ex. MonMotDePasse2026!)
+              </p>
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium">Confirmer</label>
