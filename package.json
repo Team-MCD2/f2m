@@ -11,7 +11,8 @@
     "list:candidats": "node scripts/list-candidats.mjs",
     "delete:candidat": "node scripts/delete-candidat.mjs",
     "vercel:env": "node scripts/sync-vercel-env.mjs",
-    "seed:candidats": "node scripts/seed-candidats.mjs"
+    "seed:candidats": "node scripts/seed-candidats.mjs",
+    "generate:favicons": "node scripts/generate-favicons.mjs"
   },
   "dependencies": {
     "@clerk/localizations": "^4.7.0",
@@ -39,6 +40,8 @@
     "eslint": "^9.16.0",
     "eslint-config-next": "15.5.18",
     "postcss": "^8.4.49",
+    "sharp": "^0.34.5",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"
   }
