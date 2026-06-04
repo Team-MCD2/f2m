@@ -35,10 +35,10 @@ const TEAM = [
 ] as const;
 
 const GALLERY = [
-  { src: VITRINE_IMAGES.hero, alt: "Salle de cours équipée pour la formation DGESP", label: "Salles de cours" },
-  { src: VITRINE_IMAGES.centre, alt: "Espace de travail collaboratif au centre F2M", label: "Espace coworking" },
-  { src: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=600&q=80", alt: "Accueil des stagiaires F2M Consulting Toulouse", label: "Accueil stagiaires" },
-  { src: VITRINE_IMAGES.elearningCards.classesFallback, alt: "Salle de visioconférence pour classes virtuelles", label: "Visioconférence" },
+  { src: VITRINE_IMAGES.gallery.cours, alt: "Salle de cours équipée pour la formation DGESP", label: "Salles de cours" },
+  { src: VITRINE_IMAGES.gallery.coworking, alt: "Espace de travail collaboratif au centre F2M", label: "Espace coworking" },
+  { src: VITRINE_IMAGES.gallery.accueil, alt: "Accueil des stagiaires F2M Consulting Toulouse", label: "Accueil stagiaires" },
+  { src: VITRINE_IMAGES.gallery.visio, alt: "Salle de visioconférence pour classes virtuelles", label: "Visioconférence" },
 ] as const;
 
 export default function NotreCentrePage() {
@@ -72,7 +72,7 @@ export default function NotreCentrePage() {
         <div className="gallery-grid" style={{ marginTop: "1.5rem" }}>
           {GALLERY.map((item) => (
             <figure key={item.label} className="gallery-item">
-              <VitrineImage src={item.src} alt={item.alt} width={600} height={450} />
+              <VitrineImage src={item.src} alt={item.alt} width={600} height={450} className="gallery-photo" />
               <figcaption>{item.label}</figcaption>
             </figure>
           ))}

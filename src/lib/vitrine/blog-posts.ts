@@ -35,7 +35,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-02-10",
     dateLabel: "10 fév. 2025",
     image: VITRINE_IMAGES.blogPosts.gardiennage,
-    imageFallback: VITRINE_IMAGES.blogPosts.gardiennageFallback,
+    imageFallback: VITRINE_IMAGES.blogPosts.gardiennage,
     imageAlt: "Agent de sécurité en gardiennage et protection rapprochée",
     content: [
       "Le gardiennage-surveillance vise la protection des biens et des personnes dans un cadre défini (sites, entrepôts, ERP). La protection rapprochée concerne l'accompagnement rapproché de personnes exposées — cadre réglementaire et cartes professionnelles distincts.",
@@ -49,7 +49,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "2025-03-05",
     dateLabel: "5 mars 2025",
     image: VITRINE_IMAGES.blogPosts.cpf,
-    imageFallback: VITRINE_IMAGES.blogPosts.cpfFallback,
+    imageFallback: VITRINE_IMAGES.blogPosts.cpf,
     imageAlt: "Financement formation sécurité privée avec le CPF",
     content: [
       "Le Compte Personnel de Formation (CPF) permet de financer tout ou partie de la formation DGESP, sous réserve de vos droits acquis et de l'éligibilité de la formation sur Mon Compte Formation.",

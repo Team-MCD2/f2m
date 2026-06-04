@@ -20,10 +20,14 @@ const BLOCS = [
 ] as const;
 
 const FAQ = [
-  { q: "Qu'est-ce que le titre DGESP ?", a: "Le RNCP 36654 niveau 5 certifie le dirigeant d'entreprise de sécurité privée." },
-  { q: "Durée et rythme ?", a: "282 h sur 8 à 12 mois selon votre profil." },
-  { q: "Financement ?", a: "CPF, OPCO, France Travail — voir la page Financements." },
-  { q: "VAE possible ?", a: "Oui — consultez la page VAE DGESP." },
+  { q: "Qu'est-ce que le titre DGESP ?", a: "Le RNCP 36654 niveau 5 certifie le dirigeant d'entreprise de sécurité privée (DGESP)." },
+  { q: "Durée et rythme ?", a: "282 h sur 8 à 12 mois selon votre profil — présentiel Toulouse et classes virtuelles." },
+  { q: "Financement ?", a: "CPF, OPCO, France Travail ou fonds propres — voir la page Financements et notre simulateur CPF." },
+  { q: "VAE possible ?", a: "Oui — consultez la page VAE DGESP pour les étapes et l'accompagnement dossier." },
+  { q: "Prérequis d'entrée ?", a: "Expérience ou projet dirigeant SSP, niveau bac+2 recommandé, entretien de positionnement obligatoire." },
+  { q: "Où se déroule la formation ?", a: "Au centre F2M à Toulouse (244 route de Seysses) et sur la plateforme LMS Dokeos." },
+  { q: "Qualiopi ?", a: "F2M Consulting est organisme certifié Qualiopi — éligibilité aux financements publics et entreprise." },
+  { q: "Comment candidater ?", a: "Déposez votre dossier en ligne ou contactez-nous pour un rendez-vous conseiller." },
 ] as const;
 
 export default function FormationDgespPage() {
@@ -78,45 +82,77 @@ export default function FormationDgespPage() {
         </div>
       </Section>
 
-      <Section variant="light">
-        <div className="content-grid sidebar">
-          <article>
-            <h2>Témoignage — Bastien</h2>
-            <blockquote className="card" style={{ borderLeft: "4px solid var(--gold-500)", display: "flex", gap: "1.25rem", alignItems: "flex-start" }}>
+      <Section variant="light" title="Parcours &amp; plateforme">
+        <div className="dgesp-dual-grid">
+          <article className="card dgesp-testimonial-card">
+            <h3>Témoignage — Bastien</h3>
+            <blockquote className="dgesp-testimonial-quote">
               <VitrineImage
                 src={VITRINE_IMAGES.avatars[1]}
                 alt="Portrait de Bastien, dirigeant SSP"
-                width={72}
-                height={72}
-                style={{ borderRadius: "50%", border: "3px solid var(--gold-500)", flexShrink: 0 }}
+                width={80}
+                height={80}
+                className="dgesp-testimonial-avatar"
               />
               <div>
-                <p>« Grâce à F2M, j&apos;ai structuré mon parcours DGESP tout en gérant mon activité. L&apos;e-learning Dokeos et les sessions à Toulouse étaient complémentaires. »</p>
-                <p><strong>— Bastien, dirigeant SSP</strong></p>
+                <p>
+                  « Grâce à F2M, j&apos;ai structuré mon parcours DGESP tout en gérant mon
+                  activité. L&apos;e-learning Dokeos et les sessions à Toulouse étaient
+                  complémentaires. »
+                </p>
+                <p className="dgesp-testimonial-author">— Bastien, dirigeant SSP</p>
               </div>
             </blockquote>
-            <h2 style={{ marginTop: "2rem" }}>E-learning &amp; LMS</h2>
-            <p>
-              Accédez à vos modules 24h/24 sur{" "}
-              <a href={F2M_SITE.lmsUrl} rel="noopener noreferrer" target="_blank">
-                lmsdokeos
-              </a>{" "}
-              — compatible mobile, classes virtuelles intégrées.
-            </p>
+            <Link className="btn btn-navy" href="/deposer-dossier">
+              Déposer un dossier
+            </Link>
           </article>
-          <aside className="sidebar-box">
-            <p><Link className="btn btn-gold" href="/e-learning" style={{ width: "100%", display: "block", textAlign: "center" }}>Connexion LMS</Link></p>
-            <p><Link className="btn btn-navy" href="/contact" style={{ width: "100%", marginTop: "0.5rem", display: "block", textAlign: "center" }}>Candidater</Link></p>
-          </aside>
+
+          <article className="card card--media dgesp-elearning-card">
+            <div className="dgesp-elearning-media">
+              <VitrineImage
+                src={VITRINE_IMAGES.elearning}
+                alt="Plateforme e-learning Dokeos — formation DGESP"
+                width={600}
+                height={338}
+                className="card-media"
+              />
+            </div>
+            <div className="card-body">
+              <h3>E-learning &amp; LMS Dokeos</h3>
+              <p>
+                Modules 24h/24, classes virtuelles, replays et suivi pédagogique — compatible
+                mobile et tablette.
+              </p>
+              <div className="dgesp-elearning-actions">
+                <a
+                  className="btn btn-gold"
+                  href={F2M_SITE.lmsUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Connexion LMS
+                </a>
+                <Link className="btn btn-navy" href="/e-learning">
+                  En savoir plus
+                </Link>
+                <Link className="btn btn-outline-dark" href="/connexion">
+                  Espace candidat
+                </Link>
+              </div>
+            </div>
+          </article>
         </div>
       </Section>
 
       <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse">
-        <div style={{ marginTop: "1.5rem" }}>
+        <div className="faq-accordion">
           {FAQ.map((item) => (
-            <details key={item.q} className="accordion-item" style={{ marginBottom: "0.75rem" }}>
+            <details key={item.q} className="accordion-item">
               <summary className="accordion-trigger">{item.q}</summary>
-              <div className="accordion-panel">{item.a}</div>
+              <div className="accordion-panel">
+                <p>{item.a}</p>
+              </div>
             </details>
           ))}
         </div>

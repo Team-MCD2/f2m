@@ -35,6 +35,12 @@ export function HomeHero() {
           <Link className="btn btn-outline" href="/contact">
             Prendre rendez-vous
           </Link>
+          <Link className="btn btn-outline" href="/deposer-dossier">
+            Déposer un dossier
+          </Link>
+          <Link className="btn btn-outline" href="/connexion">
+            Connexion
+          </Link>
         </div>
       </div>
     </section>

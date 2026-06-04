@@ -1372,3 +1372,217 @@ h4 {
   text-align: center;
   justify-content: center;
 }
+
+/* FAQ sur fond navy — texte lisible dans l’accordéon */
+.section-navy .faq-accordion {
+  margin-top: 1.5rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-navy .accordion-item {
+  background: var(--white);
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+.section-navy .accordion-trigger,
+.section-navy details.accordion-item > summary {
+  color: var(--navy-900);
+}
+
+.section-navy .accordion-panel,
+.section-navy .accordion-panel p {
+  color: var(--text);
+}
+
+details.accordion-item > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.accordion-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] > summary.accordion-trigger::after {
+  content: "−";
+}
+
+/* Simulateur CPF — mise en page centrée */
+.cpf-simulator-layout {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+  max-width: 960px;
+  margin: 1.5rem auto 0;
+}
+
+@media (min-width: 768px) {
+  .cpf-simulator-layout {
+    grid-template-columns: 1fr minmax(280px, 400px);
+  }
+}
+
+.cpf-simulator-intro {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cpf-simulator-intro ul {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.cpf-simulator-intro li {
+  margin-bottom: 0.5rem;
+}
+
+.cpf-simulator-form {
+  margin-top: 0;
+}
+
+.cpf-simulator-result {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--navy-900);
+}
+
+/* Bandeau dépôt / connexion */
+.portal-cta-band {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-950));
+  padding: 2.5rem 0;
+  border-bottom: 3px solid var(--gold-500);
+}
+
+.portal-cta-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .portal-cta-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.portal-cta-text h2 {
+  color: var(--white);
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+}
+
+.portal-cta-text p {
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  max-width: 36rem;
+}
+
+.portal-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn-outline-light {
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  background: transparent;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--gold-400);
+  color: var(--gold-300);
+}
+
+.btn-outline-dark {
+  color: var(--navy-800);
+  border: 2px solid var(--navy-200);
+  background: var(--white);
+}
+
+.btn-outline-dark:hover {
+  border-color: var(--gold-500);
+  color: var(--navy-900);
+}
+
+/* Formation DGESP — témoignage + e-learning */
+.dgesp-dual-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 900px) {
+  .dgesp-dual-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+.dgesp-testimonial-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.dgesp-testimonial-card h3 {
+  margin: 0;
+}
+
+.dgesp-testimonial-quote {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  margin: 0;
+  border-left: 4px solid var(--gold-500);
+  padding-left: 1rem;
+}
+
+.dgesp-testimonial-avatar {
+  border-radius: 50%;
+  border: 3px solid var(--gold-500);
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.dgesp-testimonial-author {
+  font-weight: 700;
+  margin-top: 0.75rem;
+}
+
+.dgesp-elearning-card .card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.dgesp-elearning-media .card-media {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.dgesp-elearning-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.gallery-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}

@@ -32,6 +32,8 @@ export const VITRINE_NAV = [
   { label: "Blog", href: "/blog" },
   { label: "E-learning", href: "/e-learning" },
   { label: "Contact", href: "/contact" },
+  { label: "Déposer un dossier", href: "/deposer-dossier" },
+  { label: "Connexion", href: "/connexion" },
 ] as const;
 
 export const LEGAL_LINKS = [

@@ -2,16 +2,19 @@ import Link from "next/link";
 import { CertificationsBlock } from "@/components/vitrine/certifications-block";
 import { HomeHero } from "@/components/vitrine/home-hero";
 import { MapEmbed } from "@/components/vitrine/map-embed";
+import { PortalCtaBand } from "@/components/vitrine/portal-cta-band";
 import { Section } from "@/components/vitrine/section";
 import { TestimonialsCarousel } from "@/components/vitrine/testimonials-carousel";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
 import { F2M_SITE } from "@/lib/vitrine/site-config";
-import { VITRINE_IMAGES } from "@/lib/vitrine/images";
+import { TOULOUSE_IMAGE, VITRINE_IMAGES } from "@/lib/vitrine/images";
 
 export default function HomePage() {
   return (
     <>
       <HomeHero />
+
+      <PortalCtaBand />
 
       <Section
         id="stats"
@@ -56,9 +59,9 @@ export default function HomePage() {
           </div>
           <div className="media-band-img-wrap">
             <VitrineImage
-              src={VITRINE_IMAGES.toulouse}
-              fallback={VITRINE_IMAGES.toulouseFallback}
-              alt="Vue de Toulouse, ville d'accueil du centre F2M Consulting"
+              src={TOULOUSE_IMAGE}
+              fallback={TOULOUSE_IMAGE}
+              alt="Vue de Toulouse — Garonne et centre-ville, ville d'accueil F2M Consulting"
               width={800}
               height={600}
               fill
