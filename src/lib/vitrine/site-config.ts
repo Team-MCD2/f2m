@@ -56,7 +56,7 @@ export const VITRINE_NAV: readonly VitrineNavItem[] = [
   {
     label: "Espace candidat",
     children: [
-      { label: "Déposer un dossier", href: "/deposer-dossier" },
+      { label: "Déposer un dossier", href: "/connexion" },
       { label: "Connexion", href: "/connexion" },
     ],
   },

@@ -104,7 +104,7 @@ export function SiteHeader() {
             <Link className="btn btn-gold btn-sm nav-cta" href="/contact" onClick={() => setOpen(false)}>
               Contact
             </Link>
-            <a className="btn btn-outline btn-sm nav-tel" href={`tel:${F2M_SITE.phoneTel}`}>
+            <a className="btn btn-outline-light btn-sm nav-tel" href={`tel:${F2M_SITE.phoneTel}`}>
               {F2M_SITE.phone}
             </a>
           </nav>

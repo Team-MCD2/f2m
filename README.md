@@ -61,3 +61,7 @@ supabase/schema.sql   # Schéma base de données
 npm run build
 npm start
 ```
+
+## Vitrine — vidéo hero
+
+La page d’accueil lit `public/videos/hero-f2m.mp4` (fourni dans le dépôt). Pour la remplacer par une vidéo personnalisée, déposez un MP4 au même emplacement (1920×1080 recommandé, &lt; 15 Mo). En secours, le composant charge une vidéo Pexels libre de droits (voir `src/lib/vitrine/videos.ts`).
