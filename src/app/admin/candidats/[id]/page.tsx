@@ -244,7 +244,8 @@ export default function CandidatFichePage() {
             <CardHeader>
               <CardTitle className="text-base">Générer un document F2M</CardTitle>
               <p className="text-sm text-slate-500">
-                Le document est enregistré et visible immédiatement dans l&apos;espace élève.
+                Chaque document est enregistré en brouillon. Envoyez-le ensuite depuis la liste
+                ci-dessous (sélection ou tout envoyer).
               </p>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
@@ -267,6 +268,7 @@ export default function CandidatFichePage() {
             canUpload
             canDelete
             showSource
+            adminMode
             title="Tous les documents de l'élève"
           />
         </TabsContent>

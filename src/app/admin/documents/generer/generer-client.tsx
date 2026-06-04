@@ -21,7 +21,7 @@ export function GenererDocumentClient() {
   const initialType = searchParams.get("type") || "";
   const initialCandidat = searchParams.get("candidat") || "";
 
-  const { candidats, addDocument } = useCandidats();
+  const { candidats } = useCandidats();
   const [candidatId, setCandidatId] = useState(initialCandidat);
   const [docType, setDocType] = useState(
     DOC_TYPES.includes(initialType as DocumentType)
@@ -40,10 +40,16 @@ export function GenererDocumentClient() {
 
   const handleGenerate = async () => {
     if (!candidat || !docType) return;
-    await addDocument(candidat.id, docType as DocumentType);
-    openDocumentPrint(candidat, docType as DocumentType);
+    const res = await fetch(`/api/candidats/${candidat.id}/documents/generate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: docType }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error ?? "Génération impossible");
+    if (data.fichier?.url) window.open(data.fichier.url, "_blank");
     setMessage(
-      `Document « ${DOCUMENT_LABELS[docType as DocumentType]} » généré pour ${fullName(candidat.nom, candidat.prenom)}.`
+      `« ${DOCUMENT_LABELS[docType as DocumentType]} » généré en brouillon pour ${fullName(candidat.nom, candidat.prenom)}. Envoyez-le depuis la fiche candidat.`
     );
   };
 
@@ -106,7 +112,10 @@ export function GenererDocumentClient() {
                 <Eye className="mr-2 h-4 w-4" />
                 Aperçu / Imprimer
               </Button>
-              <Button onClick={handleGenerate} disabled={!candidat || !docType}>
+              <Button
+                onClick={() => void handleGenerate().catch((e) => setMessage(String(e.message)))}
+                disabled={!candidat || !docType}
+              >
                 <FileCheck className="mr-2 h-4 w-4" />
                 Générer
               </Button>

@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { assertCandidatAccess } from "@/lib/auth/candidat-access";
 import { getSessionProfile } from "@/lib/auth/session";
-import { deleteDocumentFichier, fetchDocumentsFichiers } from "@/lib/supabase/queries";
+import {
+  deleteDocumentFichier,
+  fetchDocumentFichierById,
+} from "@/lib/supabase/queries";
 
 export async function DELETE(
   _request: Request,
@@ -16,9 +19,8 @@ export async function DELETE(
     const { id, fichierId } = await params;
     await assertCandidatAccess(profile, id);
 
-    const fichiers = await fetchDocumentsFichiers(id);
-    const doc = fichiers.find((f) => f.id === fichierId);
-    if (!doc) {
+    const doc = await fetchDocumentFichierById(fichierId);
+    if (!doc || doc.candidatId !== id) {
       return NextResponse.json({ error: "Document introuvable." }, { status: 404 });
     }
 

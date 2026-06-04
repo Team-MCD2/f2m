@@ -58,6 +58,7 @@ export interface DocumentGenere {
 
 export type DocumentSource = "eleve" | "admin" | "auto_genere";
 export type DocumentStorage = "supabase" | "cloudinary";
+export type DocumentStatutEnvoi = "brouillon" | "envoye";
 
 export interface DocumentFichier {
   id: string;
@@ -69,10 +70,16 @@ export interface DocumentFichier {
   storagePath: string;
   url: string;
   source: DocumentSource;
+  statutEnvoi: DocumentStatutEnvoi;
   templateType?: string;
   uploadedBy?: string;
   createdAt: string;
 }
+
+export const DOCUMENT_STATUT_LABELS: Record<DocumentStatutEnvoi, string> = {
+  brouillon: "Brouillon",
+  envoye: "Envoyé au candidat",
+};
 
 export const DOCUMENT_SOURCE_LABELS: Record<DocumentSource, string> = {
   eleve: "Déposé par l'élève",

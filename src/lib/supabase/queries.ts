@@ -217,7 +217,12 @@ export async function fetchDashboardStats(): Promise<DashboardStats> {
   return { total, demande, accepte, refuse, enFormation, diplome, parMois, parParcours };
 }
 
-export async function fetchDocumentsFichiers(candidatId: string): Promise<DocumentFichier[]> {
+export type DocumentsAudience = "admin" | "candidat";
+
+export async function fetchDocumentsFichiers(
+  candidatId: string,
+  audience: DocumentsAudience = "admin"
+): Promise<DocumentFichier[]> {
   const supabase = createServiceClient();
   const { data, error } = await supabase
     .from("documents_fichiers")
@@ -225,6 +230,49 @@ export async function fetchDocumentsFichiers(candidatId: string): Promise<Docume
     .eq("candidat_id", candidatId)
     .order("created_at", { ascending: false });
 
+  if (error) throw error;
+  const rows = data ?? [];
+  const visible =
+    audience === "candidat"
+      ? rows.filter((r) => r.source === "eleve" || r.statut_envoi === "envoye")
+      : rows;
+  return visible.map((row) => mapDocumentFichier(row));
+}
+
+export async function fetchDocumentFichierById(
+  fichierId: string
+): Promise<DocumentFichier | null> {
+  const supabase = createServiceClient();
+  const { data, error } = await supabase
+    .from("documents_fichiers")
+    .select("*")
+    .eq("id", fichierId)
+    .maybeSingle();
+
+  if (error) throw error;
+  return data ? mapDocumentFichier(data) : null;
+}
+
+export async function sendDocumentsFichiers(
+  candidatId: string,
+  options: { ids?: string[]; all?: boolean }
+): Promise<DocumentFichier[]> {
+  const supabase = createServiceClient();
+  let q = supabase
+    .from("documents_fichiers")
+    .update({ statut_envoi: "envoye" })
+    .eq("candidat_id", candidatId)
+    .eq("statut_envoi", "brouillon");
+
+  if (options.all) {
+    // tous les brouillons du candidat
+  } else if (options.ids?.length) {
+    q = q.in("id", options.ids);
+  } else {
+    throw new Error("Aucun document à envoyer.");
+  }
+
+  const { data, error } = await q.select();
   if (error) throw error;
   return (data ?? []).map((row) => mapDocumentFichier(row));
 }
@@ -240,7 +288,12 @@ export async function insertDocumentFichier(input: {
   source: DocumentSource;
   templateType?: string;
   uploadedBy?: string;
+  statutEnvoi?: "brouillon" | "envoye";
 }): Promise<DocumentFichier> {
+  const statutEnvoi =
+    input.statutEnvoi ??
+    (input.source === "auto_genere" ? "brouillon" : "envoye");
+
   const supabase = createServiceClient();
   const { data, error } = await supabase
     .from("documents_fichiers")
@@ -253,6 +306,7 @@ export async function insertDocumentFichier(input: {
       storage_path: input.storagePath,
       url: input.url,
       source: input.source,
+      statut_envoi: statutEnvoi,
       template_type: input.templateType ?? null,
       uploaded_by: input.uploadedBy ?? null,
     })
@@ -330,12 +384,6 @@ export async function updateCandidatStatut(
       const { ensureClerkUserForCandidat } = await import("@/lib/auth/candidat-password");
       await ensureClerkUserForCandidat(id);
       await generateAutoDocumentsForCandidat(id);
-      await insertNotification({
-        candidatId: id,
-        type: "document",
-        titre: "Documents F2M disponibles",
-        message: "Vos documents officiels ont été générés et sont dans « Mes documents ».",
-      });
     } catch (e) {
       console.error("Génération auto documents:", e);
     }

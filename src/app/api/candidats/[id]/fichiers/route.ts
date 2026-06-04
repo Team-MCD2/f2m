@@ -21,7 +21,8 @@ export async function GET(
     }
     const { id } = await params;
     await assertCandidatAccess(profile, id);
-    const fichiers = await fetchDocumentsFichiers(id);
+    const audience = profile.role === "admin" ? "admin" : "candidat";
+    const fichiers = await fetchDocumentsFichiers(id, audience);
     return NextResponse.json(fichiers);
   } catch (e) {
     const msg = e instanceof Error ? e.message : "Erreur";

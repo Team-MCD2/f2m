@@ -93,6 +93,7 @@ CREATE TABLE IF NOT EXISTS documents_fichiers (
   storage_path TEXT NOT NULL,
   url TEXT NOT NULL,
   source TEXT NOT NULL CHECK (source IN ('eleve', 'admin', 'auto_genere')),
+  statut_envoi TEXT NOT NULL DEFAULT 'envoye' CHECK (statut_envoi IN ('brouillon', 'envoye')),
   template_type TEXT,
   uploaded_by TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()

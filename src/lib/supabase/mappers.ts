@@ -54,6 +54,7 @@ export function mapDocumentFichier(row: DbDocumentFichier): DocumentFichier {
     storagePath: row.storage_path,
     url: row.url,
     source: row.source,
+    statutEnvoi: row.statut_envoi ?? "envoye",
     templateType: row.template_type ?? undefined,
     uploadedBy: row.uploaded_by ?? undefined,
     createdAt: row.created_at,

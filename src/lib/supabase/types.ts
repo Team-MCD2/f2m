@@ -76,6 +76,7 @@ export interface DbDocumentFichier {
   storage_path: string;
   url: string;
   source: "eleve" | "admin" | "auto_genere";
+  statut_envoi: "brouillon" | "envoye";
   template_type: string | null;
   uploaded_by: string | null;
   created_at: string;

@@ -1,12 +1,25 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { DocumentDropzone } from "@/components/documents/document-dropzone";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DOCUMENT_SOURCE_LABELS, type DocumentFichier } from "@/types";
+import { Badge } from "@/components/ui/badge";
+import {
+  DOCUMENT_SOURCE_LABELS,
+  DOCUMENT_STATUT_LABELS,
+  type DocumentFichier,
+} from "@/types";
 import { formatDate } from "@/lib/utils";
-import { ExternalLink, FileText, Image, Trash2, Upload } from "lucide-react";
+import {
+  Download,
+  ExternalLink,
+  FileText,
+  Image,
+  Send,
+  Trash2,
+  Upload,
+} from "lucide-react";
 
 interface DocumentsPanelProps {
   candidatId: string;
@@ -16,6 +29,12 @@ interface DocumentsPanelProps {
   title?: string;
   /** Mise en page candidat : sections séparées, sans suppression */
   variant?: "default" | "candidat";
+  /** Actions brouillon → envoi (fiche admin candidat) */
+  adminMode?: boolean;
+}
+
+function downloadHref(candidatId: string, docId: string) {
+  return `/api/candidats/${candidatId}/fichiers/${docId}/download`;
 }
 
 function DocIcon({ mimeType }: { mimeType: string }) {
@@ -25,22 +44,84 @@ function DocIcon({ mimeType }: { mimeType: string }) {
   return <FileText className="h-5 w-5 shrink-0 text-f2m-navy" />;
 }
 
+function StatutBadge({ doc }: { doc: DocumentFichier }) {
+  if (doc.source === "eleve") return null;
+  const isDraft = doc.statutEnvoi === "brouillon";
+  return (
+    <Badge
+      className={
+        isDraft
+          ? "bg-amber-100 text-amber-900 hover:bg-amber-100"
+          : "bg-emerald-100 text-emerald-800 hover:bg-emerald-100"
+      }
+    >
+      {DOCUMENT_STATUT_LABELS[doc.statutEnvoi]}
+    </Badge>
+  );
+}
+
+function DocumentActions({
+  candidatId,
+  doc,
+  compact,
+}: {
+  candidatId: string;
+  doc: DocumentFichier;
+  compact?: boolean;
+}) {
+  const btnClass = compact
+    ? "inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-f2m-blue hover:bg-slate-50"
+    : "inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-f2m-blue hover:bg-slate-50";
+
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      <a href={doc.url} target="_blank" rel="noopener noreferrer" className={btnClass}>
+        Visualiser
+        <ExternalLink className="h-3.5 w-3.5" />
+      </a>
+      <a href={downloadHref(candidatId, doc.id)} className={btnClass}>
+        Télécharger
+        <Download className="h-3.5 w-3.5" />
+      </a>
+    </div>
+  );
+}
+
 function DocumentRow({
   doc,
+  candidatId,
   showSource,
+  showStatut,
   mayDelete,
+  selectable,
+  selected,
+  onToggleSelect,
   onRemove,
   onError,
 }: {
   doc: DocumentFichier;
+  candidatId: string;
   showSource: boolean;
+  showStatut: boolean;
   mayDelete: boolean;
+  selectable?: boolean;
+  selected?: boolean;
+  onToggleSelect?: () => void;
   onRemove: (doc: DocumentFichier) => Promise<void>;
   onError: (msg: string) => void;
 }) {
   return (
     <li className="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
       <div className="flex min-w-0 items-start gap-3">
+        {selectable && (
+          <input
+            type="checkbox"
+            checked={selected}
+            onChange={onToggleSelect}
+            className="mt-1 h-4 w-4 rounded border-slate-300"
+            aria-label={`Sélectionner ${doc.nomFichier}`}
+          />
+        )}
         <DocIcon mimeType={doc.mimeType} />
         <div className="min-w-0">
           <p className="truncate text-sm font-medium text-slate-900">{doc.nomFichier}</p>
@@ -48,18 +129,15 @@ function DocumentRow({
             {formatDate(doc.createdAt.slice(0, 10))}
             {showSource && ` · ${DOCUMENT_SOURCE_LABELS[doc.source]}`}
           </p>
+          {showStatut && (
+            <div className="mt-1">
+              <StatutBadge doc={doc} />
+            </div>
+          )}
         </div>
       </div>
       <div className="flex items-center gap-2">
-        <a
-          href={doc.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-f2m-blue hover:bg-slate-50"
-        >
-          Ouvrir
-          <ExternalLink className="h-3.5 w-3.5" />
-        </a>
+        <DocumentActions candidatId={candidatId} doc={doc} />
         {mayDelete && (
           <Button
             type="button"
@@ -78,9 +156,11 @@ function DocumentRow({
 
 function DocumentCard({
   doc,
+  candidatId,
   showSource,
 }: {
   doc: DocumentFichier;
+  candidatId: string;
   showSource: boolean;
 }) {
   return (
@@ -97,15 +177,7 @@ function DocumentCard({
           </p>
         </div>
       </div>
-      <a
-        href={doc.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-auto inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-white py-2 text-sm font-medium text-f2m-blue ring-1 ring-slate-200 hover:bg-f2m-cream"
-      >
-        Ouvrir
-        <ExternalLink className="h-3.5 w-3.5" />
-      </a>
+      <DocumentActions candidatId={candidatId} doc={doc} compact />
     </div>
   );
 }
@@ -117,10 +189,14 @@ export function DocumentsPanel({
   showSource = true,
   title = "Mes documents",
   variant = "default",
+  adminMode = false,
 }: DocumentsPanelProps) {
   const [docs, setDocs] = useState<DocumentFichier[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [sending, setSending] = useState(false);
+  const [sendMessage, setSendMessage] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -130,6 +206,7 @@ export function DocumentsPanel({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Chargement impossible");
       setDocs(data);
+      setSelectedIds(new Set());
     } catch (e) {
       setError(e instanceof Error ? e.message : "Erreur");
       setDocs([]);
@@ -141,6 +218,11 @@ export function DocumentsPanel({
   useEffect(() => {
     void load();
   }, [load]);
+
+  const brouillons = useMemo(
+    () => docs.filter((d) => d.statutEnvoi === "brouillon"),
+    [docs]
+  );
 
   const uploadFiles = async (files: FileList | File[]) => {
     setError(null);
@@ -167,13 +249,53 @@ export function DocumentsPanel({
     await load();
   };
 
+  const sendDocuments = async (payload: { ids?: string[]; all?: boolean }) => {
+    setSending(true);
+    setSendMessage(null);
+    setError(null);
+    try {
+      const res = await fetch(`/api/candidats/${candidatId}/fichiers/send`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Envoi impossible");
+      setSendMessage(
+        data.count === 1
+          ? "1 document envoyé au candidat."
+          : `${data.count} documents envoyés au candidat.`
+      );
+      await load();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Erreur envoi");
+    } finally {
+      setSending(false);
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const selectAllDrafts = () => {
+    setSelectedIds(new Set(brouillons.map((d) => d.id)));
+  };
+
   const mayDelete = (doc: DocumentFichier) => {
     if (typeof canDelete === "function") return canDelete(doc);
     return canDelete;
   };
 
   const mesEnvois = docs.filter((d) => d.source === "eleve");
-  const docsF2m = docs.filter((d) => d.source === "admin" || d.source === "auto_genere");
+  const docsF2m = docs.filter(
+    (d) => d.source === "admin" || d.source === "auto_genere"
+  );
 
   const renderGrid = (items: DocumentFichier[], emptyMsg: string) => {
     if (items.length === 0) {
@@ -186,11 +308,83 @@ export function DocumentsPanel({
     return (
       <div className="grid gap-3 sm:grid-cols-2">
         {items.map((doc) => (
-          <DocumentCard key={doc.id} doc={doc} showSource={showSource} />
+          <DocumentCard key={doc.id} doc={doc} candidatId={candidatId} showSource={showSource} />
         ))}
       </div>
     );
   };
+
+  const draftActionsCard =
+    adminMode && brouillons.length > 0 ? (
+      <Card className="border-amber-200 bg-amber-50/40">
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base text-amber-950">
+            Brouillons ({brouillons.length})
+          </CardTitle>
+          <p className="text-sm font-normal text-amber-900/80">
+            Les documents générés restent en brouillon jusqu&apos;à envoi. Le candidat sera
+            notifié à l&apos;envoi.
+          </p>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex flex-wrap gap-2">
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={selectAllDrafts}
+              disabled={sending}
+            >
+              Tout sélectionner
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              onClick={() =>
+                void sendDocuments({
+                  ids: Array.from(selectedIds),
+                })
+              }
+              disabled={sending || selectedIds.size === 0}
+            >
+              <Send className="mr-2 h-4 w-4" />
+              Envoyer la sélection ({selectedIds.size})
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="secondary"
+              onClick={() => void sendDocuments({ all: true })}
+              disabled={sending}
+            >
+              Tout envoyer au candidat
+            </Button>
+          </div>
+          {sendMessage && (
+            <p className="rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+              {sendMessage}
+            </p>
+          )}
+          <ul className="divide-y divide-amber-100 rounded-xl border border-amber-200 bg-white">
+            {brouillons.map((doc) => (
+              <DocumentRow
+                key={doc.id}
+                doc={doc}
+                candidatId={candidatId}
+                showSource={showSource}
+                showStatut={false}
+                mayDelete={mayDelete(doc)}
+                selectable
+                selected={selectedIds.has(doc.id)}
+                onToggleSelect={() => toggleSelect(doc.id)}
+                onRemove={remove}
+                onError={setError}
+              />
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
+    ) : null;
 
   if (variant === "candidat") {
     return (
@@ -228,7 +422,8 @@ export function DocumentsPanel({
               <CardHeader className="pb-3">
                 <CardTitle className="text-base text-f2m-navy">Documents F2M</CardTitle>
                 <p className="text-sm font-normal text-slate-500">
-                  Attestations et documents officiels envoyés par l&apos;équipe (lecture seule).
+                  Attestations et documents officiels envoyés par l&apos;équipe. Visualisez ou
+                  téléchargez chaque fichier.
                 </p>
               </CardHeader>
               <CardContent>{renderGrid(docsF2m, "Aucun document F2M pour le moment.")}</CardContent>
@@ -251,19 +446,26 @@ export function DocumentsPanel({
         </p>
       )}
 
+      {draftActionsCard}
+
       {loading ? (
         <p className="text-center text-sm text-slate-500">Chargement des documents…</p>
-      ) : docs.length === 0 ? (
+      ) : (adminMode ? docs.filter((d) => d.statutEnvoi !== "brouillon") : docs).length ===
+        0 ? (
         <p className="rounded-lg border border-dashed border-slate-200 py-10 text-center text-sm text-slate-500">
-          Aucun document pour le moment.
+          {adminMode && brouillons.length > 0
+            ? "Aucun autre document (hors brouillons)."
+            : "Aucun document pour le moment."}
         </p>
       ) : (
         <ul className="divide-y divide-slate-100 rounded-xl border border-slate-200 bg-white">
-          {docs.map((doc) => (
+          {(adminMode ? docs.filter((d) => d.statutEnvoi !== "brouillon") : docs).map((doc) => (
             <DocumentRow
               key={doc.id}
               doc={doc}
+              candidatId={candidatId}
               showSource={showSource}
+              showStatut={adminMode}
               mayDelete={mayDelete(doc)}
               onRemove={remove}
               onError={setError}
