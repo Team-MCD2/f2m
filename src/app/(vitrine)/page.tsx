@@ -1,26 +1,26 @@
-import Link from "next/link";
 import { CertificationsBlock } from "@/components/vitrine/certifications-block";
 import { FaqAccordion } from "@/components/vitrine/faq-accordion";
-import { HomeFeaturedFormations } from "@/components/vitrine/home/home-featured-formations";
-import { HomeFormationGrid } from "@/components/vitrine/home/home-formation-grid";
-import { HomeValues } from "@/components/vitrine/home/home-values";
 import { HomeHero } from "@/components/vitrine/home-hero";
-import { MapEmbed } from "@/components/vitrine/map-embed";
-import { PortalCtaBand } from "@/components/vitrine/portal-cta-band";
+import { HomeCentreSection } from "@/components/vitrine/home/home-centre-section";
+import { HomeContactBand } from "@/components/vitrine/home/home-contact-band";
+import { HomeFeaturedFormations } from "@/components/vitrine/home/home-featured-formations";
+import { HomeGallery } from "@/components/vitrine/home/home-gallery";
+import { HomeValues } from "@/components/vitrine/home/home-values";
 import { Section } from "@/components/vitrine/section";
 import { TestimonialsCarousel } from "@/components/vitrine/testimonials-carousel";
-import { VitrineImage } from "@/components/vitrine/vitrine-image";
-import { F2M_SITE } from "@/lib/vitrine/site-config";
-import { TOULOUSE_IMAGE } from "@/lib/vitrine/images";
 
 export default function HomePage() {
   return (
     <>
       <HomeHero />
 
-      <HomeFormationGrid />
-
       <HomeFeaturedFormations />
+
+      <HomeCentreSection />
+
+      <HomeGallery />
+
+      <HomeValues />
 
       <Section
         id="stats"
@@ -48,39 +48,6 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section id="notre-centre-home" variant="light">
-        <div className="media-band">
-          <div>
-            <h2 id="notre-centre-home-title">Notre centre à Toulouse</h2>
-            <p>
-              F2M Consulting accueille dirigeants et professionnels de la sécurité
-              privée dans des locaux modernes, à deux pas du périphérique sud —
-              formation présentielle et distanciel complémentaires.
-            </p>
-            <p>
-              <Link className="btn btn-gold" href="/notre-centre">
-                Visiter notre centre
-              </Link>
-            </p>
-          </div>
-          <div className="media-band-img-wrap">
-            <VitrineImage
-              src={TOULOUSE_IMAGE}
-              fallback={TOULOUSE_IMAGE}
-              alt="Vue de Toulouse — Garonne et centre-ville, ville d'accueil F2M Consulting"
-              width={800}
-              height={600}
-              fill
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-          </div>
-        </div>
-      </Section>
-
-      <HomeValues />
-
-      <CertificationsBlock />
-
       <Section
         id="testimonials"
         variant="light"
@@ -90,49 +57,13 @@ export default function HomePage() {
         <TestimonialsCarousel />
       </Section>
 
+      <CertificationsBlock />
+
       <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse">
         <FaqAccordion />
       </Section>
 
-      <Section id="map-home" variant="navy">
-        <div className="content-grid sidebar">
-          <div>
-            <h2 id="map-home-title">Nous trouver à Toulouse</h2>
-            <p>
-              <strong>{F2M_SITE.address.full}</strong>
-            </p>
-            <p>
-              Accès bus ligne 4 · Parking à proximité · Centre accessible PMR —{" "}
-              <Link href="/notre-centre">Plan d&apos;accès détaillé</Link>
-            </p>
-            <p>
-              <a href={`tel:${F2M_SITE.phoneTel}`}>{F2M_SITE.phone}</a> ·{" "}
-              <a href={`mailto:${F2M_SITE.email}`}>{F2M_SITE.email}</a>
-            </p>
-            <MapEmbed />
-          </div>
-          <aside className="sidebar-box">
-            <h3>Prochaine étape</h3>
-            <p>Choisissez le parcours adapté à votre projet professionnel.</p>
-            <Link
-              className="btn btn-gold"
-              href="/formation-dgesp"
-              style={{ width: "100%", marginBottom: "0.75rem", display: "block", textAlign: "center" }}
-            >
-              Formation DGESP
-            </Link>
-            <Link
-              className="btn btn-navy"
-              href="/contact"
-              style={{ width: "100%", display: "block", textAlign: "center" }}
-            >
-              Nous contacter
-            </Link>
-          </aside>
-        </div>
-      </Section>
-
-      <PortalCtaBand />
+      <HomeContactBand />
     </>
   );
 }

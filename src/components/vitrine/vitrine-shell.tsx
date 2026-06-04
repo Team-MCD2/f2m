@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { DM_Sans, Syne } from "next/font/google";
+import { HomeTopBar } from "@/components/vitrine/home/home-top-bar";
 import { SiteFooter } from "@/components/vitrine/site-footer";
 import { SiteHeader } from "@/components/vitrine/site-header";
 import "@/styles/vitrine.css";
@@ -24,6 +25,7 @@ export function VitrineShell({ children }: { children: ReactNode }) {
       <a href="#main" className="sr-only">
         Aller au contenu principal
       </a>
+      <HomeTopBar />
       <SiteHeader />
       <main id="main">{children}</main>
       <SiteFooter />

@@ -24,7 +24,7 @@ export function HomeValues() {
     <Section
       id="valeurs"
       variant="navy"
-      title="Nos engagements"
+      title="Nos valeurs"
       subtitle="Ce qui guide F2M Consulting au quotidien auprès des dirigeants et professionnels que nous formons."
     >
       <div className="home-values-grid">
