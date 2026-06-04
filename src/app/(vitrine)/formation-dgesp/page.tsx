@@ -63,7 +63,7 @@ export default function FormationDgespPage() {
         </div>
       </Section>
 
-      <Section variant="navy" title="Timeline — 282 heures" className="reveal-on-scroll">
+      <Section variant="brand" title="Timeline — 282 heures" className="reveal-on-scroll">
         <div className="timeline reveal-on-scroll reveal-stagger" style={{ marginTop: "2rem" }}>
           <div className="timeline-item"><h3>Phase 1 — Positionnement (20 h)</h3><p>Entretien, analyse du parcours et plan de formation individualisé.</p></div>
           <div className="timeline-item"><h3>Phase 2 — Cœur de formation (200 h)</h3><p>Modules présentiel + classes virtuelles + ressources LMS.</p></div>
@@ -93,7 +93,7 @@ export default function FormationDgespPage() {
                 <p className="dgesp-testimonial-author">— Bastien, dirigeant SSP</p>
               </div>
             </blockquote>
-            <Link className="btn btn-navy" href="/connexion">
+            <Link className="btn btn-brand" href="/connexion">
               Déposer un dossier
             </Link>
           </article>
@@ -123,7 +123,7 @@ export default function FormationDgespPage() {
                 >
                   Connexion LMS
                 </a>
-                <Link className="btn btn-navy" href="/e-learning">
+                <Link className="btn btn-brand" href="/e-learning">
                   En savoir plus
                 </Link>
                 <Link className="btn btn-outline-dark" href="/connexion">
@@ -135,7 +135,7 @@ export default function FormationDgespPage() {
         </div>
       </Section>
 
-      <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse" className="reveal-on-scroll">
+      <Section variant="brand" id="faq" title="FAQ — Formation DGESP Toulouse" className="reveal-on-scroll">
         <FaqAccordion />
       </Section>
     </>

@@ -29,7 +29,7 @@ export default function FinancementsPage() {
         <FinancementCards />
       </Section>
 
-      <Section variant="navy" title="Simulateur CPF (indicatif)" className="reveal-on-scroll">
+      <Section variant="brand" title="Simulateur CPF (indicatif)" className="reveal-on-scroll">
         <div className="reveal-on-scroll" data-reveal>
           <CpfSimulator />
         </div>
@@ -62,7 +62,7 @@ export default function FinancementsPage() {
           <Link className="btn btn-gold btn-primary-glow" href="/contact">
             Aide au montage de dossier
           </Link>
-          <Link className="btn btn-navy" href="/formation-dgesp" style={{ marginLeft: "0.5rem" }}>
+          <Link className="btn btn-brand" href="/formation-dgesp" style={{ marginLeft: "0.5rem" }}>
             Formation DGESP
           </Link>
         </p>

@@ -38,7 +38,7 @@ export default function VaeDgespPage() {
         </div>
       </Section>
 
-      <Section variant="navy" className="reveal-on-scroll">
+      <Section variant="brand" className="reveal-on-scroll">
         <div className="media-band reveal-on-scroll" data-reveal style={{ marginBottom: "2.5rem" }}>
           <div className="prose">
             <h2>Valoriser votre expérience terrain</h2>

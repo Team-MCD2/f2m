@@ -23,7 +23,7 @@ export function HomeValues() {
   return (
     <Section
       id="valeurs"
-      variant="navy"
+      variant="brand"
       title="Nos valeurs"
       subtitle="Ce qui guide F2M Consulting au quotidien auprès des dirigeants et professionnels que nous formons."
       className="reveal-on-scroll"

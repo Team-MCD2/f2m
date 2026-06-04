@@ -2,7 +2,7 @@ type SectionProps = {
   id?: string;
   title?: string;
   subtitle?: string;
-  variant?: "default" | "light" | "navy" | "alt";
+  variant?: "default" | "light" | "brand" | "alt";
   className?: string;
   children: React.ReactNode;
   ariaLabelledBy?: string;
@@ -11,7 +11,7 @@ type SectionProps = {
 const variantClass: Record<NonNullable<SectionProps["variant"]>, string> = {
   default: "section",
   light: "section section-light",
-  navy: "section section-navy",
+  brand: "section section-brand",
   alt: "section section-alt",
 };
 

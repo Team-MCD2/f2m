@@ -30,7 +30,7 @@ export function HomeGallery() {
   return (
     <Section
       id="centre-images"
-      variant="navy"
+      variant="brand"
       title="Le centre en images"
       subtitle="Un environnement pensé pour la formation des professionnels de la sécurité privée."
       className="reveal-on-scroll"

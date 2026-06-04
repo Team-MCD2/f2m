@@ -35,7 +35,7 @@ export default function BlogPage() {
           <Link className="btn btn-gold" href="/formation-dgesp">
             Formation DGESP
           </Link>
-          <Link className="btn btn-navy" href="/contact" style={{ marginLeft: "0.5rem" }}>
+          <Link className="btn btn-brand" href="/contact" style={{ marginLeft: "0.5rem" }}>
             Contact
           </Link>
         </p>

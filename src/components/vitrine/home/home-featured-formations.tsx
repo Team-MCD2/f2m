@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CardRibbon } from "@/components/vitrine/card-ribbon";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
 import { VitrineImageZoom } from "@/components/vitrine/vitrine-image-zoom";
@@ -6,7 +7,18 @@ import { Section } from "@/components/vitrine/section";
 
 const F = VITRINE_IMAGES.featured;
 
-const FEATURED = [
+type FeaturedFormation = {
+  title: string;
+  excerpt: string;
+  href: string;
+  duration: string;
+  lieu: string;
+  image: string;
+  fallback: string;
+  ribbonLabel?: string;
+};
+
+const FEATURED: FeaturedFormation[] = [
   {
     title: "Formation DGESP",
     excerpt:
@@ -16,6 +28,7 @@ const FEATURED = [
     lieu: "Toulouse + distanciel",
     image: F.formation,
     fallback: F.formationFallback,
+    ribbonLabel: "RNCP 36654",
   },
   {
     title: "VAE dirigeant DGESP",
@@ -26,6 +39,7 @@ const FEATURED = [
     lieu: "Toulouse",
     image: F.vae,
     fallback: F.vaeFallback,
+    ribbonLabel: "Niveau 5",
   },
   {
     title: "Financement CPF & OPCO",
@@ -67,7 +81,7 @@ const FEATURED = [
     image: F.contact,
     fallback: F.contactFallback,
   },
-] as const;
+];
 
 export function HomeFeaturedFormations() {
   return (
@@ -79,7 +93,15 @@ export function HomeFeaturedFormations() {
     >
       <div className="home-featured-grid reveal-on-scroll reveal-stagger">
         {FEATURED.map((item) => (
-          <article key={item.href} className="home-featured-card home-formation-card">
+          <article
+            key={item.href}
+            className={
+              item.ribbonLabel
+                ? "home-featured-card home-formation-card card-with-ribbon"
+                : "home-featured-card home-formation-card"
+            }
+          >
+            {item.ribbonLabel ? <CardRibbon label={item.ribbonLabel} /> : null}
             <Link href={item.href} className="home-featured-card-media">
               <VitrineImageZoom>
                 <VitrineImage

@@ -46,7 +46,7 @@ export default async function BlogArticlePage({ params }: Props) {
             <Link className="btn btn-gold" href="/formation-dgesp">
               Formation DGESP
             </Link>{" "}
-            <Link className="btn btn-navy" href="/contact">
+            <Link className="btn btn-brand" href="/contact">
               Contact
             </Link>
           </p>

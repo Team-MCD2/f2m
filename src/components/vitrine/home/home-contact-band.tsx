@@ -5,7 +5,7 @@ import { F2M_SITE } from "@/lib/vitrine/site-config";
 
 export function HomeContactBand() {
   return (
-    <Section id="contact-accueil" variant="navy" className="section--align-left reveal-on-scroll">
+    <Section id="contact-accueil" variant="brand" className="section--align-left reveal-on-scroll">
       <div className="content-grid sidebar home-contact-band reveal-on-scroll" data-reveal>
         <div>
           <h2 id="contact-accueil-title">Nous trouver à Toulouse</h2>

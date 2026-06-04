@@ -100,7 +100,7 @@ export default function ELearningPage() {
           ))}
         </div>
         <p className="reveal-on-scroll" data-reveal style={{ marginTop: "2rem", textAlign: "center" }}>
-          <Link className="btn btn-navy" href="/formation-dgesp">
+          <Link className="btn btn-brand" href="/formation-dgesp">
             Découvrir la formation DGESP
           </Link>
           <Link className="btn btn-gold" href="/contact" style={{ marginLeft: "0.5rem" }}>

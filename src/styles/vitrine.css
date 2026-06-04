@@ -1,12 +1,13 @@
-/* F2M Consulting — Vitrine · Navy / Marine · Or réservé aux CTA · Syne / DM Sans */
+/* F2M Consulting — Vitrine · Ardoise / Bronze · Or CTA · Syne / DM Sans */
 :root {
-  --navy-950: #0a1628;
-  --navy-900: #0f1f38;
-  --navy-800: #152a4a;
-  --navy-700: #1e3a5f;
-  --marine-600: #2c5282;
-  --marine-500: #3d6a9e;
-  --marine-400: #5a8ec4;
+  --brand-950: #1a2332;
+  --brand-900: #1a2332;
+  --brand-800: #243044;
+  --brand-700: #2f3d52;
+  --brand-200: #c8cfd8;
+  --brand-accent-600: #a67c52;
+  --brand-accent-500: #b8926a;
+  --brand-accent-400: #c9a882;
   --accent-cta: #c9a227;
   --accent-cta-hover: #d4b44a;
   --gold-500: var(--accent-cta);
@@ -17,11 +18,11 @@
   --text: #1a2332;
   --text-muted: #5c6b7a;
   --radius: 12px;
-  --shadow: 0 12px 40px rgba(10, 22, 40, 0.12);
+  --shadow: 0 12px 40px rgba(26, 35, 50, 0.12);
   --font-display: var(--font-syne), "Syne", system-ui, sans-serif;
   --font-body: var(--font-dm), "DM Sans", system-ui, sans-serif;
   --header-h: 72px;
-  --focus: 0 0 0 3px var(--marine-400), 0 0 0 5px var(--navy-900);
+  --focus: 0 0 0 3px var(--brand-accent-400), 0 0 0 5px var(--brand-950);
 }
 
 .vitrine-root {
@@ -73,13 +74,13 @@ video {
 }
 
 a {
-  color: var(--navy-700);
+  color: var(--brand-700);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
 a:hover {
-  color: var(--marine-600);
+  color: var(--brand-accent-600);
 }
 
 a:focus-visible,
@@ -103,7 +104,7 @@ h4 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--navy-900);
+  color: var(--brand-900);
 }
 
 /* Header */
@@ -112,8 +113,8 @@ h4 {
   top: 0;
   z-index: 200;
   overflow: visible;
-  background: var(--navy-950);
-  border-bottom: 1px solid rgba(44, 82, 130, 0.45);
+  background: var(--brand-950);
+  border-bottom: 1px solid rgba(166, 124, 82, 0.45);
 }
 
 .header-inner {
@@ -259,8 +260,8 @@ h4 {
     left: 0;
     min-width: 11rem;
     padding: 0.5rem 0;
-    background: var(--navy-950);
-    border: 1px solid rgba(44, 82, 130, 0.55);
+    background: var(--brand-950);
+    border: 1px solid rgba(166, 124, 82, 0.55);
     border-radius: 8px;
     box-shadow: var(--shadow);
     z-index: 210;
@@ -322,7 +323,7 @@ h4 {
   bottom: 0;
   width: 0;
   height: 2px;
-  background: var(--marine-400);
+  background: var(--brand-accent-400);
   transition: width 0.25s ease;
 }
 
@@ -339,7 +340,7 @@ h4 {
 }
 
 .nav-highlight {
-  color: var(--marine-400) !important;
+  color: var(--brand-accent-400) !important;
 }
 
 .nav-cta,
@@ -362,7 +363,7 @@ h4 {
   gap: 0.4rem;
   padding: 0.75rem 1.1rem;
   background: var(--accent-cta);
-  color: var(--navy-950);
+  color: var(--brand-950);
   font-weight: 700;
   border-radius: 999px;
   text-decoration: none;
@@ -380,7 +381,7 @@ h4 {
     flex-direction: column;
     align-items: stretch;
     padding: 1.5rem;
-    background: var(--navy-950);
+    background: var(--brand-950);
     transform: translateX(100%);
     transition: transform 0.3s ease;
   }
@@ -414,7 +415,7 @@ h4 {
   .nav-dropdown-menu {
     margin: 0.35rem 0 0 0.75rem;
     padding-left: 0.5rem;
-    border-left: 2px solid rgba(44, 82, 130, 0.55);
+    border-left: 2px solid rgba(166, 124, 82, 0.55);
   }
 
   .nav-dropdown-menu li + li {
@@ -454,30 +455,30 @@ h4 {
 
 .btn-gold {
   background: var(--accent-cta);
-  color: var(--navy-950);
+  color: var(--brand-950);
   border-color: var(--accent-cta);
 }
 
 .btn-gold:hover {
   background: var(--accent-cta-hover);
-  color: var(--navy-950);
+  color: var(--brand-950);
 }
 
-.btn-navy {
-  background: var(--navy-800);
+.btn-brand {
+  background: var(--brand-800);
   color: var(--white);
 }
 
 .btn-outline {
   background: transparent;
-  color: var(--marine-600);
-  border-color: var(--marine-600);
+  color: var(--brand-accent-600);
+  border-color: var(--brand-accent-600);
 }
 
 .btn-outline:hover {
-  background: rgba(44, 82, 130, 0.08);
-  color: var(--navy-800);
-  border-color: var(--marine-600);
+  background: rgba(166, 124, 82, 0.08);
+  color: var(--brand-800);
+  border-color: var(--brand-accent-600);
 }
 
 .btn-sm {
@@ -497,7 +498,7 @@ h4 {
   align-items: center;
   color: var(--white);
   overflow: hidden;
-  background: var(--navy-950);
+  background: var(--brand-950);
 }
 
 .hero-static-bg {
@@ -520,9 +521,9 @@ h4 {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(10, 22, 40, 0.82) 0%,
-    rgba(21, 42, 74, 0.72) 45%,
-    rgba(44, 82, 130, 0.5) 100%
+    rgba(26, 35, 50, 0.82) 0%,
+    rgba(36, 48, 68, 0.72) 45%,
+    rgba(166, 124, 82, 0.5) 100%
   );
   z-index: 1;
   pointer-events: none;
@@ -601,7 +602,7 @@ h4 {
   padding: 0.45rem 1rem;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(90, 142, 196, 0.55);
+  border: 1px solid rgba(201, 168, 130, 0.55);
   color: var(--white);
   text-decoration: none;
   font-size: 0.875rem;
@@ -611,7 +612,7 @@ h4 {
 
 .hero-families a:hover {
   background: rgba(255, 255, 255, 0.14);
-  border-color: var(--marine-400);
+  border-color: var(--brand-accent-400);
   color: var(--white);
 }
 
@@ -632,7 +633,7 @@ h4 {
 .badge {
   padding: 0.35rem 0.85rem;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(90, 142, 196, 0.65);
+  border: 1px solid rgba(201, 168, 130, 0.65);
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -652,7 +653,7 @@ h4 {
 }
 
 .section-dark {
-  background: var(--navy-900);
+  background: var(--brand-900);
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -694,14 +695,14 @@ h4 {
 
 .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(10, 22, 40, 0.14);
+  box-shadow: 0 16px 48px rgba(26, 35, 50, 0.14);
 }
 
 .stat-card strong {
   display: block;
   font-family: var(--font-display);
   font-size: 2.5rem;
-  color: var(--marine-600);
+  color: var(--brand-accent-600);
 }
 
 .stat-card span {
@@ -721,7 +722,7 @@ h4 {
   border-radius: var(--radius);
   padding: 1.75rem;
   box-shadow: var(--shadow);
-  border: 1px solid rgba(30, 58, 95, 0.08);
+  border: 1px solid rgba(47, 61, 82, 0.08);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -731,9 +732,9 @@ h4 {
 .card:hover,
 .card--media:hover {
   transform: translateY(-3px);
-  border-color: #2c5282;
+  border-color: var(--brand-accent-600);
   box-shadow:
-    0 16px 44px rgba(44, 82, 130, 0.18),
+    0 16px 44px rgba(166, 124, 82, 0.18),
     0 0 0 1px rgba(201, 162, 39, 0.22);
 }
 
@@ -773,7 +774,7 @@ h4 {
   border-radius: var(--radius);
   min-width: 140px;
   font-weight: 700;
-  color: var(--navy-800);
+  color: var(--brand-800);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -828,8 +829,8 @@ h4 {
   height: 56px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--marine-500);
-  box-shadow: 0 4px 12px rgba(10, 22, 40, 0.15);
+  border: 3px solid var(--brand-accent-500);
+  box-shadow: 0 4px 12px rgba(26, 35, 50, 0.15);
 }
 
 .carousel-controls {
@@ -844,7 +845,7 @@ h4 {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 2px solid var(--navy-700);
+  border: 2px solid var(--brand-700);
   background: var(--white);
   cursor: pointer;
   font-size: 1.25rem;
@@ -855,9 +856,9 @@ h4 {
 }
 
 .carousel-controls button:hover {
-  background: var(--navy-800);
+  background: var(--brand-800);
   color: var(--white);
-  border-color: var(--marine-500);
+  border-color: var(--brand-accent-500);
   transform: scale(1.06);
 }
 
@@ -877,11 +878,11 @@ h4 {
 }
 
 .carousel-dots button.is-active {
-  background: var(--marine-600);
+  background: var(--brand-accent-600);
 }
 
 .stars {
-  color: var(--marine-500);
+  color: var(--brand-accent-500);
   letter-spacing: 2px;
   margin-bottom: 0.5rem;
 }
@@ -915,7 +916,7 @@ h4 {
 
 .map-actions a,
 .map-actions button {
-  color: var(--navy-700);
+  color: var(--brand-700);
   background: none;
   border: none;
   padding: 0;
@@ -928,13 +929,13 @@ h4 {
 
 .map-actions button:hover,
 .map-actions a:hover {
-  color: var(--marine-600);
+  color: var(--brand-accent-600);
 }
 
 /* Page hero inner */
 .page-hero {
   position: relative;
-  background: linear-gradient(160deg, var(--navy-950), var(--navy-800));
+  background: linear-gradient(160deg, var(--brand-950), var(--brand-800));
   color: var(--white);
   padding: 3rem 0 3.5rem;
   overflow: hidden;
@@ -956,9 +957,9 @@ h4 {
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(10, 22, 40, 0.9) 0%,
-    rgba(21, 42, 74, 0.82) 50%,
-    rgba(44, 82, 130, 0.65) 100%
+    rgba(26, 35, 50, 0.9) 0%,
+    rgba(36, 48, 68, 0.82) 50%,
+    rgba(166, 124, 82, 0.65) 100%
   );
 }
 
@@ -1047,7 +1048,7 @@ h4 {
 .cta-band {
   text-align: center;
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, var(--navy-800), var(--navy-950));
+  background: linear-gradient(135deg, var(--brand-800), var(--brand-950));
   color: var(--white);
   border-radius: var(--radius);
 }
@@ -1062,7 +1063,7 @@ h4 {
 
 /* Accordion */
 .accordion-item {
-  border: 1px solid rgba(30, 58, 95, 0.12);
+  border: 1px solid rgba(47, 61, 82, 0.12);
   border-radius: 8px;
   margin-bottom: 0.75rem;
   overflow: hidden;
@@ -1086,7 +1087,7 @@ h4 {
 
 .accordion-trigger::after {
   content: "+";
-  color: var(--marine-600);
+  color: var(--brand-accent-600);
   font-size: 1.25rem;
 }
 
@@ -1118,7 +1119,7 @@ details[open].accordion-item .accordion-panel {
 .timeline {
   position: relative;
   padding-left: 2rem;
-  border-left: 3px solid var(--marine-600);
+  border-left: 3px solid var(--brand-accent-600);
 }
 
 .timeline-item {
@@ -1182,7 +1183,7 @@ details[open].accordion-item .accordion-panel {
   padding: 1.5rem;
   background: var(--white);
   border-radius: var(--radius);
-  border-top: 4px solid var(--marine-600);
+  border-top: 4px solid var(--brand-accent-600);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -1206,11 +1207,46 @@ details[open].accordion-item .accordion-panel {
   height: 32px;
   align-items: center;
   justify-content: center;
-  background: var(--marine-600);
+  background: var(--brand-accent-600);
   color: var(--white);
   border-radius: 50%;
   font-weight: 700;
   margin-bottom: 0.75rem;
+}
+
+/* Corner ribbon — cartes vitrine */
+.card-with-ribbon {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-ribbon {
+  position: absolute;
+  top: 1.125rem;
+  right: -2.25rem;
+  z-index: 12;
+  width: 9.5rem;
+  padding: 0.4rem 0;
+  margin: 0;
+  background: linear-gradient(135deg, var(--brand-accent-600), var(--accent-cta));
+  color: var(--brand-950);
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(45deg);
+  box-shadow: 0 3px 12px rgba(26, 35, 50, 0.28);
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-ribbon {
+    transform: rotate(45deg);
+  }
 }
 
 /* Gallery */
@@ -1235,9 +1271,9 @@ details[open].accordion-item .accordion-panel {
 
 .gallery-item:hover {
   transform: scale(1.02);
-  border-color: #2c5282;
+  border-color: var(--brand-accent-600);
   box-shadow:
-    0 16px 40px rgba(44, 82, 130, 0.2),
+    0 16px 40px rgba(166, 124, 82, 0.2),
     0 0 0 1px rgba(201, 162, 39, 0.2);
 }
 
@@ -1250,7 +1286,7 @@ details[open].accordion-item .accordion-panel {
   position: absolute;
   inset: auto 0 0 0;
   padding: 2.5rem 1rem 1rem;
-  background: linear-gradient(transparent, rgba(10, 22, 40, 0.88));
+  background: linear-gradient(transparent, rgba(26, 35, 50, 0.88));
   color: var(--white);
   font-weight: 600;
   font-size: 0.9rem;
@@ -1270,7 +1306,7 @@ details[open].accordion-item .accordion-panel {
   box-shadow: var(--shadow);
   text-decoration: none;
   color: inherit;
-  border: 1px solid rgba(30, 58, 95, 0.08);
+  border: 1px solid rgba(47, 61, 82, 0.08);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -1279,9 +1315,9 @@ details[open].accordion-item .accordion-panel {
 
 .blog-card:hover {
   transform: translateY(-6px);
-  border-color: #2c5282;
+  border-color: var(--brand-accent-600);
   box-shadow:
-    0 18px 48px rgba(44, 82, 130, 0.16),
+    0 18px 48px rgba(166, 124, 82, 0.16),
     0 0 0 1px rgba(201, 162, 39, 0.22);
 }
 
@@ -1343,7 +1379,7 @@ details[open].accordion-item .accordion-panel {
 .form-progress-bar {
   height: 100%;
   width: 33%;
-  background: var(--marine-600);
+  background: var(--brand-accent-600);
   transition: width 0.3s;
 }
 
@@ -1383,7 +1419,7 @@ details[open].accordion-item .accordion-panel {
 
 /* Footer */
 .site-footer {
-  background: var(--navy-950);
+  background: var(--brand-950);
   color: rgba(255, 255, 255, 0.85);
   padding: 3.5rem 0 0;
   margin-top: 4rem;
@@ -1413,7 +1449,7 @@ details[open].accordion-item .accordion-panel {
 .footer-heading {
   font-family: var(--font-display);
   font-weight: 600;
-  color: var(--marine-400);
+  color: var(--brand-accent-400);
   margin: 0 0 0.75rem;
 }
 
@@ -1663,31 +1699,31 @@ details[open].accordion-item .accordion-panel {
 
 /* ——— Next.js vitrine overrides ——— */
 
-.section-navy {
-  background: linear-gradient(165deg, var(--navy-950) 0%, var(--navy-800) 100%);
+.section-brand {
+  background: linear-gradient(165deg, var(--brand-950) 0%, var(--brand-800) 100%);
   color: rgba(255, 255, 255, 0.92);
 }
 
-.section-navy h2,
-.section-navy h3 {
+.section-brand h2,
+.section-brand h3 {
   color: var(--white);
 }
 
-.section-navy .section-header p {
+.section-brand .section-header p {
   color: rgba(255, 255, 255, 0.72);
 }
 
-.section-navy .stat-card {
+.section-brand .stat-card {
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(44, 82, 130, 0.45);
+  border: 1px solid rgba(166, 124, 82, 0.45);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
-.section-navy .stat-card strong {
+.section-brand .stat-card strong {
   color: var(--white);
 }
 
-.section-navy .stat-card span {
+.section-brand .stat-card span {
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -1727,7 +1763,7 @@ details[open].accordion-item .accordion-panel {
 
 /* Certifications premium */
 .proof-premium {
-  background: linear-gradient(165deg, var(--navy-950) 0%, var(--navy-800) 55%, #1a3050 100%);
+  background: linear-gradient(165deg, var(--brand-950) 0%, var(--brand-800) 55%, #2a3545 100%);
   padding: 5rem 0;
 }
 
@@ -1749,15 +1785,15 @@ details[open].accordion-item .accordion-panel {
   text-align: center;
   padding: 1.75rem 1.25rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(44, 82, 130, 0.45);
+  border: 1px solid rgba(166, 124, 82, 0.45);
   border-radius: var(--radius);
   transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .proof-badge:hover {
   transform: translateY(-4px);
-  border-color: var(--marine-400);
-  box-shadow: 0 12px 40px rgba(44, 82, 130, 0.2);
+  border-color: var(--brand-accent-400);
+  box-shadow: 0 12px 40px rgba(166, 124, 82, 0.2);
 }
 
 .proof-badge-icon {
@@ -1768,7 +1804,7 @@ details[open].accordion-item .accordion-panel {
   height: 56px;
   margin: 0 auto 1rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--marine-600), var(--marine-500));
+  background: linear-gradient(135deg, var(--brand-accent-600), var(--brand-accent-500));
   color: var(--white);
   font-family: var(--font-display);
   font-weight: 800;
@@ -1797,7 +1833,7 @@ details[open].accordion-item .accordion-panel {
 }
 
 .footer-credits a {
-  color: var(--marine-400);
+  color: var(--brand-accent-400);
   text-decoration: none;
   font-weight: 600;
 }
@@ -1821,26 +1857,26 @@ details[open].accordion-item .accordion-panel {
   justify-content: center;
 }
 
-/* FAQ sur fond navy — texte lisible dans l’accordéon */
-.section-navy .faq-accordion {
+/* FAQ sur fond ardoise — texte lisible dans l’accordéon */
+.section-brand .faq-accordion {
   margin-top: 1.5rem;
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.section-navy .accordion-item {
+.section-brand .accordion-item {
   background: var(--white);
-  border-color: rgba(44, 82, 130, 0.35);
+  border-color: rgba(166, 124, 82, 0.35);
 }
 
-.section-navy .accordion-trigger,
-.section-navy details.accordion-item > summary {
-  color: var(--navy-900);
+.section-brand .accordion-trigger,
+.section-brand details.accordion-item > summary {
+  color: var(--brand-900);
 }
 
-.section-navy .accordion-panel,
-.section-navy .accordion-panel p {
+.section-brand .accordion-panel,
+.section-brand .accordion-panel p {
   color: var(--text);
 }
 
@@ -1891,11 +1927,11 @@ details[open] > summary.accordion-trigger::after {
 
 .cpf-simulator-form input[type="number"],
 .cpf-simulator-form input,
-.section-navy .cpf-simulator-form .form-group input {
-  color: var(--navy-900);
+.section-brand .cpf-simulator-form .form-group input {
+  color: var(--brand-900);
   background: var(--white);
   border: 1px solid #cbd5e1;
-  -webkit-text-fill-color: var(--navy-900);
+  -webkit-text-fill-color: var(--brand-900);
 }
 
 .cpf-simulator-form input::placeholder {
@@ -1903,17 +1939,17 @@ details[open] > summary.accordion-trigger::after {
 }
 
 .cpf-simulator-form .form-group label {
-  color: var(--navy-900);
+  color: var(--brand-900);
 }
 
 .cpf-simulator-result {
   margin-top: 1rem;
   font-weight: 600;
-  color: var(--navy-900);
+  color: var(--brand-900);
   background: rgba(255, 255, 255, 0.95);
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  border-left: 4px solid var(--marine-600);
+  border-left: 4px solid var(--brand-accent-600);
 }
 
 /* Pages portail (connexion / dépôt) */
@@ -1945,9 +1981,9 @@ details[open] > summary.accordion-trigger::after {
 
 /* Bandeau dépôt / connexion */
 .portal-cta-band {
-  background: linear-gradient(135deg, var(--navy-800), var(--navy-950));
+  background: linear-gradient(135deg, var(--brand-800), var(--brand-950));
   padding: 2.5rem 0;
-  border-bottom: 3px solid var(--marine-600);
+  border-bottom: 3px solid var(--brand-accent-600);
 }
 
 .portal-cta-inner {
@@ -1996,14 +2032,14 @@ details[open] > summary.accordion-trigger::after {
 }
 
 .btn-outline-dark {
-  color: var(--navy-800);
-  border: 2px solid var(--navy-200);
+  color: var(--brand-800);
+  border: 2px solid var(--brand-200);
   background: var(--white);
 }
 
 .btn-outline-dark:hover {
-  border-color: var(--marine-600);
-  color: var(--navy-900);
+  border-color: var(--brand-accent-600);
+  color: var(--brand-900);
 }
 
 /* Formation DGESP — témoignage + e-learning */
@@ -2036,13 +2072,13 @@ details[open] > summary.accordion-trigger::after {
   gap: 1.25rem;
   align-items: flex-start;
   margin: 0;
-  border-left: 4px solid var(--marine-600);
+  border-left: 4px solid var(--brand-accent-600);
   padding-left: 1rem;
 }
 
 .dgesp-testimonial-avatar {
   border-radius: 50%;
-  border: 3px solid var(--marine-500);
+  border: 3px solid var(--brand-accent-500);
   flex-shrink: 0;
   object-fit: cover;
 }
@@ -2085,8 +2121,8 @@ details[open] > summary.accordion-trigger::after {
 
 /* Barre utilitaire (style SI.Groupe) */
 .vitrine-top-bar {
-  background: var(--navy-800);
-  border-bottom: 1px solid rgba(44, 82, 130, 0.35);
+  background: var(--brand-800);
+  border-bottom: 1px solid rgba(166, 124, 82, 0.35);
   font-size: 0.8125rem;
 }
 
@@ -2138,7 +2174,7 @@ details[open] > summary.accordion-trigger::after {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  border: 1px solid rgba(30, 58, 95, 0.08);
+  border: 1px solid rgba(47, 61, 82, 0.08);
   display: flex;
   flex-direction: column;
   transition:
@@ -2150,9 +2186,9 @@ details[open] > summary.accordion-trigger::after {
 .home-featured-card:hover,
 .home-formation-card:hover {
   transform: translateY(-6px);
-  border-color: #2c5282;
+  border-color: var(--brand-accent-600);
   box-shadow:
-    0 22px 52px rgba(44, 82, 130, 0.2),
+    0 22px 52px rgba(166, 124, 82, 0.2),
     0 0 0 1px rgba(201, 162, 39, 0.22);
 }
 
@@ -2180,12 +2216,12 @@ details[open] > summary.accordion-trigger::after {
 }
 
 .home-featured-card-body h3 a {
-  color: var(--navy-900);
+  color: var(--brand-900);
   text-decoration: none;
 }
 
 .home-featured-card-body h3 a:hover {
-  color: var(--marine-600);
+  color: var(--brand-accent-600);
 }
 
 .home-featured-meta {
@@ -2200,7 +2236,7 @@ details[open] > summary.accordion-trigger::after {
 }
 
 .home-featured-meta strong {
-  color: var(--navy-800);
+  color: var(--brand-800);
   margin-right: 0.25rem;
 }
 
@@ -2213,12 +2249,12 @@ details[open] > summary.accordion-trigger::after {
 
 .home-featured-link {
   font-weight: 600;
-  color: var(--marine-600);
+  color: var(--brand-accent-600);
   text-decoration: none;
 }
 
 .home-featured-link:hover {
-  color: var(--navy-800);
+  color: var(--brand-800);
   text-decoration: underline;
 }
 
@@ -2231,7 +2267,7 @@ details[open] > summary.accordion-trigger::after {
 .home-value-card {
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(90, 142, 196, 0.35);
+  border: 1px solid rgba(201, 168, 130, 0.35);
   border-radius: var(--radius);
   transition:
     transform 0.3s ease,
@@ -2306,10 +2342,10 @@ details[open] > summary.accordion-trigger::after {
 
 .testimonial-card {
   background: var(--white);
-  border: 1px solid rgba(30, 58, 95, 0.1);
+  border: 1px solid rgba(47, 61, 82, 0.1);
   border-radius: var(--radius);
   padding: 1.5rem;
-  box-shadow: 0 8px 28px rgba(10, 22, 40, 0.08);
+  box-shadow: 0 8px 28px rgba(26, 35, 50, 0.08);
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
@@ -2319,8 +2355,8 @@ details[open] > summary.accordion-trigger::after {
 
 .testimonial-card.is-highlighted {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(30, 58, 95, 0.16);
-  border-color: rgba(44, 82, 130, 0.35);
+  box-shadow: 0 16px 40px rgba(47, 61, 82, 0.16);
+  border-color: rgba(166, 124, 82, 0.35);
 }
 
 .testimonial-card-header {
@@ -2335,7 +2371,7 @@ details[open] > summary.accordion-trigger::after {
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--marine-500);
+  border: 2px solid var(--brand-accent-500);
   flex-shrink: 0;
 }
 
@@ -2351,7 +2387,7 @@ details[open] > summary.accordion-trigger::after {
   margin: 0;
   font-weight: 700;
   font-size: 0.95rem;
-  color: var(--navy-900);
+  color: var(--brand-900);
 }
 
 .testimonial-card-role {
@@ -2390,7 +2426,7 @@ details[open] > summary.accordion-trigger::after {
 }
 
 .testimonials-dots button.is-active {
-  background: var(--marine-600);
+  background: var(--brand-accent-600);
   transform: scale(1.25);
 }
 

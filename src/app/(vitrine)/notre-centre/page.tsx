@@ -68,7 +68,7 @@ export default function NotreCentrePage() {
         </div>
       </Section>
 
-      <Section variant="navy" title="Galerie du centre" className="reveal-on-scroll">
+      <Section variant="brand" title="Galerie du centre" className="reveal-on-scroll">
         <div className="gallery-grid reveal-on-scroll reveal-stagger" style={{ marginTop: "1.5rem" }}>
           {GALLERY.map((item) => (
             <figure key={item.label} className="gallery-item">
@@ -100,7 +100,7 @@ export default function NotreCentrePage() {
             </ul>
             <p>
               <Link className="btn btn-gold" href="/formation-dgesp">Formation DGESP</Link>{" "}
-              <Link className="btn btn-navy" href="/contact">Contact</Link>
+              <Link className="btn btn-brand" href="/contact">Contact</Link>
             </p>
           </article>
           <aside className="sidebar-box">

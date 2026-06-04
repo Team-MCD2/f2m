@@ -25,7 +25,7 @@ export default function HomePage() {
 
       <Section
         id="stats"
-        variant="navy"
+        variant="brand"
         title="Résultats 2024"
         subtitle="Des indicateurs qui témoignent de la qualité de notre accompagnement à Toulouse."
         className="reveal-on-scroll"
@@ -45,7 +45,7 @@ export default function HomePage() {
 
       <CertificationsBlock />
 
-      <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse" className="reveal-on-scroll">
+      <Section variant="brand" id="faq" title="FAQ — Formation DGESP Toulouse" className="reveal-on-scroll">
         <FaqAccordion />
       </Section>
 
