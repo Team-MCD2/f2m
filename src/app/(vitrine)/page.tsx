@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { CertificationsBlock } from "@/components/vitrine/certifications-block";
 import { FaqAccordion } from "@/components/vitrine/faq-accordion";
+import { HomeFeaturedFormations } from "@/components/vitrine/home/home-featured-formations";
+import { HomeFormationGrid } from "@/components/vitrine/home/home-formation-grid";
+import { HomeValues } from "@/components/vitrine/home/home-values";
 import { HomeHero } from "@/components/vitrine/home-hero";
 import { MapEmbed } from "@/components/vitrine/map-embed";
 import { PortalCtaBand } from "@/components/vitrine/portal-cta-band";
@@ -8,14 +11,16 @@ import { Section } from "@/components/vitrine/section";
 import { TestimonialsCarousel } from "@/components/vitrine/testimonials-carousel";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
 import { F2M_SITE } from "@/lib/vitrine/site-config";
-import { TOULOUSE_IMAGE, VITRINE_IMAGES } from "@/lib/vitrine/images";
+import { TOULOUSE_IMAGE } from "@/lib/vitrine/images";
 
 export default function HomePage() {
   return (
     <>
       <HomeHero />
 
-      <PortalCtaBand />
+      <HomeFormationGrid />
+
+      <HomeFeaturedFormations />
 
       <Section
         id="stats"
@@ -43,14 +48,14 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section id="intro" variant="light">
+      <Section id="notre-centre-home" variant="light">
         <div className="media-band">
           <div>
-            <h2 id="intro-title">Centre de formation à Toulouse</h2>
+            <h2 id="notre-centre-home-title">Notre centre à Toulouse</h2>
             <p>
-              F2M Consulting accueille dirigeants et professionnels de la sécurité privée
-              dans des locaux modernes, à deux pas du périphérique sud — formation
-              présentielle et distanciel complémentaires.
+              F2M Consulting accueille dirigeants et professionnels de la sécurité
+              privée dans des locaux modernes, à deux pas du périphérique sud —
+              formation présentielle et distanciel complémentaires.
             </p>
             <p>
               <Link className="btn btn-gold" href="/notre-centre">
@@ -71,6 +76,8 @@ export default function HomePage() {
           </div>
         </div>
       </Section>
+
+      <HomeValues />
 
       <CertificationsBlock />
 
@@ -105,17 +112,27 @@ export default function HomePage() {
             <MapEmbed />
           </div>
           <aside className="sidebar-box">
-            <h3>Double appel à l&apos;action</h3>
-            <p>Choisissez la prochaine étape adaptée à votre projet professionnel.</p>
-            <Link className="btn btn-gold" href="/formation-dgesp" style={{ width: "100%", marginBottom: "0.75rem", display: "block", textAlign: "center" }}>
+            <h3>Prochaine étape</h3>
+            <p>Choisissez le parcours adapté à votre projet professionnel.</p>
+            <Link
+              className="btn btn-gold"
+              href="/formation-dgesp"
+              style={{ width: "100%", marginBottom: "0.75rem", display: "block", textAlign: "center" }}
+            >
               Formation DGESP
             </Link>
-            <Link className="btn btn-navy" href="/contact" style={{ width: "100%", display: "block", textAlign: "center" }}>
+            <Link
+              className="btn btn-navy"
+              href="/contact"
+              style={{ width: "100%", display: "block", textAlign: "center" }}
+            >
               Nous contacter
             </Link>
           </aside>
         </div>
       </Section>
+
+      <PortalCtaBand />
     </>
   );
 }

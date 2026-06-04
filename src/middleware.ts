@@ -3,6 +3,16 @@ import { NextResponse } from "next/server";
 
 const isPublicRoute = createRouteMatcher([
   "/",
+  "/notre-centre",
+  "/formation-dgesp",
+  "/vae-dgesp",
+  "/financements",
+  "/blog(.*)",
+  "/e-learning",
+  "/contact",
+  "/mentions-legales",
+  "/politique-confidentialite",
+  "/cgv",
   "/connexion(.*)",
   "/connexion/callback",
   "/deposer-dossier",

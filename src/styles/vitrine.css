@@ -506,23 +506,15 @@ h4 {
   z-index: 0;
 }
 
-.hero-poster-img {
+.hero-video-wrap video,
+.hero-video-wrap .hero-video,
+.hero-poster-fallback {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
-}
-
-.hero-video {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.42;
 }
 
 .hero-overlay {
@@ -534,12 +526,12 @@ h4 {
     rgba(21, 42, 74, 0.78) 45%,
     rgba(44, 82, 130, 0.55) 100%
   );
-  z-index: 2;
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   padding: 4rem 0 5rem;
 }
 
@@ -1821,4 +1813,202 @@ details[open] > summary.accordion-trigger::after {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+/* Accueil — grilles type SI.Groupe */
+.home-formation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .home-formation-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .home-formation-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.home-formation-tile {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid rgba(30, 58, 95, 0.1);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.home-formation-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 44px rgba(10, 22, 40, 0.14);
+  border-color: rgba(44, 82, 130, 0.35);
+}
+
+.home-formation-tile-img {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--navy-800);
+}
+
+.home-formation-tile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.home-formation-tile:hover .home-formation-tile-img img {
+  transform: scale(1.05);
+}
+
+.home-formation-tile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1rem 1.15rem;
+}
+
+.home-formation-tile-body strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--navy-900);
+}
+
+.home-formation-tile-body span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.home-featured-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .home-featured-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.home-featured-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(30, 58, 95, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.home-featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 44px rgba(10, 22, 40, 0.12);
+}
+
+.home-featured-card-media {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.home-featured-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.home-featured-card:hover .home-featured-card-media img {
+  transform: scale(1.04);
+}
+
+.home-featured-card-body {
+  padding: 1.35rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-featured-card-body h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1.1rem;
+}
+
+.home-featured-card-body h3 a {
+  text-decoration: none;
+  color: var(--navy-900);
+}
+
+.home-featured-card-body p {
+  margin: 0 0 1rem;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.home-featured-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--marine-600);
+  text-decoration: none;
+}
+
+.home-featured-link:hover {
+  color: var(--navy-800);
+  text-decoration: underline;
+}
+
+.home-values-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .home-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-values-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.home-value-card {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(44, 82, 130, 0.45);
+  border-radius: var(--radius);
+}
+
+.home-value-card h3 {
+  margin: 0 0 0.75rem;
+  color: var(--white);
+  font-size: 1.15rem;
+}
+
+.home-value-card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.55;
 }
