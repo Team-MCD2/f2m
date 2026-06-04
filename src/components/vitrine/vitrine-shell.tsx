@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-import { DM_Sans, Syne } from "next/font/google";
-import { HomeTopBar } from "@/components/vitrine/home/home-top-bar";
+import { DM_Sans, Space_Grotesk, Syne } from "next/font/google";
 import { SiteFooter } from "@/components/vitrine/site-footer";
 import { SiteHeader } from "@/components/vitrine/site-header";
 import { VitrineAnimations } from "@/components/vitrine/vitrine-animations";
@@ -21,14 +20,22 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
 export function VitrineShell({ children }: { children: ReactNode }) {
   return (
-    <div className={`vitrine-root ${syne.variable} ${dmSans.variable} ${dmSans.className}`}>
+    <div
+      className={`vitrine-root ${syne.variable} ${dmSans.variable} ${spaceGrotesk.variable} ${dmSans.className}`}
+    >
       <a href="#main" className="sr-only">
         Aller au contenu principal
       </a>
       <VitrineAnimations />
-      <HomeTopBar />
       <SiteHeader />
       <main id="main" className="vitrine-main">
         {children}

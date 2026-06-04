@@ -8,7 +8,7 @@ function docStyles(): string {
     body { font-family: Georgia, 'Times New Roman', serif; color: #1e293b; padding: 40px; max-width: 800px; margin: 0 auto; background: #fff; }
     .header { border-bottom: 3px solid #1e3a5f; padding-bottom: 16px; margin-bottom: 32px; display: flex; justify-content: space-between; align-items: flex-start; }
     .logo { font-size: 22px; font-weight: bold; color: #1e3a5f; }
-    .logo span { color: #c9a227; }
+    .logo span { color: #ea580c; }
     .subtitle { font-size: 11px; color: #64748b; margin-top: 4px; }
     h1 { font-size: 20px; color: #1e3a5f; margin-bottom: 24px; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
     .field { margin-bottom: 12px; display: flex; gap: 8px; }
