@@ -31,26 +31,35 @@ export const VITRINE_IMAGES = {
     personnelFallback: U("photo-1507003211169-0a1dd7228f2d", 600),
   },
   elearningCards: {
-    classes: U("photo-1588196749592-7cec0da80027", 600),
-    classesFallback: U("photo-1588196749592-7cec0da80027", 600),
-    guide: U("photo-1454165804603-c3d57bc86b40", 600),
-    guideFallback: U("photo-1454165804603-c3d57bc86b40", 600),
+    classes:
+      "https://tse3.mm.bing.net/th/id/OIP.BA_iwS9sOBAR0xWBr6bPpAHaDt?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    classesFallback:
+      "https://tse3.mm.bing.net/th/id/OIP.BA_iwS9sOBAR0xWBr6bPpAHaDt?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    guide:
+      "https://tse1.mm.bing.net/th/id/OIP.Clp_cVcaUJj6zxx4k3PoYAHaDt?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    guideFallback:
+      "https://tse1.mm.bing.net/th/id/OIP.Clp_cVcaUJj6zxx4k3PoYAHaDt?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
     mobile: U("photo-1512941937669-90a1b58e7e9c", 600),
     mobileFallback: U("photo-1512941937669-90a1b58e7e9c", 600),
   },
   blogPosts: {
     cnaps: U("photo-1563986768609-322da13575f3", 600),
-    gardiennage: U("photo-1563986768609-322da13575f3", 600),
-    gardiennageFallback: U("photo-1563986768609-322da13575f3", 600),
-    cpf: U("photo-1554224155-6726b3ff858f", 600),
-    cpfFallback: U("photo-1454165804603-c3d57bc86b40", 600),
+    gardiennage:
+      "https://tse2.mm.bing.net/th/id/OIP.qifb1eBjOPv0Bl_mivOmVAHaE8?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    gardiennageFallback:
+      "https://tse2.mm.bing.net/th/id/OIP.qifb1eBjOPv0Bl_mivOmVAHaE8?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    cpf:
+      "https://tse2.mm.bing.net/th/id/OIP.UJmznf_NE21UuJzbP6JlAQHaGN?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
+    cpfFallback:
+      "https://tse2.mm.bing.net/th/id/OIP.UJmznf_NE21UuJzbP6JlAQHaGN?r=0&cb=thfc1falcon&rs=1&pid=ImgDetMain&o=7&rm=3",
     convention: U("photo-1450101499163-c8848c66ca85", 600),
   },
   gallery: {
     cours: U("photo-1524178232363-1fb2b075b655", 600),
     coworking: U("photo-1497366216548-37526070297c", 600),
     accueil: U("photo-1560472354-b33ff0c44a43", 600),
-    visio: U("photo-1588196749592-7cec0da80027", 600),
+    visio:
+      "https://www.dtp-ag.com/wp-content/uploads/visioconference-informatique-mobilier-salle-quel.jpeg",
   },
   avatars: [
     U("photo-1507003211169-0a1dd7228f2d", 150),

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CertificationsBlock } from "@/components/vitrine/certifications-block";
+import { FaqAccordion } from "@/components/vitrine/faq-accordion";
 import { HomeHero } from "@/components/vitrine/home-hero";
 import { MapEmbed } from "@/components/vitrine/map-embed";
 import { PortalCtaBand } from "@/components/vitrine/portal-cta-band";
@@ -80,6 +81,10 @@ export default function HomePage() {
         subtitle="Témoignages de dirigeants et stagiaires formés à Toulouse."
       >
         <TestimonialsCarousel />
+      </Section>
+
+      <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse">
+        <FaqAccordion />
       </Section>
 
       <Section id="map-home" variant="navy">

@@ -11,6 +11,22 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "a.travel-assets.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.dtp-ag.com",
+      },
+      {
+        protocol: "https",
+        hostname: "tse1.mm.bing.net",
+      },
+      {
+        protocol: "https",
+        hostname: "tse2.mm.bing.net",
+      },
+      {
+        protocol: "https",
+        hostname: "tse3.mm.bing.net",
+      },
     ],
   },
 };

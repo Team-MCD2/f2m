@@ -30,6 +30,11 @@ export function VitrineImage({
 }: VitrineImageProps) {
   const [currentSrc, setCurrentSrc] = useState(src);
   const isExternal = currentSrc.startsWith("http");
+  const unoptimized =
+    isExternal &&
+    (currentSrc.includes("?") ||
+      /\.bing\.net/i.test(currentSrc) ||
+      /dtp-ag\.com/i.test(currentSrc));
 
   const handleError = () => {
     if (fallback && currentSrc !== fallback) {
@@ -49,7 +54,7 @@ export function VitrineImage({
         priority={priority}
         loading={priority ? undefined : "lazy"}
         onError={handleError}
-        unoptimized={!isExternal && currentSrc.endsWith(".svg")}
+        unoptimized={unoptimized || (!isExternal && currentSrc.endsWith(".svg"))}
       />
     );
   }
@@ -65,7 +70,7 @@ export function VitrineImage({
       priority={priority}
       loading={priority ? undefined : "lazy"}
       onError={handleError}
-      unoptimized={!isExternal && currentSrc.endsWith(".svg")}
+      unoptimized={unoptimized || (!isExternal && currentSrc.endsWith(".svg"))}
     />
   );
 }

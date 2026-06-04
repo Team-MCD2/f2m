@@ -1,22 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Syne } from "next/font/google";
-import { SiteFooter } from "@/components/vitrine/site-footer";
-import { SiteHeader } from "@/components/vitrine/site-header";
-import "@/styles/vitrine.css";
-
-const syne = Syne({
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-syne",
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-dm",
-  display: "swap",
-});
+import { VitrineShell } from "@/components/vitrine/vitrine-shell";
 
 export const metadata: Metadata = {
   title: {
@@ -30,14 +13,5 @@ export const metadata: Metadata = {
 export default function VitrineLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <div className={`vitrine-root ${syne.variable} ${dmSans.variable} ${dmSans.className}`}>
-      <a href="#main" className="sr-only">
-        Aller au contenu principal
-      </a>
-      <SiteHeader />
-      <main id="main">{children}</main>
-      <SiteFooter />
-    </div>
-  );
+  return <VitrineShell>{children}</VitrineShell>;
 }

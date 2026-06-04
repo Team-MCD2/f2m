@@ -23,18 +23,44 @@ export const F2M_SITE = {
     "https://www.openstreetmap.org/export/embed.html?bbox=1.3928%2C43.5600%2C1.4128%2C43.5720&layer=mapnik&marker=43.5660%2C1.4028",
 } as const;
 
-export const VITRINE_NAV = [
+export type VitrineNavLink = {
+  label: string;
+  href: string;
+  highlight?: boolean;
+};
+
+export type VitrineNavGroup = {
+  label: string;
+  children: readonly VitrineNavLink[];
+};
+
+export type VitrineNavItem = VitrineNavLink | VitrineNavGroup;
+
+export function isNavGroup(item: VitrineNavItem): item is VitrineNavGroup {
+  return "children" in item;
+}
+
+export const VITRINE_NAV: readonly VitrineNavItem[] = [
   { label: "Accueil", href: "/" },
   { label: "Notre Centre", href: "/notre-centre" },
-  { label: "Formation DGESP", href: "/formation-dgesp", highlight: true },
-  { label: "VAE", href: "/vae-dgesp" },
+  {
+    label: "Formations",
+    children: [
+      { label: "Formation DGESP", href: "/formation-dgesp", highlight: true },
+      { label: "VAE DGESP", href: "/vae-dgesp" },
+    ],
+  },
   { label: "Financements", href: "/financements" },
   { label: "Blog", href: "/blog" },
   { label: "E-learning", href: "/e-learning" },
-  { label: "Contact", href: "/contact" },
-  { label: "Déposer un dossier", href: "/deposer-dossier" },
-  { label: "Connexion", href: "/connexion" },
-] as const;
+  {
+    label: "Espace candidat",
+    children: [
+      { label: "Déposer un dossier", href: "/deposer-dossier" },
+      { label: "Connexion", href: "/connexion" },
+    ],
+  },
+];
 
 export const LEGAL_LINKS = [
   { label: "Mentions légales", href: "/mentions-legales" },

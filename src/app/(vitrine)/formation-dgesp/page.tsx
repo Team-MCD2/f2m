@@ -4,6 +4,7 @@ import { PageHero } from "@/components/vitrine/page-hero";
 import { Section } from "@/components/vitrine/section";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
 import { F2M_SITE } from "@/lib/vitrine/site-config";
+import { FaqAccordion } from "@/components/vitrine/faq-accordion";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
 
 export const metadata: Metadata = {
@@ -17,17 +18,6 @@ const BLOCS = [
   { title: "Bloc 2 — Organiser les prestations", text: "Planification opérationnelle, qualité de service et relation client." },
   { title: "Bloc 3 — Encadrer les équipes", text: "Management, déontologie, prévention des risques professionnels." },
   { title: "Bloc 4 — Certification & jurys", text: "Préparation aux épreuves, dossier professionnel et soutenance." },
-] as const;
-
-const FAQ = [
-  { q: "Qu'est-ce que le titre DGESP ?", a: "Le RNCP 36654 niveau 5 certifie le dirigeant d'entreprise de sécurité privée (DGESP)." },
-  { q: "Durée et rythme ?", a: "282 h sur 8 à 12 mois selon votre profil — présentiel Toulouse et classes virtuelles." },
-  { q: "Financement ?", a: "CPF, OPCO, France Travail ou fonds propres — voir la page Financements et notre simulateur CPF." },
-  { q: "VAE possible ?", a: "Oui — consultez la page VAE DGESP pour les étapes et l'accompagnement dossier." },
-  { q: "Prérequis d'entrée ?", a: "Expérience ou projet dirigeant SSP, niveau bac+2 recommandé, entretien de positionnement obligatoire." },
-  { q: "Où se déroule la formation ?", a: "Au centre F2M à Toulouse (244 route de Seysses) et sur la plateforme LMS Dokeos." },
-  { q: "Qualiopi ?", a: "F2M Consulting est organisme certifié Qualiopi — éligibilité aux financements publics et entreprise." },
-  { q: "Comment candidater ?", a: "Déposez votre dossier en ligne ou contactez-nous pour un rendez-vous conseiller." },
 ] as const;
 
 export default function FormationDgespPage() {
@@ -146,16 +136,7 @@ export default function FormationDgespPage() {
       </Section>
 
       <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse">
-        <div className="faq-accordion">
-          {FAQ.map((item) => (
-            <details key={item.q} className="accordion-item">
-              <summary className="accordion-trigger">{item.q}</summary>
-              <div className="accordion-panel">
-                <p>{item.a}</p>
-              </div>
-            </details>
-          ))}
-        </div>
+        <FaqAccordion />
       </Section>
     </>
   );
