@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Toulouse">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a90c2"/>
+      <stop offset="100%" stop-color="#87ceeb"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#2563a8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#sky)"/>
+  <rect x="0" y="380" width="800" height="220" fill="#2d5016" opacity="0.6"/>
+  <rect x="0" y="420" width="800" height="80" fill="url(#water)"/>
+  <rect x="280" y="200" width="240" height="180" fill="#c9a227"/>
+  <rect x="300" y="160" width="200" height="50" fill="#8b4513"/>
+  <rect x="340" y="120" width="120" height="50" fill="#a0522d"/>
+  <rect x="370" y="90" width="60" height="40" fill="#cd853f"/>
+  <ellipse cx="400" cy="460" rx="350" ry="30" fill="rgba(30,58,95,0.4)"/>
+  <text x="400" y="560" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" font-weight="700" fill="#fff">Toulouse · Occitanie</text>
+</svg>

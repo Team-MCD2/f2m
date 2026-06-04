@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 338" role="img" aria-label="Entreprise">
+  <rect width="600" height="338" fill="#0a1628"/>
+  <rect x="150" y="80" width="300" height="160" rx="6" fill="#1e3a5f"/>
+  <rect x="180" y="110" width="50" height="50" fill="rgba(201,162,39,0.5)"/>
+  <rect x="250" y="110" width="50" height="50" fill="rgba(201,162,39,0.4)"/>
+  <rect x="320" y="110" width="50" height="50" fill="rgba(201,162,39,0.4)"/>
+  <rect x="390" y="110" width="30" height="50" fill="rgba(201,162,39,0.3)"/>
+  <rect x="180" y="175" width="240" height="8" rx="2" fill="rgba(255,255,255,0.2)"/>
+  <rect x="180" y="195" width="180" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
+  <text x="300" y="290" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#e8d48a">Plan entreprise</text>
+</svg>

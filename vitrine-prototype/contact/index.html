@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr" data-base="../" data-page="contact">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact F2M Consulting — Centre de formation Toulouse</title>
+  <meta name="description" content="Contactez F2M Consulting à Toulouse — formulaire, téléphone 06 47 27 55 75, horaires, accès bus L4, carte." />
+  <link rel="canonical" href="https://f2mconsulting.fr/contact/" />
+  <meta property="og:site_name" content="F2M Consulting" />
+  <meta property="og:image" content="https://f2mconsulting.fr/assets/og-f2m-1200x630.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "F2M Consulting",
+    "telephone": "+33647275575",
+    "email": "contact@f2mconsulting.fr",
+    "url": "https://f2mconsulting.fr",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "244 Route de Seysses, Bât.1, 1er étage",
+      "addressLocality": "Toulouse",
+      "postalCode": "31100",
+      "addressCountry": "FR"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 43.5660, "longitude": 1.4028 },
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"18:00"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+  <main id="main">
+    <div class="page-hero page-hero--media" style="--page-hero-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&amp;fit=crop&amp;w=1600&amp;q=80')">
+      <div class="container">
+        <nav aria-label="Fil d'Ariane"><ol class="breadcrumb">
+          <li><a href="../index.html">Accueil</a></li>
+          <li aria-current="page">Contact</li>
+        </ol></nav>
+        <h1>Contactez F2M Consulting</h1>
+        <p class="lead">Premier échange par téléphone recommandé — puis complétez le formulaire pour votre projet DGESP ou VAE.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container content-grid sidebar">
+        <div data-reveal>
+          <form id="contact-multistep" class="form-steps-wrap" action="#" method="post" novalidate>
+            <div class="form-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"><div class="form-progress-bar"></div></div>
+            <div class="form-steps-wrap-inner">
+              <div class="form-step is-active">
+                <h2>Étape 1 — Votre projet</h2>
+                <div class="form-group">
+                  <label for="objet">Objet de la demande</label>
+                  <select id="objet" name="objet" required>
+                    <option value="">Choisir…</option>
+                    <option>Formation DGESP</option>
+                    <option>VAE DGESP</option>
+                    <option>Financement</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-step">
+                <h2>Étape 2 — Coordonnées</h2>
+                <div class="form-group"><label for="nom">Nom</label><input id="nom" name="nom" required /></div>
+                <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
+                <div class="form-group"><label for="tel">Téléphone</label><input id="tel" name="tel" type="tel" /></div>
+              </div>
+              <div class="form-step">
+                <h2>Étape 3 — Message</h2>
+                <div class="form-group"><label for="msg">Votre message</label><textarea id="msg" name="msg" rows="4"></textarea></div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline" data-prev hidden>Précédent</button>
+              <button type="button" class="btn btn-gold" data-next>Suivant</button>
+              <button type="submit" class="btn btn-gold" data-submit hidden>Envoyer (démo)</button>
+            </div>
+            <p class="form-success" hidden role="status">Merci — ce formulaire est une démonstration locale. En production, branchez-le à votre CRM ou service email.</p>
+          </form>
+        </div>
+        <aside class="sidebar-box" data-reveal>
+          <h3>Coordonnées</h3>
+          <address style="font-style:normal;line-height:1.8">
+            244 Route de Seysses, Bât.1, 1er étage<br />31100 Toulouse<br />
+            <a href="tel:+33647275575">06 47 27 55 75</a><br />
+            <a href="mailto:contact@f2mconsulting.fr">contact@f2mconsulting.fr</a>
+          </address>
+          <h3>Horaires</h3>
+          <p>Lun–Ven : 9h–18h<br /><em>Sur rendez-vous le samedi</em></p>
+          <h3>Transports</h3>
+          <p>Bus <strong>ligne 4</strong> — arrêt à proximité</p>
+          <div class="map-block" data-map>
+            <iframe class="map-embed" data-map-google title="Carte F2M Consulting — Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen src="https://maps.google.com/maps?q=244+Route+de+Seysses,+B%C3%A2t.1,+1er+%C3%A9tage,+31100+Toulouse,+France&amp;ll=43.5660,1.4028&amp;z=16&amp;hl=fr&amp;ie=UTF8&amp;output=embed"></iframe>
+            <iframe class="map-embed" data-map-osm title="Carte F2M Consulting — OpenStreetMap" loading="lazy" hidden></iframe>
+            <div class="map-actions">
+              <a data-map-link href="https://www.google.com/maps/search/?api=1&amp;query=244+Route+de+Seysses,+B%C3%A2t.1,+1er+%C3%A9tage,+31100+Toulouse&amp;center=43.5660%2C1.4028" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps</a>
+              <span aria-hidden="true">·</span>
+              <button type="button" data-map-toggle-osm aria-pressed="false">Afficher OpenStreetMap (alternative)</button>
+            </div>
+          </div>
+          <p style="margin-top:1rem"><a class="btn btn-gold" href="../formation-dgesp/index.html" style="width:100%">Formation DGESP</a></p>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="../js/site-config.js" defer></script>
+  <script src="../js/layout.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

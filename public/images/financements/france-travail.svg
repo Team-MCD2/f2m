@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 338" role="img" aria-label="France Travail">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#152a4a"/>
+      <stop offset="100%" stop-color="#0a1628"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="338" fill="url(#bg)"/>
+  <rect x="120" y="60" width="360" height="200" rx="8" fill="rgba(255,255,255,0.08)" stroke="rgba(201,162,39,0.4)" stroke-width="2"/>
+  <rect x="160" y="100" width="80" height="60" rx="4" fill="#c9a227" opacity="0.9"/>
+  <rect x="260" y="100" width="180" height="12" rx="2" fill="rgba(255,255,255,0.3)"/>
+  <rect x="260" y="125" width="140" height="12" rx="2" fill="rgba(255,255,255,0.2)"/>
+  <rect x="260" y="150" width="160" height="12" rx="2" fill="rgba(255,255,255,0.15)"/>
+  <text x="300" y="290" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" font-weight="700" fill="#e8d48a">France Travail</text>
+</svg>

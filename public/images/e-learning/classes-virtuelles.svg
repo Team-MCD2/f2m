@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 338" role="img" aria-label="Classes virtuelles">
+  <rect width="600" height="338" fill="#0f1f38"/>
+  <rect x="80" y="60" width="440" height="200" rx="10" fill="#1e3a5f" stroke="rgba(201,162,39,0.4)" stroke-width="2"/>
+  <rect x="100" y="80" width="120" height="80" rx="6" fill="#c9a227" opacity="0.8"/>
+  <rect x="240" y="80" width="120" height="80" rx="6" fill="rgba(255,255,255,0.15)"/>
+  <rect x="380" y="80" width="120" height="80" rx="6" fill="rgba(255,255,255,0.15)"/>
+  <circle cx="160" cy="120" r="20" fill="#0f1f38"/>
+  <rect x="100" y="180" width="400" height="10" rx="3" fill="rgba(255,255,255,0.2)"/>
+  <rect x="100" y="200" width="280" height="10" rx="3" fill="rgba(255,255,255,0.12)"/>
+  <text x="300" y="310" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" font-weight="600" fill="#e8d48a">Classes virtuelles</text>
+</svg>

@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Disallow: /mentions-legales.html
+Disallow: /politique-confidentialite.html
+
+Sitemap: https://f2mconsulting.fr/sitemap.xml
