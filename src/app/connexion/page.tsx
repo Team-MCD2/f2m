@@ -10,8 +10,8 @@ export const metadata = {
 export default function ConnexionPage() {
   return (
     <VitrineShell>
-      <section className="section section-alt">
-        <div className="container portal-page">
+      <section className="section section-alt reveal-on-scroll">
+        <div className="container portal-page reveal-on-scroll" data-reveal>
           <header className="portal-page-header">
             <h1>Connexion</h1>
             <p>Accédez à votre espace candidat, partenaire ou administrateur.</p>

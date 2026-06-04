@@ -728,10 +728,13 @@ h4 {
     border-color 0.3s ease;
 }
 
-.card:hover {
+.card:hover,
+.card--media:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 44px rgba(10, 22, 40, 0.12);
-  border-color: rgba(44, 82, 130, 0.35);
+  border-color: #2c5282;
+  box-shadow:
+    0 16px 44px rgba(44, 82, 130, 0.18),
+    0 0 0 1px rgba(201, 162, 39, 0.22);
 }
 
 .card--media {
@@ -1095,6 +1098,22 @@ h4 {
   padding: 0 1.25rem 1rem;
 }
 
+details[open].accordion-item .accordion-panel {
+  animation: accordionReveal 0.32s ease forwards;
+}
+
+@keyframes accordionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Timeline */
 .timeline {
   position: relative;
@@ -1132,6 +1151,30 @@ h4 {
 .js .stepper.is-visible .stepper-item {
   animation: stepIn 0.55s ease forwards;
   animation-delay: var(--step-delay, 0s);
+}
+
+.js .stepper.is-visible .stepper-item:nth-child(1) {
+  --step-delay: 0.05s;
+}
+
+.js .stepper.is-visible .stepper-item:nth-child(2) {
+  --step-delay: 0.12s;
+}
+
+.js .stepper.is-visible .stepper-item:nth-child(3) {
+  --step-delay: 0.19s;
+}
+
+.js .stepper.is-visible .stepper-item:nth-child(4) {
+  --step-delay: 0.26s;
+}
+
+.js .stepper.is-visible .stepper-item:nth-child(5) {
+  --step-delay: 0.33s;
+}
+
+.js .stepper.is-visible .stepper-item:nth-child(6) {
+  --step-delay: 0.4s;
 }
 
 .stepper-item {
@@ -1183,12 +1226,19 @@ h4 {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  border: 2px solid transparent;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .gallery-item:hover {
   transform: scale(1.02);
-  box-shadow: 0 16px 40px rgba(10, 22, 40, 0.18);
+  border-color: #2c5282;
+  box-shadow:
+    0 16px 40px rgba(44, 82, 130, 0.2),
+    0 0 0 1px rgba(201, 162, 39, 0.2);
 }
 
 .gallery-item-zoom {
@@ -1220,14 +1270,19 @@ h4 {
   box-shadow: var(--shadow);
   text-decoration: none;
   color: inherit;
+  border: 1px solid rgba(30, 58, 95, 0.08);
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .blog-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 18px 48px rgba(10, 22, 40, 0.14);
+  border-color: #2c5282;
+  box-shadow:
+    0 18px 48px rgba(44, 82, 130, 0.16),
+    0 0 0 1px rgba(201, 162, 39, 0.22);
 }
 
 .blog-card-media {
@@ -1553,9 +1608,23 @@ h4 {
 
   .stat-card:hover,
   .card:hover,
+  .card--media:hover,
+  .home-featured-card:hover,
+  .home-formation-card:hover,
+  .home-value-card:hover,
   .proof-item:hover,
   .gallery-item:hover,
   .blog-card:hover {
+    transform: none;
+  }
+
+  details[open].accordion-item .accordion-panel {
+    animation: none;
+  }
+
+  .js .stepper.is-visible .stepper-item {
+    animation: none;
+    opacity: 1;
     transform: none;
   }
 
@@ -2063,7 +2132,8 @@ details[open] > summary.accordion-trigger::after {
   gap: 1.75rem;
 }
 
-.home-featured-card {
+.home-featured-card,
+.home-formation-card {
   background: var(--white);
   border-radius: var(--radius);
   overflow: hidden;
@@ -2077,10 +2147,13 @@ details[open] > summary.accordion-trigger::after {
     border-color 0.3s ease;
 }
 
-.home-featured-card:hover {
+.home-featured-card:hover,
+.home-formation-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 52px rgba(30, 58, 95, 0.22);
-  border-color: rgba(44, 82, 130, 0.2);
+  border-color: #2c5282;
+  box-shadow:
+    0 22px 52px rgba(44, 82, 130, 0.2),
+    0 0 0 1px rgba(201, 162, 39, 0.22);
 }
 
 .home-featured-card-media {
@@ -2160,6 +2233,16 @@ details[open] > summary.accordion-trigger::after {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(90, 142, 196, 0.35);
   border-radius: var(--radius);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.home-value-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(201, 162, 39, 0.55);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 
 .home-value-card h3 {

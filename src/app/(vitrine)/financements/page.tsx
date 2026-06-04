@@ -25,16 +25,18 @@ export default function FinancementsPage() {
         ]}
       />
 
-      <Section variant="light">
+      <Section variant="light" className="reveal-on-scroll">
         <FinancementCards />
       </Section>
 
-      <Section variant="navy" title="Simulateur CPF (indicatif)">
-        <CpfSimulator />
+      <Section variant="navy" title="Simulateur CPF (indicatif)" className="reveal-on-scroll">
+        <div className="reveal-on-scroll" data-reveal>
+          <CpfSimulator />
+        </div>
       </Section>
 
-      <Section variant="light" title="Vos démarches en 4 étapes">
-        <div className="stepper" style={{ marginTop: "1.5rem" }}>
+      <Section variant="light" title="Vos démarches en 4 étapes" className="reveal-on-scroll">
+        <div className="stepper reveal-on-scroll" data-reveal style={{ marginTop: "1.5rem" }}>
           <div className="stepper-item">
             <span className="step-num">1</span>
             <h3>Entretien</h3>
@@ -56,7 +58,7 @@ export default function FinancementsPage() {
             <p>Accès LMS et planning de formation.</p>
           </div>
         </div>
-        <p style={{ marginTop: "2rem", textAlign: "center" }}>
+        <p className="reveal-on-scroll" data-reveal style={{ marginTop: "2rem", textAlign: "center" }}>
           <Link className="btn btn-gold btn-primary-glow" href="/contact">
             Aide au montage de dossier
           </Link>

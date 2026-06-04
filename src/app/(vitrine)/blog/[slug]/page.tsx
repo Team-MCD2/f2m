@@ -37,8 +37,8 @@ export default async function BlogArticlePage({ params }: Props) {
           { label: post.title },
         ]}
       />
-      <Section variant="light">
-        <div className="prose">
+      <Section variant="light" className="reveal-on-scroll">
+        <div className="prose reveal-on-scroll" data-reveal>
           {post.content.map((paragraph) => (
             <p key={paragraph.slice(0, 40)}>{paragraph}</p>
           ))}

@@ -23,6 +23,8 @@ function isAlreadyVisible(el: Element, visibleClass: string): boolean {
 
 export function VitrineAnimations() {
   useEffect(() => {
+    document.documentElement.classList.add("js");
+
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     if (reducedMotion.matches) {

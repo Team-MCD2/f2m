@@ -6,7 +6,7 @@ type FaqAccordionProps = {
 
 export function FaqAccordion({ id }: FaqAccordionProps) {
   return (
-    <div className="faq-accordion" id={id}>
+    <div className="faq-accordion reveal-on-scroll reveal-stagger" id={id}>
       {DGESP_FAQ.map((item) => (
         <details key={item.q} className="accordion-item">
           <summary className="accordion-trigger">{item.q}</summary>

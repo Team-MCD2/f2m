@@ -54,8 +54,8 @@ export default function NotreCentrePage() {
         ]}
       />
 
-      <Section variant="light" title="Équipe & intervenants" subtitle="Des professionnels du secteur SSP et du management au service de votre réussite.">
-        <div className="cards-grid">
+      <Section variant="light" title="Équipe & intervenants" subtitle="Des professionnels du secteur SSP et du management au service de votre réussite." className="reveal-on-scroll">
+        <div className="cards-grid reveal-on-scroll reveal-stagger">
           {TEAM.map((member) => (
             <article key={member.name} className="card card--media">
               <VitrineImage src={member.image} alt={member.alt} width={600} height={338} className="card-media" />
@@ -68,8 +68,8 @@ export default function NotreCentrePage() {
         </div>
       </Section>
 
-      <Section variant="navy" title="Galerie du centre">
-        <div className="gallery-grid" style={{ marginTop: "1.5rem" }}>
+      <Section variant="navy" title="Galerie du centre" className="reveal-on-scroll">
+        <div className="gallery-grid reveal-on-scroll reveal-stagger" style={{ marginTop: "1.5rem" }}>
           {GALLERY.map((item) => (
             <figure key={item.label} className="gallery-item">
               <VitrineImage src={item.src} alt={item.alt} width={600} height={450} className="gallery-photo" />
@@ -79,8 +79,8 @@ export default function NotreCentrePage() {
         </div>
       </Section>
 
-      <Section variant="light">
-        <div className="content-grid sidebar">
+      <Section variant="light" className="reveal-on-scroll">
+        <div className="content-grid sidebar reveal-on-scroll" data-reveal>
           <article className="prose">
             <h2>Accessibilité PMR</h2>
             <p>

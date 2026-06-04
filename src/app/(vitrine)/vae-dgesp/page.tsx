@@ -28,8 +28,8 @@ export default function VaeDgespPage() {
         </Link>
       </PageHero>
 
-      <Section variant="light" title="Les étapes de votre VAE">
-        <div className="stepper" style={{ marginTop: "2rem" }}>
+      <Section variant="light" title="Les étapes de votre VAE" className="reveal-on-scroll">
+        <div className="stepper reveal-on-scroll" data-reveal style={{ marginTop: "2rem" }}>
           <div className="stepper-item"><span className="step-num">1</span><h3>Recevabilité</h3><p>Entretien et analyse de votre parcours (1 an minimum d&apos;activité dirigeante).</p></div>
           <div className="stepper-item"><span className="step-num">2</span><h3>Livret 1</h3><p>Dossier de faisabilité déposé auprès du certificateur.</p></div>
           <div className="stepper-item"><span className="step-num">3</span><h3>Livret 2</h3><p>Description détaillée des activités et preuves.</p></div>
@@ -38,8 +38,8 @@ export default function VaeDgespPage() {
         </div>
       </Section>
 
-      <Section variant="navy">
-        <div className="media-band" style={{ marginBottom: "2.5rem" }}>
+      <Section variant="navy" className="reveal-on-scroll">
+        <div className="media-band reveal-on-scroll" data-reveal style={{ marginBottom: "2.5rem" }}>
           <div className="prose">
             <h2>Valoriser votre expérience terrain</h2>
             <p>
@@ -58,7 +58,7 @@ export default function VaeDgespPage() {
             />
           </div>
         </div>
-        <div className="content-grid sidebar">
+        <div className="content-grid sidebar reveal-on-scroll" data-reveal>
           <article className="prose">
             <h2>Public éligible</h2>
             <ul>

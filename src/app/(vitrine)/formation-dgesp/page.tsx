@@ -37,8 +37,8 @@ export default function FormationDgespPage() {
         </Link>
       </PageHero>
 
-      <Section variant="light">
-        <div className="media-band">
+      <Section variant="light" className="reveal-on-scroll">
+        <div className="media-band reveal-on-scroll" data-reveal>
           <div className="media-band-img-wrap">
             <VitrineImage
               src={VITRINE_IMAGES.security}
@@ -51,7 +51,7 @@ export default function FormationDgespPage() {
           </div>
           <div>
             <h2>Les 4 blocs de compétences</h2>
-            <div className="accordion" style={{ marginTop: "1.5rem" }}>
+            <div className="accordion reveal-on-scroll reveal-stagger" style={{ marginTop: "1.5rem" }}>
               {BLOCS.map((bloc, i) => (
                 <details key={bloc.title} className="accordion-item" open={i === 0}>
                   <summary className="accordion-trigger">{bloc.title}</summary>
@@ -63,8 +63,8 @@ export default function FormationDgespPage() {
         </div>
       </Section>
 
-      <Section variant="navy" title="Timeline — 282 heures">
-        <div className="timeline" style={{ marginTop: "2rem" }}>
+      <Section variant="navy" title="Timeline — 282 heures" className="reveal-on-scroll">
+        <div className="timeline reveal-on-scroll reveal-stagger" style={{ marginTop: "2rem" }}>
           <div className="timeline-item"><h3>Phase 1 — Positionnement (20 h)</h3><p>Entretien, analyse du parcours et plan de formation individualisé.</p></div>
           <div className="timeline-item"><h3>Phase 2 — Cœur de formation (200 h)</h3><p>Modules présentiel + classes virtuelles + ressources LMS.</p></div>
           <div className="timeline-item"><h3>Phase 3 — Professionnalisation (42 h)</h3><p>Mises en situation, études de cas sectorielles.</p></div>
@@ -72,8 +72,8 @@ export default function FormationDgespPage() {
         </div>
       </Section>
 
-      <Section variant="light" title="Parcours &amp; plateforme">
-        <div className="dgesp-dual-grid">
+      <Section variant="light" title="Parcours &amp; plateforme" className="reveal-on-scroll">
+        <div className="dgesp-dual-grid reveal-on-scroll reveal-stagger">
           <article className="card dgesp-testimonial-card">
             <h3>Témoignage — Bastien</h3>
             <blockquote className="dgesp-testimonial-quote">
@@ -93,7 +93,7 @@ export default function FormationDgespPage() {
                 <p className="dgesp-testimonial-author">— Bastien, dirigeant SSP</p>
               </div>
             </blockquote>
-            <Link className="btn btn-navy" href="/deposer-dossier">
+            <Link className="btn btn-navy" href="/connexion">
               Déposer un dossier
             </Link>
           </article>
@@ -135,7 +135,7 @@ export default function FormationDgespPage() {
         </div>
       </Section>
 
-      <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse">
+      <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse" className="reveal-on-scroll">
         <FaqAccordion />
       </Section>
     </>

@@ -35,8 +35,8 @@ export default function ContactPage() {
         </div>
       </PageHero>
 
-      <Section variant="light">
-        <div className="content-grid sidebar">
+      <Section variant="light" className="reveal-on-scroll">
+        <div className="content-grid sidebar reveal-on-scroll" data-reveal>
           <ContactForm />
           <aside className="sidebar-box">
             <h3>Coordonnées</h3>

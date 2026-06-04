@@ -44,7 +44,7 @@ const DISPOSITIFS = [
 
 export function FinancementCards() {
   return (
-    <div className="cards-grid">
+    <div className="cards-grid reveal-on-scroll reveal-stagger">
       {DISPOSITIFS.map((item) => (
         <article key={item.title} className="card card--media">
           <VitrineImage

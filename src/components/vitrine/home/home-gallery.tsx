@@ -33,8 +33,9 @@ export function HomeGallery() {
       variant="navy"
       title="Le centre en images"
       subtitle="Un environnement pensé pour la formation des professionnels de la sécurité privée."
+      className="reveal-on-scroll"
     >
-      <div className="gallery-grid home-gallery-grid">
+      <div className="gallery-grid home-gallery-grid reveal-on-scroll reveal-stagger">
         {GALLERY.map((item) => (
           <figure key={item.label} className="gallery-item">
             <VitrineImageZoom className="gallery-item-zoom">

@@ -79,7 +79,7 @@ export function HomeFeaturedFormations() {
     >
       <div className="home-featured-grid reveal-on-scroll reveal-stagger">
         {FEATURED.map((item) => (
-          <article key={item.href} className="home-featured-card">
+          <article key={item.href} className="home-featured-card home-formation-card">
             <Link href={item.href} className="home-featured-card-media">
               <VitrineImageZoom>
                 <VitrineImage

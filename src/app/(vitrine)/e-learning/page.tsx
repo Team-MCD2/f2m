@@ -58,8 +58,8 @@ export default function ELearningPage() {
         </a>
       </PageHero>
 
-      <Section variant="light">
-        <div className="media-band" style={{ marginBottom: "2.5rem" }}>
+      <Section variant="light" className="reveal-on-scroll">
+        <div className="media-band reveal-on-scroll" data-reveal style={{ marginBottom: "2.5rem" }}>
           <div className="media-band-img-wrap">
             <VitrineImage
               src={VITRINE_IMAGES.elearning}
@@ -81,7 +81,7 @@ export default function ELearningPage() {
             </a>
           </div>
         </div>
-        <div className="cards-grid">
+        <div className="cards-grid reveal-on-scroll reveal-stagger">
           {E_LEARNING_CARDS.map((card) => (
             <article key={card.title} className="card card--media">
               <VitrineImage
@@ -99,7 +99,7 @@ export default function ELearningPage() {
             </article>
           ))}
         </div>
-        <p style={{ marginTop: "2rem", textAlign: "center" }}>
+        <p className="reveal-on-scroll" data-reveal style={{ marginTop: "2rem", textAlign: "center" }}>
           <Link className="btn btn-navy" href="/formation-dgesp">
             Découvrir la formation DGESP
           </Link>

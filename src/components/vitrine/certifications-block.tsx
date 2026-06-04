@@ -7,7 +7,7 @@ const BADGES = [
 
 export function CertificationsBlock() {
   return (
-    <section className="proof-premium" aria-labelledby="proof-title">
+    <section className="proof-premium reveal-on-scroll" aria-labelledby="proof-title">
       <div className="container">
         <div className="section-header">
           <h2 id="proof-title">Certifications &amp; reconnaissance</h2>
@@ -16,7 +16,7 @@ export function CertificationsBlock() {
             Certifications Professionnelles.
           </p>
         </div>
-        <div className="proof-grid">
+        <div className="proof-grid reveal-on-scroll reveal-stagger">
           {BADGES.map((badge) => (
             <article key={badge.title} className="proof-badge">
               <div className="proof-badge-icon" aria-hidden="true">

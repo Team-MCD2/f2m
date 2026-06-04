@@ -25,13 +25,13 @@ export default function BlogPage() {
         ]}
       />
 
-      <Section variant="light">
-        <div className="blog-grid">
+      <Section variant="light" className="reveal-on-scroll">
+        <div className="blog-grid reveal-on-scroll reveal-stagger">
           {BLOG_POSTS.map((post) => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </div>
-        <p style={{ marginTop: "2rem", textAlign: "center" }}>
+        <p className="reveal-on-scroll" data-reveal style={{ marginTop: "2rem", textAlign: "center" }}>
           <Link className="btn btn-gold" href="/formation-dgesp">
             Formation DGESP
           </Link>

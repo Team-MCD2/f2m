@@ -28,7 +28,7 @@ export function HomeValues() {
       subtitle="Ce qui guide F2M Consulting au quotidien auprès des dirigeants et professionnels que nous formons."
       className="reveal-on-scroll"
     >
-      <div className="home-values-grid">
+      <div className="home-values-grid reveal-on-scroll reveal-stagger">
         {VALUES.map((value) => (
           <article key={value.title} className="home-value-card">
             <h3>{value.title}</h3>

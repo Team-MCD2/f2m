@@ -38,13 +38,14 @@ export default function HomePage() {
         variant="light"
         title="Ils nous font confiance"
         subtitle="Témoignages de dirigeants et stagiaires formés à Toulouse."
+        className="reveal-on-scroll"
       >
         <TestimonialsSection />
       </Section>
 
       <CertificationsBlock />
 
-      <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse">
+      <Section variant="navy" id="faq" title="FAQ — Formation DGESP Toulouse" className="reveal-on-scroll">
         <FaqAccordion />
       </Section>
 
