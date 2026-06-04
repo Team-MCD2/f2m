@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/vitrine/brand-logo";
 import {
   F2M_SITE,
   LEGAL_LINKS,
@@ -12,7 +13,8 @@ export function SiteFooter() {
     <footer className="site-footer" role="contentinfo">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <p className="footer-logo">{F2M_SITE.name}</p>
+          <BrandLogo className="footer-logo-img" height={36} />
+          <p className="sr-only">{F2M_SITE.name}</p>
           <p className="footer-tagline">{F2M_SITE.tagline}</p>
           <p className="footer-keywords">{F2M_SITE.keywords}</p>
         </div>

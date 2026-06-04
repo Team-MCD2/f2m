@@ -1,5 +1,10 @@
+/** Logo officiel (script blanc sur fond noir) — public/images/logo-f2m.png */
+export const F2M_LOGO_PATH = "/images/logo-f2m.png" as const;
+
 export const F2M_SITE = {
   url: "https://f2mconsulting.fr",
+  logo: F2M_LOGO_PATH,
+  logoUrl: `https://f2mconsulting.fr${F2M_LOGO_PATH}`,
   name: "F2M Consulting",
   tagline: "Centre de formation · Cabinet conseil · Toulouse · Qualiopi",
   phone: "06 47 27 55 75",

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/vitrine/brand-logo";
 import {
   F2M_SITE,
   VITRINE_NAV,
@@ -53,8 +54,7 @@ export function SiteHeader() {
       <header className="site-header" role="banner">
         <div className="header-inner container">
           <Link className="logo" href="/" aria-label={`${F2M_SITE.name} — Accueil`}>
-            <span className="logo-mark">F2M</span>
-            <span className="logo-text">Consulting</span>
+            <BrandLogo height={44} priority />
           </Link>
           <button
             type="button"
@@ -112,10 +112,17 @@ export function SiteHeader() {
       </header>
       <a href={`tel:${F2M_SITE.phoneTel}`} className="sticky-cta" aria-label="Appeler F2M Consulting">
         <span className="sticky-cta-icon" aria-hidden="true">
-          📞
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"
+              fill="currentColor"
+            />
+          </svg>
         </span>
         <span>Appeler</span>
       </a>
     </>
   );
 }
+
+

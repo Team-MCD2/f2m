@@ -22,12 +22,21 @@
   --shadow: 0 12px 40px rgba(15, 20, 25, 0.14);
   --font-display: var(--font-syne), "Syne", system-ui, sans-serif;
   --font-body: var(--font-dm), "DM Sans", system-ui, sans-serif;
-  --font-logo: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
   --header-h: 72px;
   --focus: 0 0 0 3px var(--brand-accent-400), 0 0 0 5px var(--brand-950);
+  /* Échelle espacements 8px */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
 }
 
 .vitrine-root {
+  scroll-padding-top: var(--header-h);
   font-family: var(--font-body);
 }
 
@@ -130,26 +139,17 @@ h4 {
 
 .logo {
   display: flex;
-  align-items: baseline;
-  gap: 0.35rem;
+  align-items: center;
+  flex-shrink: 0;
   text-decoration: none;
   color: var(--white);
 }
 
-.logo-mark {
-  font-family: var(--font-logo);
-  font-weight: 700;
-  font-size: 1.35rem;
-  letter-spacing: -0.03em;
-  color: var(--white);
-}
-
-.logo-text {
-  font-family: var(--font-logo);
-  font-weight: 500;
-  font-size: 1rem;
-  letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.88);
+.brand-logo-img {
+  width: auto;
+  max-width: min(220px, 52vw);
+  object-fit: contain;
+  object-position: left center;
 }
 
 .nav-toggle {
@@ -549,7 +549,8 @@ h4 {
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 4rem 0 5rem;
+  padding-top: calc(var(--header-h) + var(--space-8));
+  padding-bottom: clamp(3.5rem, 9vh, 5.5rem);
 }
 
 .hero--home {
@@ -594,17 +595,27 @@ h4 {
 }
 
 .hero-brand-line {
-  margin: 0 0 0.85rem;
-  font-family: var(--font-logo);
-  font-weight: 600;
-  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--brand-accent-400);
+  margin: 0 0 1.25rem;
+}
+
+.hero-brand-logo {
+  max-width: min(320px, 78vw);
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.35));
+}
+
+.font-brand {
+  font-family: var(--font-brand), "Pinyon Script", "Segoe Script", cursive;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .hero-brand-typewriter {
   display: inline-block;
+  font-family: var(--font-brand), "Pinyon Script", "Segoe Script", cursive;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--white);
+  text-transform: none;
+  letter-spacing: 0.02em;
 }
 
 .typewriter-display {
@@ -672,6 +683,7 @@ h4 {
   color: var(--white);
   font-size: clamp(1.85rem, 4.2vw, 3rem);
   max-width: 22ch;
+  margin: 0 0 1rem;
 }
 
 .hero h1 {
@@ -712,14 +724,15 @@ h4 {
   font-size: 1.15rem;
   max-width: 52ch;
   color: rgba(255, 255, 255, 0.88);
-  margin-bottom: 2rem;
+  margin: 0 0 1.75rem;
+  line-height: 1.65;
 }
 
 .hero-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 2rem;
+  margin: 0 0 1.5rem;
 }
 
 .badge {
@@ -740,8 +753,18 @@ h4 {
 
 /* Sections */
 .section {
-  padding: 4.5rem 0;
+  padding: var(--space-16) 0;
   transition: background-color 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-10) 0;
+  }
+
+  .proof-premium {
+    padding: var(--space-10) 0;
+  }
 }
 
 .section-dark {
@@ -760,17 +783,35 @@ h4 {
 .section-header {
   text-align: center;
   max-width: 640px;
-  margin: 0 auto 3rem;
+  margin: 0 auto var(--space-10);
+}
+
+.section-header h2 {
+  margin: 0 0 var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    margin-bottom: var(--space-8);
+  }
 }
 
 .section-header p {
+  margin: 0;
   color: var(--text-muted);
+  line-height: 1.65;
 }
 
 /* Stats */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+}
+
+.home-featured-grid,
+.home-values-grid,
+.proof-grid {
   gap: 1.5rem;
 }
 
@@ -1029,7 +1070,7 @@ h4 {
   position: relative;
   background: linear-gradient(160deg, var(--brand-950), var(--brand-800));
   color: var(--white);
-  padding: 3rem 0 3.5rem;
+  padding: calc(var(--header-h) + var(--space-8)) 0 var(--space-10);
   overflow: hidden;
 }
 
@@ -1111,11 +1152,37 @@ h4 {
 /* Content */
 .prose {
   max-width: 72ch;
+  line-height: 1.65;
 }
 
 .prose p,
 .prose ul {
-  margin-bottom: 1rem;
+  margin: 0 0 1.25rem;
+}
+
+.prose p + p {
+  margin-top: var(--space-4);
+}
+
+.prose p:last-child,
+.prose ul:last-child {
+  margin-bottom: 0;
+}
+
+.stack-sm > * + * {
+  margin-top: var(--space-3);
+}
+
+.stack-md > * + * {
+  margin-top: var(--space-4);
+}
+
+.stack-lg > * + * {
+  margin-top: var(--space-6);
+}
+
+.section-light .prose p {
+  margin-bottom: var(--space-4);
 }
 
 .content-grid {
@@ -1345,7 +1412,7 @@ details[open].accordion-item .accordion-panel {
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .gallery-item {
@@ -1427,6 +1494,24 @@ details[open].accordion-item .accordion-panel {
   display: grid;
   gap: 2rem;
   align-items: center;
+}
+
+.home-centre-band {
+  gap: 2rem;
+}
+
+.home-centre-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.home-centre-content p {
+  margin: 0;
+}
+
+.home-centre-cta {
+  margin-top: 0.25rem;
 }
 
 @media (min-width: 768px) {
@@ -1524,12 +1609,10 @@ details[open].accordion-item .accordion-panel {
   padding-bottom: 2.5rem;
 }
 
-.footer-logo {
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--white);
-  margin: 0;
+.footer-logo-img {
+  margin-bottom: 0.75rem;
+  max-width: 180px;
+  opacity: 0.95;
 }
 
 .footer-tagline,
@@ -2229,12 +2312,33 @@ details[open] > summary.accordion-trigger::after {
 .section--align-left .section-header {
   text-align: left;
   margin-inline: 0;
+  max-width: 42rem;
+}
+
+.home-centre-band {
+  margin-top: 0;
+  gap: var(--space-8);
+}
+
+.home-contact-band h2 {
+  margin: 0 0 var(--space-3);
+  color: var(--white);
+}
+
+.home-contact-band .content-grid > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.home-contact-band .content-grid > div:first-child p {
+  margin: 0;
 }
 
 .home-featured-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 
 .home-featured-card,
@@ -2367,7 +2471,7 @@ details[open] > summary.accordion-trigger::after {
 }
 
 .home-centre-band {
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .home-contact-band h2 {

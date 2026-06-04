@@ -1,17 +1,24 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/vitrine/page-hero";
 import { Section } from "@/components/vitrine/section";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
 import { F2M_SITE } from "@/lib/vitrine/site-config";
+import { vitrineGeoMetadata } from "@/lib/vitrine/page-metadata";
 import { FaqAccordion } from "@/components/vitrine/faq-accordion";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
 
-export const metadata: Metadata = {
-  title: "Formation Dirigeant Entreprise Sécurité Privée DGESP | Toulouse",
+export const metadata = vitrineGeoMetadata("/formation-dgesp", {
+  title: "Formation DGESP Sécurité Privée Toulouse — RNCP 36654 · Qualiopi",
   description:
-    "Formation DGESP RNCP 36654 niveau 5 à Toulouse — 282h, e-learning Dokeos, programme PDF, FAQ. Organisme Qualiopi F2M Consulting.",
-};
+    "Formation DGESP RNCP 36654 niveau 5 à Toulouse (31100) — 282 h, e-learning Dokeos, Qualiopi. F2M Consulting, centre sécurité privée et CNAPS.",
+  keywords: [
+    "formation DGESP Toulouse",
+    "RNCP 36654",
+    "sécurité privée formation",
+    "Qualiopi Toulouse",
+    "dirigeant entreprise sécurité privée",
+  ],
+});
 
 const BLOCS = [
   { title: "Bloc 1 — Piloter l'entreprise SSP", text: "Stratégie, gestion financière, ressources humaines et conformité réglementaire." },

@@ -14,13 +14,13 @@ export function HomeCentreSection() {
       subtitle="Locaux modernes à deux pas du périphérique sud — formation présentielle et distanciel complémentaires."
     >
       <div className="media-band home-centre-band">
-        <div>
+        <div className="home-centre-content prose">
           <p>
             F2M Consulting accueille dirigeants et professionnels de la sécurité privée
             depuis 2012. Salles équipées, classes virtuelles et accompagnement
             individualisé pour la réussite au titre DGESP.
           </p>
-          <p>
+          <p className="home-centre-cta">
             <Link className="btn btn-gold" href="/notre-centre">
               Découvrir notre centre
             </Link>

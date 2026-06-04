@@ -1,17 +1,23 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { MapEmbed } from "@/components/vitrine/map-embed";
 import { PageHero } from "@/components/vitrine/page-hero";
 import { Section } from "@/components/vitrine/section";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
 import { F2M_SITE } from "@/lib/vitrine/site-config";
+import { vitrineGeoMetadata } from "@/lib/vitrine/page-metadata";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
 
-export const metadata: Metadata = {
-  title: "Notre Centre de Formation à Toulouse",
+export const metadata = vitrineGeoMetadata("/notre-centre", {
+  title: "Notre Centre de Formation à Toulouse — F2M Consulting",
   description:
-    "Découvrez F2M Consulting à Toulouse : équipe, intervenants, valeurs depuis 2012, accessibilité PMR et plan d'accès ligne 4.",
-};
+    "Centre F2M Consulting à Toulouse (31100) : équipe, locaux Route de Seysses, Qualiopi, accessibilité PMR, plan d'accès métro/bus L4.",
+  keywords: [
+    "centre formation Toulouse",
+    "F2M Consulting Toulouse",
+    "formation sécurité privée 31",
+    "Route de Seysses formation",
+  ],
+});
 
 const TEAM = [
   {

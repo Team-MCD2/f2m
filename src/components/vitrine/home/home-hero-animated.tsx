@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { TypewriterText } from "@/components/vitrine/TypewriterText";
+import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/vitrine/brand-logo";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
 import { VitrineImageZoom } from "@/components/vitrine/vitrine-image-zoom";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
@@ -15,10 +15,20 @@ const HERO_FAMILIES = [
   { label: "E-learning", href: "/e-learning" },
 ] as const;
 
-const TYPEWRITER_TEXT = "F2M Consulting";
+const INTRO_MS = 450;
 
 export function HomeHeroAnimated() {
   const [introDone, setIntroDone] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) {
+      setIntroDone(true);
+      return;
+    }
+    const timer = window.setTimeout(() => setIntroDone(true), INTRO_MS);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <section
@@ -48,12 +58,7 @@ export function HomeHeroAnimated() {
       <div className="hero-overlay" aria-hidden="true" />
       <div className="container hero-content">
         <p className="hero-brand-line">
-          <TypewriterText
-            text={TYPEWRITER_TEXT}
-            speedMs={50}
-            className="hero-brand-typewriter"
-            onComplete={() => setIntroDone(true)}
-          />
+          <BrandLogo className="hero-brand-logo" height={56} priority />
         </p>
         <div className={`hero-after-intro${introDone ? " is-visible" : ""}`}>
           <div className="hero-badges hero-enter hero-enter--1">

@@ -1,17 +1,22 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "@/components/vitrine/contact-form";
 import { MapEmbed } from "@/components/vitrine/map-embed";
 import { PageHero } from "@/components/vitrine/page-hero";
 import { Section } from "@/components/vitrine/section";
 import { F2M_SITE } from "@/lib/vitrine/site-config";
+import { vitrineGeoMetadata } from "@/lib/vitrine/page-metadata";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
 
-export const metadata: Metadata = {
-  title: "Contact F2M Consulting — Centre de formation Toulouse",
+export const metadata = vitrineGeoMetadata("/contact", {
+  title: "Contact F2M Consulting — Formation DGESP Toulouse",
   description:
-    "Contactez F2M Consulting à Toulouse — formulaire, téléphone 06 47 27 55 75, horaires, accès bus L4, carte.",
-};
+    "Contactez F2M Consulting à Toulouse, 244 Route de Seysses 31100 — téléphone 06 47 27 55 75, formulaire, horaires, accès bus L4.",
+  keywords: [
+    "contact formation Toulouse",
+    "F2M Consulting contact",
+    "centre DGESP Toulouse téléphone",
+  ],
+});
 
 export default function ContactPage() {
   return (
