@@ -46,7 +46,7 @@ export default function HomePage() {
       <CertificationsBlock />
 
       <Section variant="brand" id="faq" title="FAQ — Formation DGESP Toulouse" className="reveal-on-scroll">
-        <FaqAccordion />
+        <FaqAccordion limit={3} showAllLink />
       </Section>
 
       <HomeContactBand />

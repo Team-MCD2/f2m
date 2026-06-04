@@ -15,6 +15,7 @@ type FeaturedFormation = {
   lieu: string;
   image: string;
   fallback: string;
+  imageAlt: string;
   ribbonLabel?: string;
 };
 
@@ -28,6 +29,8 @@ const FEATURED: FeaturedFormation[] = [
     lieu: "Toulouse + distanciel",
     image: F.formation,
     fallback: F.formationFallback,
+    imageAlt:
+      "Stagiaires en formation DGESP — management et sécurité privée à Toulouse",
     ribbonLabel: "RNCP 36654",
   },
   {
@@ -39,6 +42,7 @@ const FEATURED: FeaturedFormation[] = [
     lieu: "Toulouse",
     image: F.vae,
     fallback: F.vaeFallback,
+    imageAlt: "Accompagnement VAE DGESP pour dirigeants de la sécurité privée",
     ribbonLabel: "Niveau 5",
   },
   {
@@ -50,36 +54,7 @@ const FEATURED: FeaturedFormation[] = [
     lieu: "À distance",
     image: F.financements,
     fallback: F.financementsFallback,
-  },
-  {
-    title: "E-learning & classes virtuelles",
-    excerpt:
-      "Plateforme Dokeos, classes virtuelles et ressources pédagogiques complémentaires au présentiel.",
-    href: "/e-learning",
-    duration: "Continu",
-    lieu: "En ligne",
-    image: F.elearning,
-    fallback: F.elearningFallback,
-  },
-  {
-    title: "Notre centre",
-    excerpt:
-      "Visitez nos locaux à Toulouse : salles, coworking, visioconférence et accueil stagiaires.",
-    href: "/notre-centre",
-    duration: "Sur RDV",
-    lieu: "31100 Toulouse",
-    image: F.centre,
-    fallback: F.centreFallback,
-  },
-  {
-    title: "Contact & conseil",
-    excerpt:
-      "Échange avec un conseiller pour définir votre parcours DGESP, VAE ou financement.",
-    href: "/contact",
-    duration: "Gratuit",
-    lieu: "Toulouse",
-    image: F.contact,
-    fallback: F.contactFallback,
+    imageAlt: "Conseil financement formation professionnelle CPF et OPCO",
   },
 ];
 
@@ -88,7 +63,7 @@ export function HomeFeaturedFormations() {
     <Section
       id="formations-phares"
       title="Nos formations phares"
-      subtitle="Des parcours structurés pour dirigeants et professionnels de la sécurité privée."
+      subtitle="Trois parcours essentiels pour dirigeants et professionnels de la sécurité privée."
       className="reveal-on-scroll"
     >
       <div className="home-featured-grid reveal-on-scroll reveal-stagger">
@@ -107,7 +82,7 @@ export function HomeFeaturedFormations() {
                 <VitrineImage
                   src={item.image}
                   fallback={item.fallback}
-                  alt=""
+                  alt={item.imageAlt}
                   width={640}
                   height={400}
                   sizes="(min-width: 900px) 33vw, 50vw"
@@ -134,6 +109,11 @@ export function HomeFeaturedFormations() {
           </article>
         ))}
       </div>
+      <p className="home-featured-cta">
+        <Link className="btn btn-brand" href="/formation-dgesp">
+          Voir toutes nos formations
+        </Link>
+      </p>
     </Section>
   );
 }

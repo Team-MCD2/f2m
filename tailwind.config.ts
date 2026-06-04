@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         f2m: {
-          navy: "#1e3a5f",
+          navy: "#1a2332",
           blue: "#2563eb",
           gold: "#c9a227",
           cream: "#f8f6f1",

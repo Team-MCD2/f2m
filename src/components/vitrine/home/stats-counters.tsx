@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
-  { value: 100, suffix: "%", label: "Taux de réussite examen" },
+  { value: 100, suffix: "%", label: "Taux de réussite examen*" },
   { value: 95, suffix: "%", label: "Stagiaires très satisfaits" },
   { value: 57, suffix: "%", label: "Retour à l'emploi à 6 mois" },
   { value: 12, suffix: "", label: "Années d'expérience depuis 2012" },
@@ -91,10 +91,15 @@ export function StatsCounters() {
   }, []);
 
   return (
-    <div ref={ref} className="stats-grid reveal-on-scroll">
-      {STATS.map((stat) => (
-        <StatItem key={stat.label} {...stat} active={active} />
-      ))}
-    </div>
+    <>
+      <div ref={ref} className="stats-grid reveal-on-scroll">
+        {STATS.map((stat) => (
+          <StatItem key={stat.label} {...stat} active={active} />
+        ))}
+      </div>
+      <p className="stats-footnote">
+        * Données promotion 2024 — enquête à chaud stagiaires F2M
+      </p>
+    </>
   );
 }

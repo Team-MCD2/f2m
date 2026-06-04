@@ -5,7 +5,7 @@
   --brand-800: #243044;
   --brand-700: #2f3d52;
   --brand-200: #c8cfd8;
-  --brand-accent-600: #a67c52;
+  --brand-accent-600: #8f6844;
   --brand-accent-500: #b8926a;
   --brand-accent-400: #c9a882;
   --accent-cta: #c9a227;
@@ -356,18 +356,30 @@ h4 {
 .sticky-cta {
   display: none;
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 0.75rem;
+  right: 0.75rem;
   z-index: 99;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.75rem 1.1rem;
+  gap: 0.35rem;
+  padding: 0.55rem 0.85rem;
   background: var(--accent-cta);
   color: var(--brand-950);
   font-weight: 700;
+  font-size: 0.8125rem;
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 24px rgba(26, 35, 50, 0.2);
+  opacity: 0.94;
+}
+
+.vitrine-main {
+  min-height: 50vh;
+}
+
+@media (max-width: 960px) {
+  .vitrine-main {
+    padding-bottom: 4.5rem;
+  }
 }
 
 @media (max-width: 960px) {
@@ -535,7 +547,7 @@ h4 {
   padding: 4rem 0 5rem;
 }
 
-.hero--sigroupe {
+.hero--home {
   min-height: min(100vh, 860px);
 }
 
@@ -576,7 +588,7 @@ h4 {
   animation-delay: 0.58s;
 }
 
-.hero--sigroupe h1 {
+.hero--home h1 {
   color: var(--white);
   font-size: clamp(1.85rem, 4.2vw, 3rem);
   max-width: 22ch;
@@ -1681,6 +1693,14 @@ details[open].accordion-item .accordion-panel {
   }
 }
 
+@media (max-width: 768px) {
+  .hero--home .image-zoom-wrap--ken-burns img,
+  .page-hero--media.page-hero--ken-burns::before {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* Legal prose */
 .legal-page .prose h2 {
   margin-top: 2rem;
@@ -2123,17 +2143,23 @@ details[open] > summary.accordion-trigger::after {
 .vitrine-top-bar {
   background: var(--brand-800);
   border-bottom: 1px solid rgba(166, 124, 82, 0.35);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
 }
 
 .vitrine-top-bar-inner {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.75rem 1.5rem;
-  min-height: 2.25rem;
-  padding-block: 0.35rem;
+  gap: 0.5rem 1.25rem;
+  min-height: 1.85rem;
+  padding-block: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.vitrine-top-bar-inner::-webkit-scrollbar {
+  display: none;
 }
 
 .vitrine-top-bar-item {
@@ -2438,4 +2464,113 @@ details[open] > summary.accordion-trigger::after {
   .testimonial-card:not(.is-highlighted) {
     opacity: 0.72;
   }
+}
+
+.stats-footnote {
+  margin: 1.25rem 0 0;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.testimonials-disclaimer {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.faq-more-link {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.home-featured-cta {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.proof-badge-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.proof-badge-link:hover {
+  color: inherit;
+}
+
+.proof-badge-more {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--brand-accent-400);
+}
+
+.proof-badge-link:hover .proof-badge-more {
+  text-decoration: underline;
+}
+
+.form-error {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #991b1b;
+  font-size: 0.9rem;
+}
+
+.form-group--checkbox {
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.connexion-mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.connexion-mode-tabs button {
+  padding: 0.65rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  color: #475569;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.connexion-mode-tabs button.is-active {
+  border-color: var(--f2m-blue, #2563eb);
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.connexion-mode-panel {
+  min-height: 12rem;
+}
+
+.connexion-mode-panel--new {
+  padding: 1rem 0;
 }

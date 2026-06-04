@@ -13,8 +13,11 @@ export default function ConnexionPage() {
       <section className="section section-alt reveal-on-scroll">
         <div className="container portal-page reveal-on-scroll" data-reveal>
           <header className="portal-page-header">
-            <h1>Connexion</h1>
-            <p>Accédez à votre espace candidat, partenaire ou administrateur.</p>
+            <h1>Espace candidat</h1>
+            <p>
+              Connectez-vous si vous avez déjà un compte, ou déposez une première demande de
+              dossier en ligne.
+            </p>
           </header>
           <div className="form-steps-wrap portal-page-form">
             <Suspense fallback={<p className="portal-page-loading">Chargement…</p>}>

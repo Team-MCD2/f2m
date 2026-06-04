@@ -1,8 +1,10 @@
 import type { ReactNode } from "react";
 import { DM_Sans, Syne } from "next/font/google";
+import { HomeTopBar } from "@/components/vitrine/home/home-top-bar";
 import { SiteFooter } from "@/components/vitrine/site-footer";
 import { SiteHeader } from "@/components/vitrine/site-header";
 import { VitrineAnimations } from "@/components/vitrine/vitrine-animations";
+import { VitrinePortalCtaGate } from "@/components/vitrine/vitrine-portal-cta-gate";
 import "@/styles/vitrine.css";
 
 const syne = Syne({
@@ -26,8 +28,12 @@ export function VitrineShell({ children }: { children: ReactNode }) {
         Aller au contenu principal
       </a>
       <VitrineAnimations />
+      <HomeTopBar />
       <SiteHeader />
-      <main id="main">{children}</main>
+      <main id="main" className="vitrine-main">
+        {children}
+      </main>
+      <VitrinePortalCtaGate />
       <SiteFooter />
     </div>
   );

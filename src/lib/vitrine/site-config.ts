@@ -12,7 +12,7 @@ export const F2M_SITE = {
   },
   geo: { lat: 43.566, lng: 1.4028 },
   lmsUrl: "https://lmsdokeos.f2mconsulting.fr",
-  depositUrl: "/connexion",
+  depositUrl: "/deposer-dossier",
   keywords:
     "formation sécurité privée toulouse, DGESP toulouse, centre formation CNAPS 31",
   mapsEmbed:
@@ -56,7 +56,7 @@ export const VITRINE_NAV: readonly VitrineNavItem[] = [
   {
     label: "Espace candidat",
     children: [
-      { label: "Déposer un dossier", href: "/connexion" },
+      { label: "Déposer un dossier", href: "/deposer-dossier" },
       { label: "Connexion", href: "/connexion" },
     ],
   },

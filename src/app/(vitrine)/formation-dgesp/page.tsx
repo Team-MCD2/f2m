@@ -20,9 +20,42 @@ const BLOCS = [
   { title: "Bloc 4 — Certification & jurys", text: "Préparation aux épreuves, dossier professionnel et soutenance." },
 ] as const;
 
+const courseJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Course",
+  name: "Formation DGESP — Dirigeant d'Entreprise de Sécurité Privée",
+  description:
+    "Formation certifiante 282 h vers le titre RNCP 36654 niveau 5 à Toulouse. Présentiel, e-learning Dokeos, organisme Qualiopi.",
+  provider: {
+    "@type": "Organization",
+    name: F2M_SITE.name,
+    url: F2M_SITE.url,
+  },
+  offers: {
+    "@type": "Offer",
+    category: "Formation professionnelle",
+    areaServed: "FR",
+  },
+  hasCourseInstance: {
+    "@type": "CourseInstance",
+    courseMode: "blended",
+    courseWorkload: "PT282H",
+    location: {
+      "@type": "Place",
+      name: F2M_SITE.name,
+      address: F2M_SITE.address.full,
+    },
+  },
+  educationalCredentialAwarded: "RNCP 36654 — Niveau 5",
+};
+
 export default function FormationDgespPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
+      />
       <PageHero
         title="Formation DGESP — RNCP 36654 Niveau 5"
         lead="Dirigeant d'Entreprise de Sécurité Privée · 282 heures · Présentiel Toulouse + e-learning LMS Dokeos."
@@ -93,7 +126,7 @@ export default function FormationDgespPage() {
                 <p className="dgesp-testimonial-author">— Bastien, dirigeant SSP</p>
               </div>
             </blockquote>
-            <Link className="btn btn-brand" href="/connexion">
+            <Link className="btn btn-brand" href={F2M_SITE.depositUrl}>
               Déposer un dossier
             </Link>
           </article>

@@ -13,7 +13,7 @@ const HERO_FAMILIES = [
 
 export function HomeHeroSigroupe() {
   return (
-    <section className="hero hero--sigroupe hero--animated" aria-label="Présentation F2M Consulting">
+    <section className="hero hero--home hero--animated" aria-label="Présentation F2M Consulting">
       <div className="hero-static-bg" aria-hidden="true">
         <VitrineImageZoom kenBurns className="hero-static-bg-zoom">
           <VitrineImage
@@ -35,13 +35,11 @@ export function HomeHeroSigroupe() {
           <span className="badge">Toulouse · Occitanie</span>
         </div>
         <h1 className="hero-enter hero-enter--2">
-          F2M Consulting — Centre de formation DGESP &amp; sécurité privée à Toulouse
+          Formation DGESP &amp; sécurité privée à Toulouse
         </h1>
         <p className="lead hero-enter hero-enter--3">
-          Accompagnement des dirigeants et professionnels vers le titre{" "}
-          <strong>Dirigeant d&apos;Entreprise de Sécurité Privée</strong>.
-          <br />
-          Formation initiale, VAE et financements (CPF, OPCO, France Travail).
+          Centre certifié Qualiopi — titre RNCP 36654, VAE et financements CPF / OPCO pour
+          dirigeants et professionnels de la sécurité privée.
         </p>
         <div className="hero-cta hero-enter hero-enter--4">
           <Link className="btn btn-gold btn-primary-glow" href="/formation-dgesp">

@@ -46,6 +46,7 @@ function Stars() {
 export function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const active = TESTIMONIALS[activeIndex];
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -66,6 +67,9 @@ export function TestimonialsSection() {
 
   return (
     <div className="testimonials-section reveal-on-scroll">
+      <p className="sr-only" aria-live="polite" aria-atomic="true">
+        Avis mis en avant : {active.name}, {active.role}. {active.quote}
+      </p>
       <div className="testimonials-grid" role="list">
         {TESTIMONIALS.map((item, index) => (
           <article
@@ -73,6 +77,7 @@ export function TestimonialsSection() {
             role="listitem"
             className={`testimonial-card${index === activeIndex ? " is-highlighted" : ""}`}
             onMouseEnter={() => setActiveIndex(index)}
+            aria-current={index === activeIndex ? "true" : undefined}
           >
             <div className="testimonial-card-header">
               <VitrineImage
@@ -107,6 +112,9 @@ export function TestimonialsSection() {
           />
         ))}
       </div>
+      <p className="testimonials-disclaimer">
+        Avis recueillis après formation — identités modifiées
+      </p>
     </div>
   );
 }
