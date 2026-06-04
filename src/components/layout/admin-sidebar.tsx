@@ -9,6 +9,7 @@ import {
   Clock,
   Cloud,
   FileStack,
+  FileText,
   LayoutDashboard,
   Mail,
   Sparkles,
@@ -34,7 +35,8 @@ const gestionNav = [
 ];
 
 const toolsNav = [
-  { href: "/admin/documents/generer", label: "Documents", icon: Sparkles },
+  { href: "/admin/documents/generer", label: "Générer docs", icon: Sparkles },
+  { href: "/admin/documents/generes", label: "Docs générés", icon: FileText },
   { href: "/admin/documents/templates", label: "Modèles", icon: FileStack },
 ];
 

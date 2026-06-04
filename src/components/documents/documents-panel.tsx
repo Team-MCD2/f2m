@@ -16,6 +16,7 @@ import {
   ExternalLink,
   FileText,
   Image,
+  RefreshCw,
   Send,
   Trash2,
   Upload,
@@ -31,6 +32,8 @@ interface DocumentsPanelProps {
   variant?: "default" | "candidat";
   /** Actions brouillon → envoi (fiche admin candidat) */
   adminMode?: boolean;
+  /** Régénérer un document auto-généré (page Docs générés) */
+  onRegenerate?: (doc: DocumentFichier) => Promise<void>;
 }
 
 function downloadHref(candidatId: string, docId: string) {
@@ -97,6 +100,8 @@ function DocumentRow({
   selected,
   onToggleSelect,
   onRemove,
+  onRegenerate,
+  regenerating,
   onError,
 }: {
   doc: DocumentFichier;
@@ -108,6 +113,8 @@ function DocumentRow({
   selected?: boolean;
   onToggleSelect?: () => void;
   onRemove: (doc: DocumentFichier) => Promise<void>;
+  onRegenerate?: (doc: DocumentFichier) => Promise<void>;
+  regenerating?: boolean;
   onError: (msg: string) => void;
 }) {
   return (
@@ -138,12 +145,29 @@ function DocumentRow({
       </div>
       <div className="flex items-center gap-2">
         <DocumentActions candidatId={candidatId} doc={doc} />
+        {onRegenerate && doc.source === "auto_genere" && doc.templateType && (
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            className="text-slate-600 hover:bg-slate-100"
+            disabled={regenerating}
+            title="Régénérer"
+            aria-label={`Régénérer ${doc.nomFichier}`}
+            onClick={() =>
+              void onRegenerate(doc).catch((e) => onError(String(e.message)))
+            }
+          >
+            <RefreshCw className={`h-4 w-4 ${regenerating ? "animate-spin" : ""}`} />
+          </Button>
+        )}
         {mayDelete && (
           <Button
             type="button"
             variant="ghost"
             size="sm"
             className="text-red-600 hover:bg-red-50 hover:text-red-700"
+            disabled={regenerating}
             onClick={() => void onRemove(doc).catch((e) => onError(String(e.message)))}
           >
             <Trash2 className="h-4 w-4" />
@@ -190,6 +214,7 @@ export function DocumentsPanel({
   title = "Mes documents",
   variant = "default",
   adminMode = false,
+  onRegenerate,
 }: DocumentsPanelProps) {
   const [docs, setDocs] = useState<DocumentFichier[]>([]);
   const [loading, setLoading] = useState(true);
@@ -197,6 +222,7 @@ export function DocumentsPanel({
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [sending, setSending] = useState(false);
   const [sendMessage, setSendMessage] = useState<string | null>(null);
+  const [regeneratingId, setRegeneratingId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -247,6 +273,18 @@ export function DocumentsPanel({
     const data = await res.json();
     if (!res.ok) throw new Error(data.error ?? "Suppression impossible");
     await load();
+  };
+
+  const regenerate = async (doc: DocumentFichier) => {
+    if (!onRegenerate) return;
+    setRegeneratingId(doc.id);
+    setError(null);
+    try {
+      await onRegenerate(doc);
+      await load();
+    } finally {
+      setRegeneratingId(null);
+    }
   };
 
   const sendDocuments = async (payload: { ids?: string[]; all?: boolean }) => {
@@ -378,6 +416,8 @@ export function DocumentsPanel({
                 selected={selectedIds.has(doc.id)}
                 onToggleSelect={() => toggleSelect(doc.id)}
                 onRemove={remove}
+                onRegenerate={onRegenerate ? regenerate : undefined}
+                regenerating={regeneratingId === doc.id}
                 onError={setError}
               />
             ))}
@@ -468,6 +508,8 @@ export function DocumentsPanel({
               showStatut={adminMode}
               mayDelete={mayDelete(doc)}
               onRemove={remove}
+              onRegenerate={onRegenerate ? regenerate : undefined}
+              regenerating={regeneratingId === doc.id}
               onError={setError}
             />
           ))}
