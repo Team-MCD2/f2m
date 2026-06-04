@@ -3,18 +3,21 @@
 import Image from "next/image";
 import { useState } from "react";
 
-type VitrineImageProps = {
+type VitrineImageBase = {
   src: string;
   fallback?: string;
   alt: string;
-  width: number;
-  height: number;
   className?: string;
   priority?: boolean;
-  fill?: boolean;
   sizes?: string;
   style?: React.CSSProperties;
 };
+
+type VitrineImageProps = VitrineImageBase &
+  (
+    | { fill: true; width?: number; height?: number }
+    | { fill?: false; width: number; height: number }
+  );
 
 export function VitrineImage({
   src,

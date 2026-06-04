@@ -9,6 +9,7 @@ const FORMATION_LINKS = [
     href: "/formation-dgesp",
     desc: "282 h · Titre RNCP niveau 5",
     image: VITRINE_IMAGES.formation,
+    fallback: VITRINE_IMAGES.formationFallback,
   },
   {
     label: "VAE DGESP",
@@ -56,6 +57,7 @@ export function HomeFormationGrid() {
             <span className="home-formation-tile-img">
               <VitrineImage
                 src={item.image}
+                fallback={"fallback" in item ? item.fallback : undefined}
                 alt=""
                 width={400}
                 height={260}

@@ -1,5 +1,6 @@
 import { Section } from "@/components/vitrine/section";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
+import { VitrineImageZoom } from "@/components/vitrine/vitrine-image-zoom";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
 
 const GALLERY = [
@@ -36,13 +37,15 @@ export function HomeGallery() {
       <div className="gallery-grid home-gallery-grid">
         {GALLERY.map((item) => (
           <figure key={item.label} className="gallery-item">
-            <VitrineImage
-              src={item.src}
-              alt={item.alt}
-              width={600}
-              height={450}
-              className="gallery-photo"
-            />
+            <VitrineImageZoom className="gallery-item-zoom">
+              <VitrineImage
+                src={item.src}
+                alt={item.alt}
+                width={600}
+                height={450}
+                className="gallery-photo"
+              />
+            </VitrineImageZoom>
             <figcaption>{item.label}</figcaption>
           </figure>
         ))}

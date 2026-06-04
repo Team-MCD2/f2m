@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { VITRINE_IMAGES } from "@/lib/vitrine/images";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
+import { VitrineImageZoom } from "@/components/vitrine/vitrine-image-zoom";
 import { Section } from "@/components/vitrine/section";
+
+const F = VITRINE_IMAGES.featured;
 
 const FEATURED = [
   {
@@ -11,7 +14,8 @@ const FEATURED = [
     href: "/formation-dgesp",
     duration: "282 h",
     lieu: "Toulouse + distanciel",
-    image: VITRINE_IMAGES.formation,
+    image: F.formation,
+    fallback: F.formationFallback,
   },
   {
     title: "VAE dirigeant DGESP",
@@ -20,7 +24,8 @@ const FEATURED = [
     href: "/vae-dgesp",
     duration: "Sur mesure",
     lieu: "Toulouse",
-    image: VITRINE_IMAGES.vae,
+    image: F.vae,
+    fallback: F.vaeFallback,
   },
   {
     title: "Financement CPF & OPCO",
@@ -29,7 +34,8 @@ const FEATURED = [
     href: "/financements",
     duration: "Accompagnement",
     lieu: "À distance",
-    image: VITRINE_IMAGES.financements.cpf,
+    image: F.financements,
+    fallback: F.financementsFallback,
   },
   {
     title: "E-learning & classes virtuelles",
@@ -38,7 +44,8 @@ const FEATURED = [
     href: "/e-learning",
     duration: "Continu",
     lieu: "En ligne",
-    image: VITRINE_IMAGES.elearning,
+    image: F.elearning,
+    fallback: F.elearningFallback,
   },
   {
     title: "Notre centre",
@@ -47,7 +54,8 @@ const FEATURED = [
     href: "/notre-centre",
     duration: "Sur RDV",
     lieu: "31100 Toulouse",
-    image: VITRINE_IMAGES.centre,
+    image: F.centre,
+    fallback: F.centreFallback,
   },
   {
     title: "Contact & conseil",
@@ -56,7 +64,8 @@ const FEATURED = [
     href: "/contact",
     duration: "Gratuit",
     lieu: "Toulouse",
-    image: VITRINE_IMAGES.contact,
+    image: F.contact,
+    fallback: F.contactFallback,
   },
 ] as const;
 
@@ -66,18 +75,22 @@ export function HomeFeaturedFormations() {
       id="formations-phares"
       title="Nos formations phares"
       subtitle="Des parcours structurés pour dirigeants et professionnels de la sécurité privée."
+      className="reveal-on-scroll"
     >
-      <div className="home-featured-grid">
+      <div className="home-featured-grid reveal-on-scroll reveal-stagger">
         {FEATURED.map((item) => (
           <article key={item.href} className="home-featured-card">
             <Link href={item.href} className="home-featured-card-media">
-              <VitrineImage
-                src={item.image}
-                alt=""
-                width={640}
-                height={400}
-                sizes="(min-width: 900px) 33vw, 50vw"
-              />
+              <VitrineImageZoom>
+                <VitrineImage
+                  src={item.image}
+                  fallback={item.fallback}
+                  alt=""
+                  width={640}
+                  height={400}
+                  sizes="(min-width: 900px) 33vw, 50vw"
+                />
+              </VitrineImageZoom>
             </Link>
             <div className="home-featured-card-body">
               <h3>

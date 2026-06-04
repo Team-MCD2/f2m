@@ -12,7 +12,10 @@ export function PageHero({ title, lead, image, breadcrumbs, children }: PageHero
   const style = image ? ({ ["--page-hero-image" as string]: `url('${image}')` } as React.CSSProperties) : undefined;
 
   return (
-    <div className={`page-hero${image ? " page-hero--media" : ""}`} style={style}>
+    <div
+      className={`page-hero${image ? " page-hero--media page-hero--ken-burns" : ""}`}
+      style={style}
+    >
       <div className="container">
         {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
         <h1>{title}</h1>

@@ -6,11 +6,30 @@ const U = (id: string, w = 800) =>
 export const TOULOUSE_IMAGE =
   "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/266000/266374-Toulouse.jpg";
 
+const UNSPLASH = (path: string, w = 800) =>
+  `https://images.unsplash.com/${path}?auto=format&fit=crop&w=${w}&q=80`;
+
 export const VITRINE_IMAGES = {
   hero: U("photo-1524178232363-1fb2b075b655", 1920),
   toulouse: TOULOUSE_IMAGE,
   toulouseFallback: TOULOUSE_IMAGE,
-  formation: U("photo-1454165804603-c3d57bc86b40", 1200),
+  formation: UNSPLASH("photo-1563986768609-322da13575f3", 800),
+  formationFallback: UNSPLASH("photo-1454165804603-c3d57bc86b40", 800),
+  featured: {
+    formation: UNSPLASH("photo-1563986768609-322da13575f3", 800),
+    formationFallback: UNSPLASH("photo-1454165804603-c3d57bc86b40", 800),
+    vae: U("photo-1552664730-d307ca884978", 800),
+    vaeFallback: U("photo-1552664730-d307ca884978", 800),
+    financements: U("photo-1554224155-6726b3ff858f", 800),
+    financementsFallback: U("photo-1454165804603-c3d57bc86b40", 800),
+    elearning: U("photo-1516321318423-f06f85e504b3", 800),
+    elearningFallback:
+      "https://www.dtp-ag.com/wp-content/uploads/visioconference-informatique-mobilier-salle-quel.jpeg",
+    centre: U("photo-1497366216548-37526070297c", 800),
+    centreFallback: TOULOUSE_IMAGE,
+    contact: U("photo-1423666639041-f56000c27a9a", 800),
+    contactFallback: U("photo-1423666639041-f56000c27a9a", 800),
+  },
   vae: U("photo-1552664730-d307ca884978", 1200),
   finance: U("photo-1554224155-6726b3ff858f", 1200),
   blog: U("photo-1504711434969-e33886168f5c", 1600),

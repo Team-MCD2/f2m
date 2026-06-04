@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Section } from "@/components/vitrine/section";
 import { VitrineImage } from "@/components/vitrine/vitrine-image";
+import { VitrineImageZoom } from "@/components/vitrine/vitrine-image-zoom";
 import { TOULOUSE_IMAGE } from "@/lib/vitrine/images";
 
 export function HomeCentreSection() {
@@ -8,7 +9,7 @@ export function HomeCentreSection() {
     <Section
       id="notre-centre-toulouse"
       variant="light"
-      className="section--align-left"
+      className="section--align-left reveal-on-scroll"
       title="Notre centre à Toulouse"
       subtitle="Locaux modernes à deux pas du périphérique sud — formation présentielle et distanciel complémentaires."
     >
@@ -26,15 +27,17 @@ export function HomeCentreSection() {
           </p>
         </div>
         <div className="media-band-img-wrap">
-          <VitrineImage
-            src={TOULOUSE_IMAGE}
-            fallback={TOULOUSE_IMAGE}
-            alt="Vue de Toulouse — Garonne et centre-ville, ville d'accueil F2M Consulting"
-            width={800}
-            height={600}
-            fill
-            sizes="(min-width: 768px) 50vw, 100vw"
-          />
+          <VitrineImageZoom className="media-band-img-zoom">
+            <VitrineImage
+              src={TOULOUSE_IMAGE}
+              fallback={TOULOUSE_IMAGE}
+              alt="Vue de Toulouse — Garonne et centre-ville, ville d'accueil F2M Consulting"
+              width={800}
+              height={600}
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          </VitrineImageZoom>
         </div>
       </div>
     </Section>
